@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application>
+        <meta-data android:name="com.powens.clientId" android:value="${powensClientId}" />
+        <meta-data android:name="com.powens.domain" android:value="${powensDomain}" />
+        <activity android:name=".PowensActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="callback"
+                    android:path="/connect"
+                    android:scheme="powens-${powensClientId}" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
