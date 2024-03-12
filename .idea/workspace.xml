@@ -4,197 +4,198 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c91fa90f-c487-47d2-afbd-f1c1cf142879" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/api_client_jvm.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/generated_js_1_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/generated_jvm.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/generated_jvm_1_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/migrations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/api_client.podspec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/.openapi-generator-ignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/.openapi-generator/FILES" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/.openapi-generator/VERSION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/AccessToken.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/AccessTokenRequest.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/AccountSchemeName.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/AuthCode.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/AuthMechanism.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/AuthenticationApi.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccount.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountType.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountTypeName.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountTypesApi.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountTypesList.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountUpdateRequest.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountUsage.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountsApi.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountsList.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/BankTransactionsApi.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/BanksList.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/Connection.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectionConnector.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectionRequest.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectionSource.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectionState.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectionUpdateRequest.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectionsApi.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectionsList.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/Connector.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectorCountriesInner.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectorPatch.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectorSource.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectorsApi.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectorsList.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/CredentialsField.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/CredentialsFieldValuesInner.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/Currency.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/Error.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ErrorCode.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ExchangeAccessToken.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ExchangeAccessTokenRequest.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ProvidersList.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/RenewAccessTokenRequest.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ServiceAccessToken.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ServiceAccessTokenRequest.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ServiceTokenScope.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/TimedList.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/Transaction.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/TransactionAccount.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/TransactionCommissionCurrency.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/TransactionCounterparty.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/TransactionCounterpartyAccountSchemeName.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/TransactionOriginalCurrency.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/TransactionType.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/TransactionUpdateRequest.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/TransactionsList.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/User.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/UsersApi.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/AuthenticationApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/BankAccountTypesApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/BankAccountsApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/BankTransactionsApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/ConnectionsApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/ConnectorsApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/UsersApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/AccessToken.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/AccessTokenRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/AccountSchemeName.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/AdditionalProperties.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/AuthCode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/AuthMechanism.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccount.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountType.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountTypeName.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountTypesList.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountUpdateRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountUsage.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountsList.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BanksList.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/Connection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectionConnector.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectionRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectionSource.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectionState.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectionUpdateRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectionsList.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/Connector.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectorCountriesInner.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectorPatch.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectorSource.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectorsList.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/CredentialsField.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/CredentialsFieldValuesInner.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/Currency.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/Error.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ErrorCode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ExchangeAccessToken.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ExchangeAccessTokenRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ProvidersList.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/RenewAccessTokenRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ServiceAccessToken.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ServiceAccessTokenRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ServiceTokenScope.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TimedList.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/Transaction.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionAccount.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionCommissionCurrency.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionCounterparty.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionOriginalCurrency.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionType.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionUpdateRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionsList.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/User.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/client/AuthenticationApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/client/BankAccountTypesApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/client/BankAccountsApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/client/BankTransactionsApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/client/ConnectionsApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/client/ConnectorsApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/client/UsersApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/auth/ApiKeyAuth.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/auth/Authentication.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/auth/HttpBasicAuth.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/auth/HttpBearerAuth.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/auth/OAuth.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/ApiAbstractions.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/ApiClient.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/Base64ByteArray.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/Bytes.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/HttpResponse.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/OctetByteArray.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/PartConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/RequestConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/RequestMethod.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonTest/kotlin/util/Coroutine.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/iosTest/kotlin/util/Coroutine.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/jsTest/kotlin/util/Coroutine.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/generated/src/jvmTest/kotlin/util/Coroutine.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/specs/api-schema.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-client/src/commonMain/kotlin/WebviewClient.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/kotlin/Compat.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/kotlin/Powens.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/kotlin/PowensActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/kotlin/WebviewPresenter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/kotlin/theme/Theme.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/res/drawable/ic_launcher_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/res/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/resources/compose-multiplatform.xml" afterDir="false" />
+    <list default="true" id="c91fa90f-c487-47d2-afbd-f1c1cf142879" name="Changes" comment="Initial commit">
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/AError.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/AError1.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountLoan.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/CalendarBound.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectorCountriesItem.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectorCountry.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/CreateUserConnectionRequest.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/CreateUserConnectionRequestValue.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/CredentialsFieldValue.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/DateBound.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/DateBoundedList.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/Error1.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ExchangeAccessToken200Response.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetAuthCode200Response.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetServiceAccessToken200Response.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetServiceAccessTokenRequest.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUser200Response.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserConnection200Response.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserConnection200ResponseAccountsInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserConnection200ResponseAccountsInnerConnection.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserConnection200ResponseAccountsInnerConnectionOneOf.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserConnection200ResponseAccountsInnerCurrency.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserConnection200ResponseAccountsInnerCurrencyOneOf.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserConnection200ResponseAccountsInnerLoan.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserConnection200ResponseConnector.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserConnection200ResponseSourcesInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserTransaction200Response.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserTransaction200ResponseAccount.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserTransaction200ResponseCommissionCurrency.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserTransaction200ResponseCounterparty.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserTransaction200ResponseCounterpartyOneOf.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserTransaction200ResponseCounterpartyOneOfAccountSchemeName.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/GetUserTransaction200ResponseOriginalCurrency.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/InitUserToken200Response.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/InitUserTokenRequest.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ListBankAccountTypes200Response.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ListBankAccountTypes200ResponseAccounttypesInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ListBanks200Response.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ListConnectors200Response.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ListConnectors200ResponseConnectorsInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ListConnectors200ResponseConnectorsInnerCountriesInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ListConnectors200ResponseConnectorsInnerFieldsInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ListConnectors200ResponseConnectorsInnerFieldsInnerValuesInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ListConnectors200ResponseConnectorsInnerSourcesInner.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ListProviders200Response.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ListUserAccounts200Response.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ListUserConnections200Response.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ListUserTransactions200Response.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/Loan.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ServiceError.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ServiceError1.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/ServiceErrorCode.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/TransactionValueFilter.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/UpdateConnectorsRequestValue.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/UpdateSyncUserConnection400Response.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/UpdateSyncUserConnectionRequest.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/UpdateUserAccountRequest.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/docs/UpdateUserTransactionRequest.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/Loan.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ServiceError1.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/generator-config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/specs/authentication.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/specs/bank-account-types.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/specs/bank-accounts.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/specs/bank-transactions.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/specs/connectors.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/specs/core.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/specs/powens-api.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/specs/users.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/src/commonMain/kotlin/com/powens/api/client/PowensApiClient.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/src/commonMain/kotlin/com/powens/api/client/ServiceException.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/src/commonMain/kotlin/com/powens/api/model/CalendarBound.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/src/commonMain/kotlin/com/powens/api/model/MonetaryValue.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/src/commonMain/kotlin/com/powens/api/model/TransactionValueFilter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-client/src/jvmMain/kotlin/com/powens/api/model/MonetaryValue.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/.openapi-generator-ignore" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/.openapi-generator-ignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/.openapi-generator/FILES" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/.openapi-generator/FILES" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/AccessToken.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/AccessToken.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/AccountSchemeName.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/AccountSchemeName.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/AuthMechanism.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/AuthMechanism.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/AuthenticationApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/AuthenticationApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/BankAccount.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccount.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/BankAccountType.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountType.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/BankAccountTypeName.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountTypeName.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/BankAccountTypesApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountTypesApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/BankAccountTypesList.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountTypesList.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/BankAccountUsage.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountUsage.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/BankAccountsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountsApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/BankAccountsList.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountsList.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/BankTransactionsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/BankTransactionsApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/Connection.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/Connection.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/ConnectionRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectionRequest.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/ConnectionSource.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectionSource.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/ConnectionState.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectionState.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/ConnectionsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectionsApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/Connector.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/Connector.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/ConnectorSource.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectorSource.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/ConnectorsApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/ConnectorsApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/CredentialsField.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/CredentialsField.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/Error.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/Error.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/ErrorCode.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/ErrorCode.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/RenewAccessTokenRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/RenewAccessTokenRequest.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/ServiceAccessTokenRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/ServiceAccessTokenRequest.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/ServiceTokenScope.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/ServiceTokenScope.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/TimedList.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/TimedList.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/Transaction.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/Transaction.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/TransactionAccount.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/TransactionAccount.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/TransactionCounterpartyAccountSchemeName.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/BankAccountsListBalancesValue.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/TransactionType.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/TransactionType.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/TransactionUpdateRequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/TransactionUpdateRequest.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/User.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/User.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/docs/UsersApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/docs/UsersApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/AuthenticationApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/internal/AuthenticationApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/BankAccountTypesApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/internal/BankAccountTypesApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/BankAccountsApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/internal/BankAccountsApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/BankTransactionsApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/internal/BankTransactionsApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/ConnectionsApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/internal/ConnectionsApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/ConnectorsApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/internal/ConnectorsApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/UsersApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/client/internal/UsersApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/AccessToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/AccessToken.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/AccountSchemeName.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/AccountSchemeName.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/AdditionalProperties.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/src/commonMain/kotlin/com/powens/api/model/AdditionalPropertiesRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/AuthCode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/AuthCode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/AuthMechanism.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/AuthMechanism.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccount.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccount.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountType.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountTypeName.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountTypeName.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountTypesList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountTypesList.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountUsage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountUsage.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountsList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/BankAccountsList.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/Connection.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/Connection.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectionConnector.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectionRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectionRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectionSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectionSource.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectionState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectionState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectionUpdateRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectionUpdateRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/Connector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/Connector.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectorCountriesInner.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectorCountry.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectorSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ConnectorSource.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/CredentialsField.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/CredentialsField.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/CredentialsFieldValuesInner.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/CredentialsFieldValue.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/Error.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ServiceError.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ErrorCode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ServiceErrorCode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ExchangeAccessToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ExchangeAccessToken.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ExchangeAccessTokenRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ExchangeAccessTokenRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/RenewAccessTokenRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/RenewAccessTokenRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ServiceAccessTokenRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ServiceAccessTokenRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ServiceTokenScope.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/ServiceTokenScope.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TimedList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/DateBoundedList.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/Transaction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/Transaction.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionAccount.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionCommissionCurrency.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionCounterparty.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionCounterparty.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionOriginalCurrency.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionType.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionUpdateRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/TransactionUpdateRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/model/User.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/client/AuthenticationApi.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/client/BankAccountTypesApi.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/client/BankAccountsApi.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/client/BankTransactionsApi.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/client/ConnectionsApi.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/client/ConnectorsApi.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/client/UsersApi.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/auth/ApiKeyAuth.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/auth/ApiKeyAuth.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/auth/Authentication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/auth/Authentication.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/auth/HttpBasicAuth.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/auth/HttpBasicAuth.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/auth/HttpBearerAuth.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/auth/HttpBearerAuth.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/auth/OAuth.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/auth/OAuth.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/ApiAbstractions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/infrastructure/ApiAbstractions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/ApiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/infrastructure/ApiClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/Base64ByteArray.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/infrastructure/Base64ByteArray.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/Bytes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/infrastructure/Bytes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/HttpResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/infrastructure/HttpResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/OctetByteArray.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/infrastructure/OctetByteArray.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/PartConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/infrastructure/PartConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/RequestConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/infrastructure/RequestConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/org/openapitools/client/infrastructure/RequestMethod.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/generated/src/commonMain/kotlin/com/powens/api/infrastructure/RequestMethod.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/specs/api-schema.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/specs/connections.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client/src/commonMain/kotlin/WebviewClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api-client/src/commonMain/kotlin/com/powens/api/client/WebviewClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui-kit/src/androidMain/kotlin/PowensActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/ui-kit/src/androidMain/kotlin/PowensActivity.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,6 +223,9 @@
         <task path="$PROJECT_DIR$/ui-kit">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -232,41 +236,13 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="powens-sdks" type="f1a62948:ProjectNode" />
-                <item name="api-client" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="powens-sdks" type="f1a62948:ProjectNode" />
-                <item name="api-client" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="powens-sdks" type="f1a62948:ProjectNode" />
-                <item name="api-client" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="openapi tools" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="powens-sdks" type="f1a62948:ProjectNode" />
-                <item name="api-client" type="2d1252cf:ModuleNode" />
-                <item name="generated" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="powens-sdks" type="f1a62948:ProjectNode" />
-                <item name="api-client" type="2d1252cf:ModuleNode" />
-                <item name="generated" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="powens-sdks" type="f1a62948:ProjectNode" />
-                <item name="api-client" type="2d1252cf:ModuleNode" />
-                <item name="generated" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -278,12 +254,16 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Yaml OpenAPI version 3" />
         <option value="Kotlin Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KotlinCodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="KotlinMultiplatform" KONAN_HOME="$USER_HOME$/.konan/kotlin-native-prebuilt-linux-x86_64-1.9.22">
     <executable TARGET="ios_x64" TARGET_NAME="iosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":api-client:" IS_TEST="true">
@@ -331,52 +311,72 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Gradle.powens-sdks:api-client [buildDependents].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.powens-sdks:api-client [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.powens-sdks:api-client [openApiGenerate].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.powens-sdks:api-client [openApiGenerators].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.powens-sdks:api-client [openApiValidate].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.powens-sdks:api-client:generated [buildDependents].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.powens-sdks:api-client:generated [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.powens-sdks:api-client:generated [cleanAllTests].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.powens-sdks:api-client:generated [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.powens-sdks:ui-kit [publishToMavenLocal].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.powens-sdks:ui-kit [publish].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;20&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/mike/Documents/dev/powens/powens-sdks&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Gradle.powens-sdks [build].executor": "Run",
+    "Gradle.powens-sdks [compileDebugSources].executor": "Run",
+    "Gradle.powens-sdks [compileDebugUnitTestSources].executor": "Run",
+    "Gradle.powens-sdks [compileReleaseSources].executor": "Run",
+    "Gradle.powens-sdks [compileReleaseUnitTestSources].executor": "Run",
+    "Gradle.powens-sdks [openApiGenerate].executor": "Run",
+    "Gradle.powens-sdks [openApiGenerators].executor": "Run",
+    "Gradle.powens-sdks [openApiMeta].executor": "Run",
+    "Gradle.powens-sdks [openApiValidate].executor": "Run",
+    "Gradle.powens-sdks:api-client [buildDependents].executor": "Run",
+    "Gradle.powens-sdks:api-client [build].executor": "Run",
+    "Gradle.powens-sdks:api-client [openApiGenerate].executor": "Run",
+    "Gradle.powens-sdks:api-client [openApiGenerators].executor": "Run",
+    "Gradle.powens-sdks:api-client [openApiValidate].executor": "Run",
+    "Gradle.powens-sdks:api-client:generated [buildDependents].executor": "Run",
+    "Gradle.powens-sdks:api-client:generated [build].executor": "Run",
+    "Gradle.powens-sdks:api-client:generated [cleanAllTests].executor": "Run",
+    "Gradle.powens-sdks:api-client:generated [clean].executor": "Run",
+    "Gradle.powens-sdks:ui-kit [publishToMavenLocal].executor": "Run",
+    "Gradle.powens-sdks:ui-kit [publish].executor": "Run",
+    "Json OpenAPI version 3": "Yaml OpenAPI version 3",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "20",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "/home/mike/Documents/dev/powens/powens-sdks/api-client/src/commonMain/kotlin/com/powens/api",
+    "last_opened_file_path": "/home/mike/Documents/dev/powens/powens-sdks/api-client/src/commonMain/kotlin/com/powens/api/model",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "configurable.group.appearance"
   }
-}</component>
+}]]></component>
   <component name="PsdUISettings">
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api-client/src/commonMain/kotlin/com/powens/api/model" />
+      <recent name="$PROJECT_DIR$/api-client/src/iosMain/kotlin" />
+      <recent name="$PROJECT_DIR$/api-client/specs" />
       <recent name="$PROJECT_DIR$/ui-kit/src/androidMain/kotlin" />
       <recent name="$PROJECT_DIR$/ui-kit" />
-      <recent name="$PROJECT_DIR$/api-client/generated/src/androidNativeTest" />
-      <recent name="$PROJECT_DIR$/api-client/generated/src" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api-client/src/iosMain/kotlin" />
       <recent name="$PROJECT_DIR$/api-client/src/commonMain/kotlin" />
     </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.powens.api.model" />
+      <recent name="com.powens.api.client" />
+      <recent name="" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
   </component>
-  <component name="RunManager" selected="Gradle.powens-sdks:api-client:generated [build]">
+  <component name="RunManager" selected="Gradle.powens-sdks [openApiGenerate]">
     <configuration name="ui-kit" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="powens-sdks.ui-kit.main" />
       <option name="DEPLOY" value="true" />
@@ -444,54 +444,10 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="powens-sdks:api-client [openApiGenerate]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="powens-sdks [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/api-client" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="openApiGenerate" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
-      <method v="2" />
-    </configuration>
-    <configuration name="powens-sdks:api-client [openApiGenerators]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/api-client" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="openApiGenerators" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
-      <method v="2" />
-    </configuration>
-    <configuration name="powens-sdks:api-client:generated [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/api-client/generated" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -507,13 +463,13 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="powens-sdks:ui-kit [publishToMavenLocal]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="powens-sdks [openApiGenerate]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/ui-kit" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -521,7 +477,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="publishToMavenLocal" />
+            <option value="openApiGenerate" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -529,13 +485,13 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="powens-sdks:ui-kit [publish]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="powens-sdks [openApiGenerators]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/ui-kit" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -543,7 +499,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="publish" />
+            <option value="openApiGenerators" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -551,16 +507,60 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="powens-sdks [openApiMeta]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="openApiMeta" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="powens-sdks [openApiValidate]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="openApiValidate" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.powens-sdks:api-client:generated [build]" />
-        <item itemvalue="Gradle.powens-sdks:api-client [openApiGenerators]" />
-        <item itemvalue="Gradle.powens-sdks:api-client [openApiGenerate]" />
-        <item itemvalue="Gradle.powens-sdks:ui-kit [publishToMavenLocal]" />
-        <item itemvalue="Gradle.powens-sdks:ui-kit [publish]" />
+        <item itemvalue="Gradle.powens-sdks [openApiGenerate]" />
+        <item itemvalue="Gradle.powens-sdks [build]" />
+        <item itemvalue="Gradle.powens-sdks [openApiValidate]" />
+        <item itemvalue="Gradle.powens-sdks [openApiMeta]" />
+        <item itemvalue="Gradle.powens-sdks [openApiGenerators]" />
       </list>
     </recent_temporary>
   </component>
@@ -580,9 +580,39 @@
       <option name="presentableId" value="Default" />
       <updated>1706802526918</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1708087450190</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1708087450191</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1708087643290</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1708087643290</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
   </component>
 </project>

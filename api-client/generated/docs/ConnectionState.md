@@ -4,29 +4,27 @@
 ## Enum
 
 
-    * `sCARequired` (value: `"SCARequired"`)
+    * `SCARequired` (value: `"SCARequired"`)
 
-    * `webauthRequired` (value: `"webauthRequired"`)
+    * `WebAuthRequired` (value: `"webauthRequired"`)
 
-    * `additionalInformationNeeded` (value: `"additionalInformationNeeded"`)
+    * `AdditionalInformationNeeded` (value: `"additionalInformationNeeded"`)
 
-    * `decoupled` (value: `"decoupled"`)
+    * `Decoupled` (value: `"decoupled"`)
 
-    * `validating` (value: `"validating"`)
+    * `Validating` (value: `"validating"`)
 
-    * `actionNeeded` (value: `"actionNeeded"`)
+    * `ActionNeeded` (value: `"actionNeeded"`)
 
-    * `passwordExpired` (value: `"passwordExpired"`)
+    * `PasswordExpired` (value: `"passwordExpired"`)
 
-    * `wrongpass` (value: `"wrongpass"`)
+    * `WrongPass` (value: `"wrongpass"`)
 
-    * `rateLimiting` (value: `"rateLimiting"`)
+    * `RateLimiting` (value: `"rateLimiting"`)
 
-    * `websiteUnavailable` (value: `"websiteUnavailable"`)
+    * `WebsiteUnavailable` (value: `"websiteUnavailable"`)
 
-    * `bug` (value: `"bug"`)
-
-    * `&#x60;null&#x60;` (value: `"null"`)
+    * `Bug` (value: `"bug"`)
 
 
 

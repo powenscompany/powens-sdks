@@ -8,30 +8,30 @@ Method | HTTP request | Description
 [**deleteUserConnection**](ConnectionsApi.md#deleteUserConnection) | **DELETE** /users/me/connections/{connectionId} | Delete a connection
 [**getUserConnection**](ConnectionsApi.md#getUserConnection) | **GET** /users/me/connections/{connectionId} | Connection
 [**listUserConnections**](ConnectionsApi.md#listUserConnections) | **GET** /users/me/connections | List connections
-[**openWebauth**](ConnectionsApi.md#openWebauth) | **GET** /webauth | Open the connector webview
+[**openWebAuth**](ConnectionsApi.md#openWebAuth) | **GET** /webauth | Open the connector webview
 [**updateSyncUserConnection**](ConnectionsApi.md#updateSyncUserConnection) | **POST** /users/me/connections/{connectionId} | Update and/or sync a connection
 
 
 <a id="createUserConnection"></a>
 # **createUserConnection**
-> Connection createUserConnection(connectionRequest, expand, source)
+> Connection createUserConnection(connectionRequest, source, expand)
 
 Add a connection
 
-Create a new connection for the authenticated user, for &#x60;credentials&#x60; connectors. The request implies a synchronous interaction with the connector website or API to perform the initial credentials check, so client-side timeouts must be configured to allow a reponse time up to a few minutes. 
+Create a new connection for the authenticated user, for &#x60;credentials&#x60; connectors. The request implies a synchronous interaction with the connector website or API to perform the initial credentials check, so client-side timeouts must be configured to allow a response time up to a few minutes. 
 
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = ConnectionsApi()
 val connectionRequest : ConnectionRequest =  // ConnectionRequest | 
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
 val source : kotlin.String = source_example // kotlin.String | 
+val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
 try {
-    val result : Connection = apiInstance.createUserConnection(connectionRequest, expand, source)
+    val result : Connection = apiInstance.createUserConnection(connectionRequest, source, expand)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ConnectionsApi#createUserConnection")
@@ -47,8 +47,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connectionRequest** | [**ConnectionRequest**](ConnectionRequest.md)|  |
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connector, sources, accounts, all_accounts]
  **source** | **kotlin.String**|  | [optional]
+ **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connector, sources, accounts, all_accounts]
 
 ### Return type
 
@@ -67,7 +67,7 @@ Configure bi_auth:
 
 <a id="deleteUserConnection"></a>
 # **deleteUserConnection**
-> deleteUserConnection(connectionId, expand)
+> deleteUserConnection(connectionId)
 
 Delete a connection
 
@@ -76,14 +76,13 @@ Delete a user connection. All associated data is permanently made unavailable in
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = ConnectionsApi()
 val connectionId : kotlin.Long = 789 // kotlin.Long | Connection ID.
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
 try {
-    apiInstance.deleteUserConnection(connectionId, expand)
+    apiInstance.deleteUserConnection(connectionId)
 } catch (e: ClientException) {
     println("4xx response calling ConnectionsApi#deleteUserConnection")
     e.printStackTrace()
@@ -98,7 +97,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connectionId** | **kotlin.Long**| Connection ID. |
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connector, sources, accounts, all_accounts]
 
 ### Return type
 
@@ -126,7 +124,7 @@ Get a single connection of the authenticated user by ID.
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = ConnectionsApi()
@@ -177,7 +175,7 @@ List all connections of the authenticated user.
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = ConnectionsApi()
@@ -215,9 +213,9 @@ Configure bi_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a id="openWebauth"></a>
-# **openWebauth**
-> openWebauth(clientId, token, redirectUri, idConnector, idConnection, source, state)
+<a id="openWebAuth"></a>
+# **openWebAuth**
+> openWebAuth(clientId, token, redirectUri, idConnector, idConnection, source, state)
 
 Open the connector webview
 
@@ -226,24 +224,24 @@ A special redirection endpoint for &#x60;webauth&#x60; connections. The URL must
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = ConnectionsApi()
 val clientId : kotlin.Long = 789 // kotlin.Long | The client ID of your client application.
 val token : kotlin.String = token_example // kotlin.String | A temporary authorization code to secure the call.
 val redirectUri : kotlin.String = redirectUri_example // kotlin.String | The final redirect URL to be redirected to after the flow has completed. This URL must not contain query parameters. Be sure to properly encode it.
-val idConnector : kotlin.Long = 789 // kotlin.Long | To add a new connection only, the ID of the connector. The connector must have webauth as its auth_mechanism.
+val idConnector : kotlin.Long = 789 // kotlin.Long | To add a new connection only, the ID of the connector. The connector must have `webauth` as its `auth_mechanism`.
 val idConnection : kotlin.Long = 789 // kotlin.Long | To recover or resume a connection only, the ID of the connection.
 val source : kotlin.String = source_example // kotlin.String | 
 val state : kotlin.String = state_example // kotlin.String | An optional opaque string that will be returned 'as is' with the redirect URL.
 try {
-    apiInstance.openWebauth(clientId, token, redirectUri, idConnector, idConnection, source, state)
+    apiInstance.openWebAuth(clientId, token, redirectUri, idConnector, idConnection, source, state)
 } catch (e: ClientException) {
-    println("4xx response calling ConnectionsApi#openWebauth")
+    println("4xx response calling ConnectionsApi#openWebAuth")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling ConnectionsApi#openWebauth")
+    println("5xx response calling ConnectionsApi#openWebAuth")
     e.printStackTrace()
 }
 ```
@@ -255,7 +253,7 @@ Name | Type | Description  | Notes
  **clientId** | **kotlin.Long**| The client ID of your client application. |
  **token** | **kotlin.String**| A temporary authorization code to secure the call. |
  **redirectUri** | **kotlin.String**| The final redirect URL to be redirected to after the flow has completed. This URL must not contain query parameters. Be sure to properly encode it. |
- **idConnector** | **kotlin.Long**| To add a new connection only, the ID of the connector. The connector must have webauth as its auth_mechanism. | [optional]
+ **idConnector** | **kotlin.Long**| To add a new connection only, the ID of the connector. The connector must have &#x60;webauth&#x60; as its &#x60;auth_mechanism&#x60;. | [optional]
  **idConnection** | **kotlin.Long**| To recover or resume a connection only, the ID of the connection. | [optional]
  **source** | **kotlin.String**|  | [optional]
  **state** | **kotlin.String**| An optional opaque string that will be returned &#39;as is&#39; with the redirect URL. | [optional]
@@ -275,7 +273,7 @@ No authorization required
 
 <a id="updateSyncUserConnection"></a>
 # **updateSyncUserConnection**
-> Connection updateSyncUserConnection(connectionId, expand, source, background, connectionUpdateRequest)
+> Connection updateSyncUserConnection(connectionId, source, background, expand, connectionUpdateRequest)
 
 Update and/or sync a connection
 
@@ -284,17 +282,17 @@ Update the configuration or the credentials of a connection, and/or perform a sy
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = ConnectionsApi()
 val connectionId : kotlin.Long = 789 // kotlin.Long | Connection ID.
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
 val source : kotlin.String = source_example // kotlin.String | 
 val background : kotlin.Boolean = true // kotlin.Boolean | Flag to make the request asynchronous (i.e. the API will respond immediately and process the action in background). When using this option, you must implement polling on the resource to monitor the state.
+val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
 val connectionUpdateRequest : ConnectionUpdateRequest =  // ConnectionUpdateRequest | The request can optionally include new credentials or values to update the connection. An empty request performs a sync.
 try {
-    val result : Connection = apiInstance.updateSyncUserConnection(connectionId, expand, source, background, connectionUpdateRequest)
+    val result : Connection = apiInstance.updateSyncUserConnection(connectionId, source, background, expand, connectionUpdateRequest)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling ConnectionsApi#updateSyncUserConnection")
@@ -310,9 +308,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connectionId** | **kotlin.Long**| Connection ID. |
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connector, sources, accounts, all_accounts]
  **source** | **kotlin.String**|  | [optional]
  **background** | **kotlin.Boolean**| Flag to make the request asynchronous (i.e. the API will respond immediately and process the action in background). When using this option, you must implement polling on the resource to monitor the state. | [optional]
+ **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connector, sources, accounts, all_accounts]
  **connectionUpdateRequest** | [**ConnectionUpdateRequest**](ConnectionUpdateRequest.md)| The request can optionally include new credentials or values to update the connection. An empty request performs a sync. | [optional]
 
 ### Return type

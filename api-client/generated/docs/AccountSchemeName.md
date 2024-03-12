@@ -4,11 +4,11 @@
 ## Enum
 
 
-    * `iban` (value: `"iban"`)
+    * `Iban` (value: `"iban"`)
 
-    * `bban` (value: `"bban"`)
+    * `Bban` (value: `"bban"`)
 
-    * `sortCodeAccountNumber` (value: `"sort_code_account_number"`)
+    * `SortCodeAccountNumber` (value: `"sort_code_account_number"`)
 
 
 

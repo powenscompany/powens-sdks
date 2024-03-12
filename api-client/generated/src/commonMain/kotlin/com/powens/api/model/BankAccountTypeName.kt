@@ -19,72 +19,72 @@ package com.powens.api.model
 import kotlinx.serialization.*
 
 /**
- * The type code of a bank account:  * `article83`: Article 83  * `capitalisation`: Capitalization contract  * `card`: Card  * `checking`: Checking account  * `crowdlending`: Crowdlending  * `deposit`: Deposit account  * `joint`: Joint account  * `lifeinsurance`: Life insurance account  * `loan`: Loan  * `madelin`: Madelin retirement contract  * `market`: Market account  * `pea`: Shared savings plan (Plan d'Epargne en Actions)  * `pee`: Company savings plan (Plan d'Epargne Entreprise)  * `per`: Retirement savings plan (Plan d'Epargne Retraite)  * `perco`: Group retirement savings plan (Plan d'Epargne pour la Retraite Collectif)  * `perp`: Popular retirement savings plan (Plan d'Epargne Retraite Populaire)  * `real_estate`: Real estate placement  * `rsp`: Special profit-sharing reserve (Réserve Spéciale de Participation)  * `savings`: Savings account  * `unknown`: Unknown account type 
+ * The type code of a bank account:  * `article83`: Article 83  * `capitalisation`: Capitalization contract  * `card`: Card  * `checking`: Checking account  * `crowdlending`: Crowdlending  * `deposit`: Deposit account  * `joint`: Joint account  * `lifeinsurance`: Life insurance account  * `loan`: Loan  * `madelin`: Madelin retirement contract  * `market`: Market account  * `pea`: Shared savings plan (Plan d’Épargne en Actions)  * `pee`: Company savings plan (Plan d’Épargne Entreprise)  * `per`: Retirement savings plan (Plan d’Épargne Retraite)  * `perco`: Group retirement savings plan (Plan d’Épargne pour la Retraite Collectif)  * `perp`: Popular retirement savings plan (Plan d’Épargne Retraite Populaire)  * `real_estate`: Real estate placement  * `rsp`: Special profit-sharing reserve (Réserve Spéciale de Participation)  * `savings`: Savings account  * `unknown`: Unknown account type 
  *
- * Values: article83,capitalisation,card,checking,crowdlending,deposit,joint,lifeinsurance,loan,madelin,market,pea,pee,per,perco,perp,realEstate,rsp,savings,unknown
+ * Values: Article83,Capitalization,Card,Checking,Crowdlending,Deposit,Joint,LifeInsurance,Loan,Madelin,Market,Pea,Pee,Per,Perco,Perp,RealEstate,Rsp,Savings,Unknown
  */
 @Serializable
 enum class BankAccountTypeName(val value: kotlin.String) {
 
-    @SerialName(value = "Article83")
-    article83("Article83"),
+    @SerialName(value = "article83")
+    Article83("article83"),
 
     @SerialName(value = "capitalisation")
-    capitalisation("capitalisation"),
+    Capitalization("capitalisation"),
 
     @SerialName(value = "card")
-    card("card"),
+    Card("card"),
 
     @SerialName(value = "checking")
-    checking("checking"),
+    Checking("checking"),
 
     @SerialName(value = "crowdlending")
-    crowdlending("crowdlending"),
+    Crowdlending("crowdlending"),
 
     @SerialName(value = "deposit")
-    deposit("deposit"),
+    Deposit("deposit"),
 
     @SerialName(value = "joint")
-    joint("joint"),
+    Joint("joint"),
 
     @SerialName(value = "lifeinsurance")
-    lifeinsurance("lifeinsurance"),
+    LifeInsurance("lifeinsurance"),
 
     @SerialName(value = "loan")
-    loan("loan"),
+    Loan("loan"),
 
     @SerialName(value = "madelin")
-    madelin("madelin"),
+    Madelin("madelin"),
 
     @SerialName(value = "market")
-    market("market"),
+    Market("market"),
 
     @SerialName(value = "pea")
-    pea("pea"),
+    Pea("pea"),
 
     @SerialName(value = "pee")
-    pee("pee"),
+    Pee("pee"),
 
     @SerialName(value = "per")
-    per("per"),
+    Per("per"),
 
     @SerialName(value = "perco")
-    perco("perco"),
+    Perco("perco"),
 
     @SerialName(value = "perp")
-    perp("perp"),
+    Perp("perp"),
 
     @SerialName(value = "real_estate")
-    realEstate("real_estate"),
+    RealEstate("real_estate"),
 
     @SerialName(value = "rsp")
-    rsp("rsp"),
+    Rsp("rsp"),
 
     @SerialName(value = "savings")
-    savings("savings"),
+    Savings("savings"),
 
     @SerialName(value = "unknown")
-    unknown("unknown");
+    Unknown("unknown");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

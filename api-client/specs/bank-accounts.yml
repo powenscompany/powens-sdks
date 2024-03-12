@@ -1,0 +1,359 @@
+paths:
+  /users/me/accounts:
+    parameters:
+      - $ref: "core.yml#/components/parameters/FilterAllFlag"
+      - $ref: "#/components/parameters/BankAccountExpand"
+    get:
+      tags:
+        - bank-accounts
+      summary: List bank accounts
+      description: List bank accounts of the authenticated user. By default, only
+        active (not `deleted`) accounts are returned, use the `all` parameter to
+        get the full list.
+      operationId: listUserAccounts
+      responses:
+        "200":
+          description: List of bank accounts
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BankAccountsList"
+        "400":
+          $ref: "core.yml#/components/responses/NoAccountError"
+      security:
+        - bi_auth:
+            - user
+  "/users/me/accounts/{accountId}":
+    parameters:
+      - in: path
+        name: accountId
+        description: Bank account ID.
+        schema:
+          $ref: "core.yml#/components/schemas/Id"
+        required: true
+      - $ref: "core.yml#/components/parameters/FilterAllFlag"
+      - $ref: "#/components/parameters/BankAccountExpand"
+    get:
+      tags:
+        - bank-accounts
+      summary: Bank account
+      description: Get a single bank account of the authenticated user by ID.
+      operationId: getUserAccount
+      responses:
+        "200":
+          description: Bank account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BankAccount"
+      security:
+        - bi_auth:
+            - user
+    post:
+      tags:
+        - bank-accounts
+      summary: Update a bank account
+      description: Update a bank account. The resource mirrors bank accounts available
+        through the connector, so editing is limited to metadata.
+      operationId: updateUserAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BankAccountUpdateRequest"
+        required: true
+      responses:
+        "200":
+          description: Bank account successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BankAccount"
+      security:
+        - bi_auth:
+            - user
+components:
+  schemas:
+    BankAccount:
+      type: object
+      description: A bank account.
+      #allOf:
+      #  - $ref: "#/components/schemas/BankAccountUpdateRequest"
+      properties:
+        id:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the bank account.
+        id_connection:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the related connection.
+        id_user:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the related user.
+        id_source:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the related connection source.
+        id_parent:
+          oneOf:
+            - $ref: "core.yml#/components/schemas/Id"
+            - type: null
+          description: ID of the parent account, if any.
+        original_name:
+          type: string
+          description: Original name of the account, as exposed on the connector API or
+            website.
+        balance:
+          type: number
+          nullable: true
+          format: monetary
+          description: The balance of the bank account.
+        coming:
+          type: number
+          nullable: true
+          format: monetary
+          description: Amount of coming operations not yet debited.
+        currency:
+          oneOf:
+            - $ref: "#/components/schemas/Currency"
+            - type: null
+          description: Currency of the bank account.
+        type:
+          $ref: "bank-account-types.yml#/components/schemas/BankAccountTypeName"
+        id_type:
+          $ref: "core.yml#/components/schemas/Id"
+          description: Bank account type
+        last_update:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Last successful update of the account.
+        deleted:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: If set, this account is not found on the website anymore.
+        disabled:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: If set, this account has been disabled by user and will not be
+            synchronized.
+        number:
+          type: string
+          nullable: true
+          description: The bank account number, if available.
+        iban:
+          type: string
+          nullable: true
+          format: iban
+          description: The bank account IBAN, if available.
+        loan:
+          oneOf:
+            - $ref: "#/components/schemas/Loan"
+            - type: null
+          description: If this account represent a loan, the loan details
+        connection:
+          oneOf:
+            - $ref: "connections.yml#/components/schemas/Connection"
+            - type: null
+          description: "Optional `expand`: The connection associated with this bank
+            account."
+          examples:
+            - null
+          x-requiredTags:
+            - connections
+      required:
+        - id
+        - id_connection
+        - id_user
+        - id_source
+        - name
+        - original_name
+        - type
+        - id_type
+        - usage
+        - display
+        - bookmarked
+    Currency:
+      type: object
+      description: Metadata of a currency.
+      properties:
+        id:
+          type: string
+          format: iso-4217
+          description: The ISO 4217 code of the currency.
+        name:
+          type: string
+          description: Display name of the currency.
+        symbol:
+          type: string
+          description: Display symbol of the currency.
+        precision:
+          type: integer
+          format: int32
+          description: Decimal precision of the currency.
+      required:
+        - id
+        - name
+        - symbol
+        - precision
+    BankAccountUsage:
+      type: string
+      description: |
+        Account usage:
+          * `PRIV`: Private account
+          * `ORGA`: Professional account
+          * `ASSO`: Community
+      enum:
+        - PRIV
+        - ORGA
+        - ASSO
+    Loan:
+      type: object
+      description: Loan details
+      properties:
+        total_amount:
+          type: number
+          nullable: true
+          format: monetary
+          description: Total amount of the loan.
+        available_amount:
+          type: number
+          nullable: true
+          format: monetary
+          description: Amount of the loan not yet released and still available.
+        used_amount:
+          type: number
+          nullable: true
+          format: monetary
+          description: Amount of the load already used.
+        subscription_date:
+          type: string
+          nullable: true
+          format: date
+          description: Subscription date of the loan.
+        maturity_date:
+          type: string
+          nullable: true
+          format: date
+          description: Estimated end date of the loan.
+        next_payment_amount:
+          type: number
+          nullable: true
+          format: monetary
+          description: Amount of the next payment.
+        next_payment_date:
+          type: string
+          nullable: true
+          format: date
+          description: Date of the next payment.
+        rate:
+          type: number
+          nullable: true
+          format: double
+          description: Rate of the loan.
+        nb_payments_left:
+          type: integer
+          nullable: true
+          format: int32
+          description: Number of payments still due.
+        nb_payments_done:
+          type: integer
+          nullable: true
+          format: int32
+          description: Number of payments done.
+        nb_payments_total:
+          type: integer
+          nullable: true
+          format: int32
+          description: Total number of payments.
+        last_payment_amount:
+          type: number
+          nullable: true
+          format: monetary
+          description: Amount of the last payment.
+        last_payment_date:
+          type: string
+          nullable: true
+          format: date
+          description: Date of the last payment.
+        account_label:
+          type: string
+          nullable: true
+          description: Name of the debited account.
+        insurance_label:
+          type: string
+          nullable: true
+          description: Label of the insurance.
+        duration:
+          type: integer
+          nullable: true
+          format: int32
+          description: Duration of the loan, in months.
+        type:
+          type: string
+          nullable: true
+          description: |
+            Type of the loan:
+            * `mortgage`: Mortgage
+            * `consumercredit`: Consumer credit
+            * `revolvingcredit`: Revolving credit
+          enum:
+            - mortgage
+            - consumercredit
+            - revolvingcredit
+    BankAccountUpdateRequest:
+      type: object
+      description: A request to update metadata of a bank account.
+      properties:
+        display:
+          type: boolean
+          description: Whether the bank account should be displayed and included in
+            aggregated metrics.
+        name:
+          type: string
+          description: Display name of the account.
+        disabled:
+          type: boolean
+          description: Whether the bank account should be synchronized.
+        bookmarked:
+          type: boolean
+          description: Whether the bank account is bookmarked.
+        usage:
+          $ref: "#/components/schemas/BankAccountUsage"
+    BankAccountsList:
+      type: object
+      description: A list of bank accounts.
+      properties:
+        accounts:
+          type: array
+          description: The accounts list.
+          items:
+            $ref: "#/components/schemas/BankAccount"
+        balances:
+          type: object
+          description: Associative map of ISO 4217 currency codes to the total balance of
+            accounts in the given currency.
+          additionalProperties:
+            type: number
+            nullable: true
+            format: monetary
+          examples:
+            - EUR: 12.34
+      required:
+        - accounts
+        - balances
+  parameters:
+    BankAccountExpand:
+      in: query
+      name: expand
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - connection
+      explode: false
+      allowReserved: true

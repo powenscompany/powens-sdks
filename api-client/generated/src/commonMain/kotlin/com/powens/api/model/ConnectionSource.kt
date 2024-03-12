@@ -24,9 +24,9 @@ import kotlinx.serialization.encoding.*
 /**
  * A connection source, to describe partial sync of data for this connection regarding PSD2 regulation.
  *
- * @param id ID of the connection connection.
- * @param idConnection ID of the related connection.
- * @param idConnectorSource ID of the related connector source.
+ * @param id 
+ * @param connectionId 
+ * @param connectorSourceId 
  * @param name Technical code name of the connection source.
  * @param created Creation date of the source.
  * @param state 
@@ -39,34 +39,31 @@ import kotlinx.serialization.encoding.*
 
 data class ConnectionSource (
 
-    /* ID of the connection connection. */
     @SerialName(value = "id") @Required val id: kotlin.Long,
 
-    /* ID of the related connection. */
-    @SerialName(value = "id_connection") @Required val idConnection: kotlin.Long,
+    @SerialName(value = "id_connection") @Required val connectionId: kotlin.Long,
 
-    /* ID of the related connector source. */
-    @SerialName(value = "id_connector_source") @Required val idConnectorSource: kotlin.Long,
+    @SerialName(value = "id_connector_source") @Required val connectorSourceId: kotlin.Long,
 
     /* Technical code name of the connection source. */
     @SerialName(value = "name") @Required val name: kotlin.String,
 
     /* Creation date of the source. */
-    @SerialName(value = "created") @Required val created: kotlin.String,
+    @SerialName(value = "created") @Required val created: kotlinx.datetime.LocalDateTime,
 
     @SerialName(value = "state") val state: ConnectionState? = null,
 
     /* Last successful update of the source. */
-    @SerialName(value = "last_update") val lastUpdate: kotlin.String? = null,
+    @SerialName(value = "last_update") val lastUpdate: kotlinx.datetime.LocalDateTime? = null,
 
     /* If set, this source is ignored on synchronizing the connection. */
-    @SerialName(value = "disabled") val disabled: kotlin.String? = null,
+    @SerialName(value = "disabled") val disabled: kotlinx.datetime.LocalDateTime? = null,
 
     /* Scheduled date of next synchronization. */
-    @SerialName(value = "next_try") val nextTry: kotlin.String? = null,
+    @SerialName(value = "next_try") val nextTry: kotlinx.datetime.LocalDateTime? = null,
 
     /* Expiration date of the access, if known. */
-    @SerialName(value = "access_expire") val accessExpire: kotlin.String? = null
+    @SerialName(value = "access_expire") val accessExpire: kotlinx.datetime.LocalDateTime? = null
 
 )
 

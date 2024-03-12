@@ -1,0 +1,139 @@
+openapi: 3.0.1
+info:
+  title: Powens API
+  description: |
+    An open finance platform. See our [online reference documentation](https://docs.budget-insight.com/reference).
+  termsOfService: https://www.budget-insight.com/
+  contact:
+    email: contact@budget-insight.com
+  version: "2.0.1"
+externalDocs:
+  description: Guides and Reference documentation
+  url: https://docs.budget-insight.com
+servers:
+  - url: https://demo.biapi.pro/2.0
+tags:
+  - name: authentication
+    description: Authentication
+    externalDocs:
+      description: Reference documentation
+      url: https://docs.budget-insight.com/reference/authentication
+  - name: users
+    description: Users
+    externalDocs:
+      description: Reference documentation
+      url: https://docs.budget-insight.com/reference/users
+  - name: connectors
+    description: Connectors
+    externalDocs:
+      description: Reference documentation
+      url: https://docs.budget-insight.com/reference/connectors
+  - name: connections
+    description: Connections
+    externalDocs:
+      description: Reference documentation
+      url: https://docs.budget-insight.com/reference/connections
+  - name: bank-accounts
+    description: Bank accounts
+    externalDocs:
+      description: Reference documentation
+      url: https://docs.budget-insight.com/reference/bank-accounts
+  - name: bank-account-types
+    description: Bank account types
+    externalDocs:
+      description: Reference documentation
+      url: https://docs.budget-insight.com/reference/bank-account-types
+  - name: bank-transactions
+    description: Transactions
+    externalDocs:
+      description: Reference documentation
+      url: https://docs.budget-insight.com/reference/bank-transactions
+x-tagGroups:
+  - name: Core
+    id: core
+    tags:
+      - authentication
+      - users
+  - name: Connections
+    id: connections
+    tags:
+      - connectors
+      - connections
+    required:
+      - core
+  - name: Bank
+    id: bank
+    tags:
+      - bank-accounts
+      - bank-account-types
+      - bank-transactions
+    required:
+      - connections
+  - name: External services
+    id: services
+    tags:
+      - services
+paths:
+  # Authentication
+  /auth/init:
+    $ref: "./authentication.yml#/paths/~1auth~1init"
+  /auth/token:
+    $ref: "./authentication.yml#/paths/~1auth~1token"
+  /auth/token/code:
+    $ref: "./authentication.yml#/paths/~1auth~1token~1code"
+  /auth/token/access:
+    $ref: "./authentication.yml#/paths/~1auth~1token~1access"
+  /auth/renew:
+    $ref: "./authentication.yml#/paths/~1auth~1renew"
+  # Users
+  /users/me:
+    $ref: "./users.yml#/paths/~1users~1me"
+  # Connectors
+  /connectors:
+    $ref: "./connectors.yml#/paths/~1connectors"
+  /connectors/{connectorUuid}:
+    $ref: "./connectors.yml#/paths/~1connectors~1%7BconnectorUuid%7D"
+  /connectors/{connectorId}:
+    $ref: "./connectors.yml#/paths/~1connectors~1%7BconnectorId%7D"
+  /connectors/{connectorIds}:
+    $ref: "./connectors.yml#/paths/~1connectors~1%7BconnectorIds%7D"
+  /banks:
+    $ref: "./connectors.yml#/paths/~1banks"
+  /banks/{connectorId}:
+    $ref: "./connectors.yml#/paths/~1banks~1%7BconnectorId%7D"
+  /providers/{connectorId}:
+    $ref: "./connectors.yml#/paths/~1providers~1%7BconnectorId%7D"
+  /providers:
+    $ref: "./connectors.yml#/paths/~1providers"
+  # Connections
+  /users/me/connections/{connectionId}:
+    $ref: "./connections.yml#/paths/~1users~1me~1connections~1%7BconnectionId%7D"
+  /users/me/connections:
+    $ref: "./connections.yml#/paths/~1users~1me~1connections"
+  /webauth:
+    $ref: "./connections.yml#/paths/~1webauth"
+  # Bank accounts
+  /users/me/accounts:
+    $ref: "./bank-accounts.yml#/paths/~1users~1me~1accounts"
+  /users/me/accounts/{accountId}:
+    $ref: "./bank-accounts.yml#/paths/~1users~1me~1accounts~1%7BaccountId%7D"
+  # Bank account types
+  /account_types:
+    $ref: "./bank-account-types.yml#/paths/~1account_types"
+  /account_types/{typeId}:
+    $ref: "./bank-account-types.yml#/paths/~1account_types~1%7BtypeId%7D"
+  # Bank transactions
+  /users/me/transactions:
+    $ref: "./bank-transactions.yml#/paths/~1users~1me~1transactions"
+  /users/me/transactions/{transactionId}:
+    $ref: "./bank-transactions.yml#/paths/~1users~1me~1transactions~1%7BtransactionId%7D"
+components:
+  securitySchemes:
+    bi_auth:
+      type: oauth2
+      description: OAuth2 authentication
+      flows:
+        clientCredentials:
+          tokenUrl: https://demo.biapi.pro/2.0/auth/token
+          scopes:
+            user: Default scope for user-scoped access tokens

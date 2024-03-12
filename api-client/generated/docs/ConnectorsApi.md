@@ -26,7 +26,7 @@ Enable or disable a list of connectors by IDs in a single operation.
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = ConnectorsApi()
@@ -75,7 +75,7 @@ Get a single bank connector by ID. Use &#x60;/connectors/{id}&#x60; instead.
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = ConnectorsApi()
@@ -124,7 +124,7 @@ Get a single connector by ID.
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = ConnectorsApi()
@@ -173,7 +173,7 @@ Get a single connector by UUID.
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = ConnectorsApi()
@@ -222,7 +222,7 @@ Get a single provider connector by ID. Use &#x60;/connectors/{id}&#x60; instead.
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = ConnectorsApi()
@@ -271,7 +271,7 @@ List connectors with the &#x60;bank&#x60; capability. &#x60;Use /connectors&#x60
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = ConnectorsApi()
@@ -313,12 +313,12 @@ No authorization required
 
 List connectors
 
-List all connectors available on a domain. By defaut, only connectors not &#x60;hidden&#x60; are returned.
+List all connectors available on a domain. By default, only connectors not &#x60;hidden&#x60; are returned.
 
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = ConnectorsApi()
@@ -365,7 +365,7 @@ List connectors with the &#x60;document&#x60; capability. &#x60;Use /connectors&
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = ConnectorsApi()
@@ -412,11 +412,11 @@ Enable or disable a list of connectors by UUID in a single operation.
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = ConnectorsApi()
-val requestBody : AdditionalProperties<kotlin.String, ConnectorPatch> =  // AdditionalProperties<kotlin.String, ConnectorPatch> | 
+val requestBody : kotlin.collections.Map<kotlin.String, ConnectorPatch> =  // kotlin.collections.Map<kotlin.String, ConnectorPatch> | 
 val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
 try {
     val result : ConnectorsList = apiInstance.updateConnectors(requestBody, expand)
@@ -434,7 +434,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **requestBody** | [**AdditionalProperties&lt;kotlin.String, ConnectorPatch&gt;**](ConnectorPatch.md)|  |
+ **requestBody** | [**kotlin.collections.Map&lt;kotlin.String, ConnectorPatch&gt;**](ConnectorPatch.md)|  |
  **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
 
 ### Return type

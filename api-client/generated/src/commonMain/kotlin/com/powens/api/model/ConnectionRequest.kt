@@ -15,7 +15,7 @@
 
 package com.powens.api.model
 
-import com.powens.api.model.AdditionalProperties
+import com.powens.api.model.AdditionalPropertiesRequest
 
 import kotlinx.serialization.*
 import kotlinx.serialization.descriptors.*
@@ -24,18 +24,17 @@ import kotlinx.serialization.encoding.*
 /**
  * A request to create a new connection. To add a connection to a connector/source using `credentials` *AuthMechanism*, you must also include in the request values from the connector `fields` definition.
  *
- * @param idConnector ID of the connector. Required if `connector_uuid` is not provided.
+ * @param connectorId 
  * @param connectorUuid UUID of the connector. Required if `id_connector` is not provided.
  */
 @Serializable
 
 data class ConnectionRequest (
 
-    /* ID of the connector. Required if `connector_uuid` is not provided. */
-    @SerialName(value = "id_connector") val idConnector: kotlin.Long? = null,
+    @SerialName(value = "id_connector") val connectorId: kotlin.Long? = null,
 
     /* UUID of the connector. Required if `id_connector` is not provided. */
     @SerialName(value = "connector_uuid") val connectorUuid: kotlin.String? = null
 
-) : AdditionalProperties<String, kotlin.String>()
+) : AdditionalPropertiesRequest<String, kotlin.String>()
 

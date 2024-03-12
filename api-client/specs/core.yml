@@ -1,0 +1,116 @@
+components:
+  schemas:
+    Id:
+      type: integer
+      format: int64
+      minimum: 1
+    CalendarBound:
+      oneOf:
+        - type: string
+          format: date
+        - type: string
+          format: year-month
+          pattern: ^\d{4}-\d{2}$
+        - type: string
+          format: year
+          pattern: ^\d{4}$
+    DateBoundedList:
+      type: object
+      properties:
+        first_date:
+          type: string
+          format: date
+          description: Minimum available date for results.
+        last_date:
+          type: string
+          format: date
+          description: Maximum available date for results.
+        result_min_date:
+          type: string
+          format: date
+          description: Minimum date of results in the current response.
+        result_max_date:
+          type: string
+          format: date
+          description: Maximum date of results in the current response.
+      required:
+        - first_date
+        - last_date
+        - result_min_date
+        - result_max_date
+    ServiceError:
+      type: object
+      description: Common response format for API errors.
+      properties:
+        code:
+          $ref: "#/components/schemas/ServiceErrorCode"
+        description:
+          type: string
+          description: A technical description of the error.
+        message:
+          type: string
+          nullable: true
+          description: |
+            An optional error message from the connector, intended for end-user display. The message is not translated.
+      required:
+        - code
+        - description
+    ServiceErrorCode:
+      type: string
+      description: An error code.
+      enum:
+        - noAccount
+        - wrongpass
+        - websiteUnavailable
+        - tooManySync
+        - connectionLocked
+        - bankMessage
+        - actionNeeded
+        - bug
+        - notSupported
+        - config
+        - keymanager
+        - dataError
+  parameters:
+    ListOffset:
+      in: query
+      name: offset
+      schema:
+        type: integer
+        format: int32
+      description: Return items after the specified offset.
+    ListLimit:
+      in: query
+      name: limit
+      schema:
+        type: integer
+        format: int32
+      description: Return at most the specified amount of items.
+    MinDateBound:
+      in: query
+      name: min_date
+      schema:
+        $ref: "#/components/schemas/CalendarBound"
+      description: Filter items after the specified date.
+    MaxDateBound:
+      in: query
+      name: max_date
+      schema:
+        $ref: "#/components/schemas/CalendarBound"
+      description: Filter items before the specified date.
+    FilterAllFlag:
+      in: query
+      name: all
+      schema:
+        type: boolean
+        enum:
+          - true
+      allowEmptyValue: true
+      description: Flag to include disabled and deleted items in the list.
+  responses:
+    NoAccountError:
+      description: No bank account is available. The error code is `noAccount`.
+      content:
+        application/json:
+          schema:
+            $ref: "core.yml#/components/schemas/ServiceError"

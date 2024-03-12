@@ -4,45 +4,45 @@
 ## Enum
 
 
-    * `article83` (value: `"Article83"`)
+    * `Article83` (value: `"article83"`)
 
-    * `capitalisation` (value: `"capitalisation"`)
+    * `Capitalization` (value: `"capitalisation"`)
 
-    * `card` (value: `"card"`)
+    * `Card` (value: `"card"`)
 
-    * `checking` (value: `"checking"`)
+    * `Checking` (value: `"checking"`)
 
-    * `crowdlending` (value: `"crowdlending"`)
+    * `Crowdlending` (value: `"crowdlending"`)
 
-    * `deposit` (value: `"deposit"`)
+    * `Deposit` (value: `"deposit"`)
 
-    * `joint` (value: `"joint"`)
+    * `Joint` (value: `"joint"`)
 
-    * `lifeinsurance` (value: `"lifeinsurance"`)
+    * `LifeInsurance` (value: `"lifeinsurance"`)
 
-    * `loan` (value: `"loan"`)
+    * `Loan` (value: `"loan"`)
 
-    * `madelin` (value: `"madelin"`)
+    * `Madelin` (value: `"madelin"`)
 
-    * `market` (value: `"market"`)
+    * `Market` (value: `"market"`)
 
-    * `pea` (value: `"pea"`)
+    * `Pea` (value: `"pea"`)
 
-    * `pee` (value: `"pee"`)
+    * `Pee` (value: `"pee"`)
 
-    * `per` (value: `"per"`)
+    * `Per` (value: `"per"`)
 
-    * `perco` (value: `"perco"`)
+    * `Perco` (value: `"perco"`)
 
-    * `perp` (value: `"perp"`)
+    * `Perp` (value: `"perp"`)
 
-    * `realEstate` (value: `"real_estate"`)
+    * `RealEstate` (value: `"real_estate"`)
 
-    * `rsp` (value: `"rsp"`)
+    * `Rsp` (value: `"rsp"`)
 
-    * `savings` (value: `"savings"`)
+    * `Savings` (value: `"savings"`)
 
-    * `unknown` (value: `"unknown"`)
+    * `Unknown` (value: `"unknown"`)
 
 
 

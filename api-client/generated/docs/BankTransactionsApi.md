@@ -20,7 +20,7 @@ Get a single bank transaction of the authenticated user by ID.
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = BankTransactionsApi()
@@ -73,22 +73,22 @@ List bank transactions of the authenticated user. By default, only active (not &
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = BankTransactionsApi()
 val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
 val all : kotlin.Boolean = true // kotlin.Boolean | Flag to include disabled and deleted items in the list.
-val minDate : kotlinx.datetime.LocalDate = 2013-10-20 // kotlinx.datetime.LocalDate | Filter items after the specified date.
-val maxDate : kotlinx.datetime.LocalDate = 2013-10-20 // kotlinx.datetime.LocalDate | Filter items before the specified date.
+val minDate : CalendarBound =  // CalendarBound | Filter items after the specified date.
+val maxDate : CalendarBound =  // CalendarBound | Filter items before the specified date.
 val income : kotlin.Boolean = true // kotlin.Boolean | Filter on incomes or expenditures.
 val deleted : kotlin.Boolean = true // kotlin.Boolean | Filter on deleted transactions.
-val lastUpdate : kotlin.String = lastUpdate_example // kotlin.String | Filter transactions updated *after* the specified date.
+val lastUpdate : kotlinx.datetime.LocalDateTime = lastUpdate_example // kotlinx.datetime.LocalDateTime | Filter transactions updated *after* the specified date.
 val wording : kotlin.String = wording_example // kotlin.String | Filter transactions containing the given string.
-val `value` : kotlin.String = `value`_example // kotlin.String | Value of the transaction. \"XX|-XX\" and \"±XX\" syntaxes are also accepted.
+val `value` : kotlin.collections.List<TransactionValueFilter> =  // kotlin.collections.List<TransactionValueFilter> | Value of the transaction. \"XX|-XX\" and \"±XX\" are also accepted.
 val search : kotlin.String = search_example // kotlin.String | Search in wording, dates, values, categories.
-val offset : kotlin.Int = 8.14 // kotlin.Int | Return items after the specified offset.
-val limit : kotlin.Int = 8.14 // kotlin.Int | Return at most the specified amount of items.
+val offset : kotlin.Int = 56 // kotlin.Int | Return items after the specified offset.
+val limit : kotlin.Int = 56 // kotlin.Int | Return at most the specified amount of items.
 try {
     val result : TransactionsList = apiInstance.listUserTransactions(expand, all, minDate, maxDate, income, deleted, lastUpdate, wording, `value`, search, offset, limit)
     println(result)
@@ -107,13 +107,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: account, documents]
  **all** | **kotlin.Boolean**| Flag to include disabled and deleted items in the list. | [optional]
- **minDate** | **kotlinx.datetime.LocalDate**| Filter items after the specified date. | [optional]
- **maxDate** | **kotlinx.datetime.LocalDate**| Filter items before the specified date. | [optional]
+ **minDate** | [**CalendarBound**](.md)| Filter items after the specified date. | [optional]
+ **maxDate** | [**CalendarBound**](.md)| Filter items before the specified date. | [optional]
  **income** | **kotlin.Boolean**| Filter on incomes or expenditures. | [optional]
  **deleted** | **kotlin.Boolean**| Filter on deleted transactions. | [optional]
- **lastUpdate** | **kotlin.String**| Filter transactions updated *after* the specified date. | [optional]
+ **lastUpdate** | **kotlinx.datetime.LocalDateTime**| Filter transactions updated *after* the specified date. | [optional]
  **wording** | **kotlin.String**| Filter transactions containing the given string. | [optional]
- **&#x60;value&#x60;** | **kotlin.String**| Value of the transaction. \&quot;XX|-XX\&quot; and \&quot;±XX\&quot; syntaxes are also accepted. | [optional]
+ **&#x60;value&#x60;** | [**kotlin.collections.List&lt;TransactionValueFilter&gt;**](TransactionValueFilter.md)| Value of the transaction. \&quot;XX|-XX\&quot; and \&quot;±XX\&quot; are also accepted. | [optional]
  **search** | **kotlin.String**| Search in wording, dates, values, categories. | [optional]
  **offset** | **kotlin.Int**| Return items after the specified offset. | [optional]
  **limit** | **kotlin.Int**| Return at most the specified amount of items. | [optional]
@@ -144,7 +144,7 @@ Update a bank transaction. The resource mirrors bank transactions available thro
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = BankTransactionsApi()

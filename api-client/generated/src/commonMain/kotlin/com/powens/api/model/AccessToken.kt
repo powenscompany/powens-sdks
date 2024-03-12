@@ -21,11 +21,11 @@ import kotlinx.serialization.descriptors.*
 import kotlinx.serialization.encoding.*
 
 /**
- * An access token response with medata.
+ * An access token response with metadata.
  *
  * @param authToken Access token to use to authenticate calls to the data endpoints.
  * @param type Type of the access token.
- * @param idUser ID of the related user.
+ * @param userId 
  * @param expiresIn Duration in seconds of the token validity. If not specified, the token does not expire.
  */
 @Serializable
@@ -38,8 +38,7 @@ data class AccessToken (
     /* Type of the access token. */
     @SerialName(value = "type") @Required val type: AccessToken.Type,
 
-    /* ID of the related user. */
-    @SerialName(value = "id_user") @Required val idUser: kotlin.Long,
+    @SerialName(value = "id_user") @Required val userId: kotlin.Long,
 
     /* Duration in seconds of the token validity. If not specified, the token does not expire. */
     @SerialName(value = "expires_in") val expiresIn: kotlin.Int? = null
@@ -49,12 +48,12 @@ data class AccessToken (
     /**
      * Type of the access token.
      *
-     * Values: permanent,temporary
+     * Values: Permanent,Temporary
      */
     @Serializable
     enum class Type(val value: kotlin.String) {
-        @SerialName(value = "permanent") permanent("permanent"),
-        @SerialName(value = "temporary") temporary("temporary");
+        @SerialName(value = "permanent") Permanent("permanent"),
+        @SerialName(value = "temporary") Temporary("temporary");
     }
 }
 

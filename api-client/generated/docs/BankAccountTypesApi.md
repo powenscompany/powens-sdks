@@ -19,7 +19,7 @@ Get an bank account type by ID.
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = BankAccountTypesApi()
@@ -66,7 +66,7 @@ List all bank account types available in the API.
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = BankAccountTypesApi()

@@ -41,11 +41,11 @@ data class ExchangeAccessTokenRequest (
     /**
      * The only accepted (and default) value is `authorization_code`.
      *
-     * Values: authorizationCode
+     * Values: AuthorizationCode
      */
     @Serializable
     enum class GrantType(val value: kotlin.String) {
-        @SerialName(value = "authorization_code") authorizationCode("authorization_code");
+        @SerialName(value = "authorization_code") AuthorizationCode("authorization_code");
     }
 }
 

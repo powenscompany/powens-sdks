@@ -16,9 +16,9 @@
 package com.powens.api.model
 
 import com.powens.api.model.BankAccount
-import com.powens.api.model.ConnectionConnector
 import com.powens.api.model.ConnectionSource
 import com.powens.api.model.ConnectionState
+import com.powens.api.model.Connector
 import com.powens.api.model.CredentialsField
 
 import kotlinx.serialization.*
@@ -28,13 +28,13 @@ import kotlinx.serialization.encoding.*
 /**
  * A connection materializes the link between a user and a connector.
  *
- * @param id ID of the connection.
- * @param idConnector ID of the related connector.
+ * @param id 
+ * @param connectorId 
  * @param created Creation date of the connection.
  * @param active Whether this connection is active and will be automatically synced.
- * @param idUser ID of the related user.
- * @param idProvider ID of the provider.
- * @param idBank ID of the bank.
+ * @param userId ID of the related user.
+ * @param providerId 
+ * @param bankId 
  * @param state 
  * @param error 
  * @param errorMessage If the last update failed, an optional message from the connector to guide the user into recovering from the error.
@@ -53,28 +53,22 @@ import kotlinx.serialization.encoding.*
 
 data class Connection (
 
-    /* ID of the connection. */
     @SerialName(value = "id") @Required val id: kotlin.Long,
 
-    /* ID of the related connector. */
-    @SerialName(value = "id_connector") @Required val idConnector: kotlin.Long,
+    @SerialName(value = "id_connector") @Required val connectorId: kotlin.Long,
 
     /* Creation date of the connection. */
-    @SerialName(value = "created") @Required val created: kotlin.String,
+    @SerialName(value = "created") @Required val created: kotlinx.datetime.LocalDateTime,
 
     /* Whether this connection is active and will be automatically synced. */
     @SerialName(value = "active") @Required val active: kotlin.Boolean,
 
     /* ID of the related user. */
-    @SerialName(value = "id_user") val idUser: kotlin.Long? = null,
+    @SerialName(value = "id_user") val userId: kotlin.Long? = null,
 
-    /* ID of the provider. */
-    @Deprecated(message = "This property is deprecated.")
-    @SerialName(value = "id_provider") val idProvider: kotlin.Long? = null,
+    @SerialName(value = "id_provider") val providerId: kotlin.Long? = null,
 
-    /* ID of the bank. */
-    @Deprecated(message = "This property is deprecated.")
-    @SerialName(value = "id_bank") val idBank: kotlin.Long? = null,
+    @SerialName(value = "id_bank") val bankId: kotlin.Long? = null,
 
     @SerialName(value = "state") val state: ConnectionState? = null,
 
@@ -87,21 +81,21 @@ data class Connection (
     @SerialName(value = "fields") val fields: kotlin.collections.List<CredentialsField>? = null,
 
     /* Last successful update. */
-    @SerialName(value = "last_update") val lastUpdate: kotlin.String? = null,
+    @SerialName(value = "last_update") val lastUpdate: kotlinx.datetime.LocalDateTime? = null,
 
     /* Last successful push. */
-    @SerialName(value = "last_push") val lastPush: kotlin.String? = null,
+    @SerialName(value = "last_push") val lastPush: kotlinx.datetime.LocalDateTime? = null,
 
     /* Highest value among expiration dates of connection sources. */
-    @SerialName(value = "expire") val expire: kotlin.String? = null,
+    @SerialName(value = "expire") val expire: kotlinx.datetime.LocalDateTime? = null,
 
     /* UUID of the connector. Required if `id_connector` is not provided. */
     @SerialName(value = "connector_uuid") val connectorUuid: kotlin.String? = null,
 
     /* Scheduled date of next synchronization. */
-    @SerialName(value = "next_try") val nextTry: kotlin.String? = null,
+    @SerialName(value = "next_try") val nextTry: kotlinx.datetime.LocalDateTime? = null,
 
-    @SerialName(value = "connector") val connector: ConnectionConnector? = null,
+    @SerialName(value = "connector") val connector: Connector? = null,
 
     /* Optional `expand`: The details of the sources configured for the connection. */
     @SerialName(value = "sources") val sources: kotlin.collections.List<ConnectionSource>? = null,

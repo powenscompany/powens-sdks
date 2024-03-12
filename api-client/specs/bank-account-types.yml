@@ -1,0 +1,127 @@
+paths:
+  /account_types:
+    get:
+      tags:
+        - bank-account-types
+      summary: List bank account types
+      description: List all bank account types available in the API.
+      operationId: listBankAccountTypes
+      responses:
+        "200":
+          description: List of bank accounts
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BankAccountTypesList"
+  "/account_types/{typeId}":
+    parameters:
+      - $ref: "#/components/parameters/BankAccountTypeId"
+    get:
+      tags:
+        - bank-account-types
+      summary: Bank account type
+      description: Get an bank account type by ID.
+      operationId: getBankAccountType
+      responses:
+        "200":
+          description: Bank account type
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BankAccountType"
+components:
+  schemas:
+    BankAccountType:
+      type: object
+      description: Details about a bank account type
+      properties:
+        id:
+          $ref: "core.yml#/components/schemas/CalendarBound"
+          description: ID of the bank account type.
+        name:
+          $ref: "#/components/schemas/BankAccountTypeName"
+        id_parent:
+          type: integer
+          nullable: true
+          format: int64
+          minimum: 1
+          description: Optional, the ID of the parent type.
+        is_invest:
+          type: boolean
+          description: Whether the type corresponds to an 'investment' account type. These
+            types usually present investments and may have limitations regarding
+            transfers.
+        display_name:
+          type: string
+          description: The display name of the account type, in French.
+        display_name_p:
+          type: string
+          description: The plural display name of the account type, in French.
+      required:
+        - id
+        - name
+        - is_invest
+        - display_name
+        - display_name_p
+    BankAccountTypeName:
+      type: string
+      description: |
+        The type code of a bank account:
+         * `article83`: Article 83
+         * `capitalisation`: Capitalization contract
+         * `card`: Card
+         * `checking`: Checking account
+         * `crowdlending`: Crowdlending
+         * `deposit`: Deposit account
+         * `joint`: Joint account
+         * `lifeinsurance`: Life insurance account
+         * `loan`: Loan
+         * `madelin`: Madelin retirement contract
+         * `market`: Market account
+         * `pea`: Shared savings plan (Plan d’Épargne en Actions)
+         * `pee`: Company savings plan (Plan d’Épargne Entreprise)
+         * `per`: Retirement savings plan (Plan d’Épargne Retraite)
+         * `perco`: Group retirement savings plan (Plan d’Épargne pour la Retraite Collectif)
+         * `perp`: Popular retirement savings plan (Plan d’Épargne Retraite Populaire)
+         * `real_estate`: Real estate placement
+         * `rsp`: Special profit-sharing reserve (Réserve Spéciale de Participation)
+         * `savings`: Savings account
+         * `unknown`: Unknown account type
+      enum:
+        - article83
+        - capitalisation
+        - card
+        - checking
+        - crowdlending
+        - deposit
+        - joint
+        - lifeinsurance
+        - loan
+        - madelin
+        - market
+        - pea
+        - pee
+        - per
+        - perco
+        - perp
+        - real_estate
+        - rsp
+        - savings
+        - unknown
+    BankAccountTypesList:
+      type: object
+      properties:
+        accounttypes:
+          type: array
+          items:
+            $ref: "#/components/schemas/BankAccountType"
+      required:
+        - accounttypes
+  parameters:
+    BankAccountTypeId:
+      in: path
+      name: typeId
+      description: Bank account type ID.
+      schema:
+        $ref: "core.yml#/components/schemas/Id"
+      required: true

@@ -25,9 +25,9 @@ import kotlinx.serialization.encoding.*
  *
  * @param wording New wording of the transaction.
  * @param applicationDate New application date of the transaction.
- * @param idCategory New category ID of the transaction.
+ * @param categoryId 
  * @param comment New comment of the transaction.
- * @param active If false, the transaction isn't considered in analyzisis endpoints.
+ * @param active If false, the transaction isn't considered in analysis endpoints.
  */
 @Serializable
 
@@ -39,14 +39,12 @@ data class TransactionUpdateRequest (
     /* New application date of the transaction. */
     @SerialName(value = "application_date") val applicationDate: kotlinx.datetime.LocalDate? = null,
 
-    /* New category ID of the transaction. */
-    @Deprecated(message = "This property is deprecated.")
-    @SerialName(value = "id_category") val idCategory: kotlin.Long? = null,
+    @SerialName(value = "id_category") val categoryId: kotlin.Long? = null,
 
     /* New comment of the transaction. */
     @SerialName(value = "comment") val comment: kotlin.String? = null,
 
-    /* If false, the transaction isn't considered in analyzisis endpoints. */
+    /* If false, the transaction isn't considered in analysis endpoints. */
     @SerialName(value = "active") val active: kotlin.Boolean? = null
 
 )

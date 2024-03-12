@@ -4,11 +4,11 @@
 ## Enum
 
 
-    * `pRIV` (value: `"PRIV"`)
+    * `Private` (value: `"PRIV"`)
 
-    * `oRGA` (value: `"ORGA"`)
+    * `Professional` (value: `"ORGA"`)
 
-    * `aSSO` (value: `"ASSO"`)
+    * `Community` (value: `"ASSO"`)
 
 
 

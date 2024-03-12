@@ -22,7 +22,7 @@ import kotlinx.serialization.descriptors.*
 import kotlinx.serialization.encoding.*
 
 /**
- * The transaction counterparty, i.e. an optional business or individual entity associated with the transaction.
+ * Business or individual entity associated with a bank transaction.
  *
  * @param label Label/name of the counterparty.
  * @param accountSchemeName 
@@ -49,12 +49,12 @@ data class TransactionCounterparty (
     /**
      * Type of the counterparty: `creditor` or `debtor`.
      *
-     * Values: creditor,debtor
+     * Values: Creditor,Debtor
      */
     @Serializable
     enum class Type(val value: kotlin.String) {
-        @SerialName(value = "creditor") creditor("creditor"),
-        @SerialName(value = "debtor") debtor("debtor");
+        @SerialName(value = "creditor") Creditor("creditor"),
+        @SerialName(value = "debtor") Debtor("debtor");
     }
 }
 

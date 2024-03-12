@@ -15,7 +15,7 @@
 
 package com.powens.api.model
 
-import com.powens.api.model.AdditionalProperties
+import com.powens.api.model.AdditionalPropertiesRequest
 
 import kotlinx.serialization.*
 import kotlinx.serialization.descriptors.*
@@ -33,16 +33,16 @@ data class ConnectionUpdateRequest (
     /* Resume a connection in the decoupled state. */
     @SerialName(value = "resume") val resume: ConnectionUpdateRequest.Resume? = null
 
-) : AdditionalProperties<String, kotlin.String>() {
+) : AdditionalPropertiesRequest<String, kotlin.String>() {
 
     /**
      * Resume a connection in the decoupled state.
      *
-     * Values: `true`
+     * Values: True
      */
     @Serializable
     enum class Resume(val value: kotlin.String) {
-        @SerialName(value = "true") `true`("true");
+        @SerialName(value = "true") True("true");
     }
 }
 

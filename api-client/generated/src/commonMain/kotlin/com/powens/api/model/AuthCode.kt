@@ -49,21 +49,21 @@ data class AuthCode (
     /**
      * The type of the generated code. The only value is `temporary`.
      *
-     * Values: temporary
+     * Values: Temporary
      */
     @Serializable
     enum class Type(val value: kotlin.String) {
-        @SerialName(value = "temporary") temporary("temporary");
+        @SerialName(value = "temporary") Temporary("temporary");
     }
     /**
      * The type of access granted, `single` or `standard`.
      *
-     * Values: single,standard
+     * Values: Single,Standard
      */
     @Serializable
     enum class Access(val value: kotlin.String) {
-        @SerialName(value = "single") single("single"),
-        @SerialName(value = "standard") standard("standard");
+        @SerialName(value = "single") Single("single"),
+        @SerialName(value = "standard") Standard("standard");
     }
 }
 

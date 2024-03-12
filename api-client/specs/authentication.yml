@@ -1,0 +1,295 @@
+paths:
+  /auth/init:
+    post:
+      tags:
+        - authentication
+      summary: Create a new anonymous user
+      description: |
+        This endpoint generates a new token related to a *new anonymous user*. If `client_id` and `client_secret` are
+        both supplied, or if you call this endpoint with a manage token, the generated token will be *permanent*.
+        Otherwise, it will expire after 30 minutes.
+      operationId: initUserToken
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccessTokenRequest"
+      responses:
+        "200":
+          description: Token successfully created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccessToken"
+  /auth/token/code:
+    get:
+      tags:
+        - authentication
+      summary: Generate a temporary code
+      description: |
+        This endpoint requires header authentication with a valid user access token. This endpoint generates a new
+        temporary code for the current user. In case the access token is already used by a trusted device, and you want
+        to temporarily let another one (for example a web browser) access user resources, use this endpoint to generate
+        a code that will expire in 30 minutes. If the generated code is intended to be used with our webview, you can
+        use the `singleAccess` token type.
+      operationId: getAuthCode
+      parameters:
+        - in: query
+          name: type
+          description: The type of the temporary code. Default is `requestAccess`.
+          schema:
+            type: string
+            description: |
+              The type of the temporary code:
+              * `requestAccess`: The code expires after 30 min.
+              * `singleAccess`: The code can only be used once.
+            enum:
+              - requestAccess
+              - singleAccess
+      responses:
+        "200":
+          description: New code issued
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthCode"
+  /auth/token/access:
+    post:
+      tags:
+        - authentication
+      summary: Exchange a temporary code for a permanent user access token
+      description: |
+        This endpoint uses the received temporary token to generate a permanent user access token.
+      operationId: exchangeAccessToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExchangeAccessTokenRequest"
+      responses:
+        "200":
+          description: Token successfully issued
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExchangeAccessToken"
+  /auth/token:
+    post:
+      tags:
+        - authentication
+      summary: Generate a service token
+      description: |
+        This endpoint generates a special access token with a dedicated service scope. The generated token will expire
+        after 30 minutes. A service token is a token that is not associated with a user but rather used to access a
+        specific feature or service. For example, the Pay product requires the use of a payment token. Requested
+        permissions are defined in the scope of the token.
+      operationId: getServiceAccessToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ServiceAccessTokenRequest"
+      responses:
+        "200":
+          description: Token successfully issued
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServiceAccessToken"
+    delete:
+      tags:
+        - authentication
+      summary: Revoke an access token
+      description: |
+        This endpoint invalidates permanent access tokens. Subsequent calls using the provided permanent access token
+        will fail.
+      operationId: revokeAccessToken
+      responses:
+        "204":
+          description: Token successfully revoked
+  /auth/renew:
+    post:
+      tags:
+        - authentication
+      summary: Generate a new permanent access token for an existing user
+      description: |
+        This endpoint generates a new permanent access token for an existing user, and revokes former tokens if
+        explicitly requested.
+      operationId: renewAccessToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RenewAccessTokenRequest"
+      responses:
+        "200":
+          description: Token successfully issued
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExchangeAccessToken"
+components:
+  schemas:
+    AccessTokenRequest:
+      type: object
+      description: A request to obtain an access token.
+      properties:
+        client_id:
+          type: string
+          nullable: true
+          description: Client ID of the application.
+        client_secret:
+          type: string
+          nullable: true
+          description: The client secret associated with the client ID.
+    AccessToken:
+      type: object
+      description: An access token response with metadata.
+      properties:
+        auth_token:
+          type: string
+          description: Access token to use to authenticate calls to the data endpoints.
+        type:
+          type: string
+          description: Type of the access token.
+          enum:
+            - permanent
+            - temporary
+        id_user:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the related user.
+        expires_in:
+          type: integer
+          nullable: true
+          format: int32
+          description: Duration in seconds of the token validity. If not specified, the token does not expire.
+      required:
+        - auth_token
+        - type
+        - id_user
+    AuthCode:
+      type: object
+      description: An authorization code response with metadata.
+      properties:
+        code:
+          type: string
+          description: The generated temporary code.
+        type:
+          type: string
+          description: The type of the generated code. The only value is `temporary`.
+          enum:
+            - temporary
+        access:
+          type: string
+          description: The type of access granted, `single` or `standard`.
+          enum:
+            - single
+            - standard
+        expires_in:
+          type: integer
+          nullable: true
+          format: int32
+          description: The expiration delay of the code, in seconds.
+      required:
+        - code
+        - type
+        - access
+    ExchangeAccessTokenRequest:
+      type: object
+      allOf:
+        - $ref: "#/components/schemas/AccessTokenRequest"
+      properties:
+        grant_type:
+          type: string
+          description: The only accepted (and default) value is `authorization_code`.
+          enum:
+            - authorization_code
+        code:
+          type: string
+          description: The temporary code that was delivered.
+        redirect_uri:
+          type: string
+          description: The exact `redirect_uri` that was specified during the initial OAuth2 step.
+      required:
+        - client_id
+        - client_secret
+        - code
+    ExchangeAccessToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: The generated permanent user access token.
+        token_type:
+          type: string
+          description: The type of token. The only value is `Bearer`.
+          enum:
+            - Bearer
+    ServiceAccessTokenRequest:
+      type: object
+      allOf:
+        - $ref: "#/components/schemas/AccessTokenRequest"
+      properties:
+        grant_type:
+          type: string
+          description: The only accepted value is `client_credentials`.
+          enum:
+            - client_credentials
+        scope:
+          type: array
+          items:
+            $ref: "#/components/schemas/ServiceTokenScope"
+          description: The service permission scopes to authorize for this token.
+      required:
+        - grant_type
+        - client_id
+        - client_secret
+        - scope
+    ServiceAccessToken:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The generated service token.
+        token_type:
+          type: string
+          description: The service token dedicated scope.
+    ServiceTokenScope:
+      type: string
+      description: |
+        The possible scopes are:
+        * `payments:admin`: Grants all rights on payments.
+        * `payments:read-only`: Only GET requests are allowed on payments.
+        * `payments:allow-sensitive`: Grants read access on sensitive information for payments.
+        * `payments:validate`: Allows to execute payments.
+        * `payments:cancel`: Allows to submit payment cancellation requests.
+        * ~~`payments`~~ (deprecated):  Alias for `payments:admin`.
+      enum:
+        - payments:admin
+        - payments:read-only
+        - payments:allow-sensitive
+        - payments:validate
+        - payments:cancel
+        - payments
+    RenewAccessTokenRequest:
+      type: object
+      allOf:
+        - $ref: "#/components/schemas/AccessTokenRequest"
+      properties:
+        grant_type:
+          type: string
+          description: The only accepted value is `client_credentials`.
+          enum:
+            - client_credentials
+        id_user:
+          $ref: "core.yml#/components/schemas/Id"
+          description: User for whom the token has to be generated. If not supplied, a user will be created.
+        revoke_previous:
+          type: boolean
+          description: If true, all other permanent tokens for the user will be deleted. The default is false.
+      required:
+        - grant_type
+        - client_id
+        - client_secret
+        - code

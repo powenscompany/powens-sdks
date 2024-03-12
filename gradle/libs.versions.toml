@@ -2,21 +2,21 @@
 agp = "8.2.2"
 android-compileSdk = "34"
 android-minSdk = "24"
-androidx-activityCompose = "1.8.2"
-androidx-browser = "1.7.0"
-androidx-composeBom = "2024.02.00"
-jetbrain-compose-plugin = "1.5.12"
+androidx-activity-compose = "1.8.2"
+androidx-browser = "1.8.0"
+androidx-compose-bom = "2024.02.02"
+jetbrain-compose-plugin = "1.6.0"
 kotlin = "1.9.22"
-kotlinx-coroutines = "1.8.0-RC2"
+kotlinx-coroutines = "1.8.0"
 kotlinx-datetime = "0.5.0"
-kotlinx-serialization = "1.6.2"
-ktor = "2.3.8"
-open-api-generator = "7.3.0"
+kotlinx-serialization = "1.6.3"
+ktor = "2.3.9"
+openApi-generator = "7.3.0"
 
 [libraries]
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
 androidx-browser = { module = "androidx.browser:browser", version.ref = "androidx-browser" }
-androidx-compose-bom = { group = "androidx.compose", name="compose-bom", version.ref = "androidx-composeBom" }
+androidx-compose-bom = { group = "androidx.compose", name="compose-bom", version.ref = "androidx-compose-bom" }
 androidx-compose-uiTooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
@@ -37,4 +37,4 @@ kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref =
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-openApi-generator = { id = "org.openapi.generator", version.ref = "open-api-generator" }
+openApi-generator = { id = "org.openapi.generator", version.ref = "openApi-generator" }

@@ -15,10 +15,10 @@
 
 package com.powens.api.model
 
-import com.powens.api.model.TransactionAccount
-import com.powens.api.model.TransactionCommissionCurrency
+import com.powens.api.model.BankAccount
+import com.powens.api.model.Currency
+import com.powens.api.model.MonetaryValue
 import com.powens.api.model.TransactionCounterparty
-import com.powens.api.model.TransactionOriginalCurrency
 import com.powens.api.model.TransactionType
 
 import kotlinx.serialization.*
@@ -28,12 +28,12 @@ import kotlinx.serialization.encoding.*
 /**
  * A bank transaction.
  *
- * @param id ID of the transaction.
- * @param idAccount ID of the related account.
+ * @param id 
+ * @param accountId 
  * @param date Debit date.
  * @param type 
  * @param dateScraped Date and time when the transaction has been seen.
- * @param rdate Realization date of the transaction.
+ * @param realizationDate Realization date of the transaction.
  * @param coming If true, this transaction hasn't been debited yet.
  * @param active If false, PFM services will ignore this transaction.
  * @param applicationDate Date considered by PFM services. This date can be edited.
@@ -46,13 +46,13 @@ import kotlinx.serialization.encoding.*
  * @param commission Commission taken on the transaction.
  * @param commissionCurrency 
  * @param wording Label of the transaction, can be edited.
- * @param idCategory ID of the related category.
- * @param rdatetime Realization date and time of the transaction, if available, in UTC.
- * @param vdate Value date of the transaction.
- * @param vdatetime Value date and time of the transaction, if available, in UTC.
- * @param bdate Date used by the bank for the transaction.
- * @param bdatetime Date and time used by the bank for the transaction, if available, in UTC.
- * @param idCluster If the transaction is part of a cluster.
+ * @param categoryId ID of the related category.
+ * @param realizationDateTime Realization date and time of the transaction, if available, in UTC.
+ * @param valueDate Value date of the transaction.
+ * @param valueDateTime Value date and time of the transaction, if available, in UTC.
+ * @param bankDate Date used by the bank for the transaction.
+ * @param bankDateTime Date and time used by the bank for the transaction, if available, in UTC.
+ * @param clusterId If the transaction is part of a cluster.
  * @param country Original country.
  * @param card Card number associated with the transaction.
  * @param counterparty 
@@ -65,11 +65,9 @@ import kotlinx.serialization.encoding.*
 
 data class Transaction (
 
-    /* ID of the transaction. */
     @SerialName(value = "id") @Required val id: kotlin.Long,
 
-    /* ID of the related account. */
-    @SerialName(value = "id_account") @Required val idAccount: kotlin.Long,
+    @SerialName(value = "id_account") @Required val accountId: kotlin.Long,
 
     /* Debit date. */
     @SerialName(value = "date") @Required val date: kotlinx.datetime.LocalDate,
@@ -77,10 +75,10 @@ data class Transaction (
     @SerialName(value = "type") @Required val type: TransactionType,
 
     /* Date and time when the transaction has been seen. */
-    @SerialName(value = "date_scraped") @Required val dateScraped: kotlin.String,
+    @SerialName(value = "date_scraped") @Required val dateScraped: kotlinx.datetime.LocalDateTime,
 
     /* Realization date of the transaction. */
-    @SerialName(value = "rdate") @Required val rdate: kotlinx.datetime.LocalDate,
+    @SerialName(value = "rdate") @Required val realizationDate: kotlinx.datetime.LocalDate,
 
     /* If true, this transaction hasn't been debited yet. */
     @SerialName(value = "coming") @Required val coming: kotlin.Boolean,
@@ -92,51 +90,51 @@ data class Transaction (
     @SerialName(value = "application_date") val applicationDate: kotlinx.datetime.LocalDate? = null,
 
     /* Date and time of the debit of the transaction, if available, in UTC. */
-    @SerialName(value = "datetime") val datetime: kotlin.String? = null,
+    @SerialName(value = "datetime") val datetime: kotlinx.datetime.LocalDateTime? = null,
 
     /* Value of the transaction. */
-    @SerialName(value = "value") val `value`: kotlin.Double? = null,
+    @SerialName(value = "value") val `value`: MonetaryValue? = null,
 
     /* Gross value of the transaction. */
-    @SerialName(value = "gross_value") val grossValue: kotlin.Double? = null,
+    @SerialName(value = "gross_value") val grossValue: MonetaryValue? = null,
 
     /* Value in the original currency. */
-    @SerialName(value = "original_value") val originalValue: kotlin.Double? = null,
+    @SerialName(value = "original_value") val originalValue: MonetaryValue? = null,
 
     /* Gross value in the original currency. */
-    @SerialName(value = "original_gross_value") val originalGrossValue: kotlin.Double? = null,
+    @SerialName(value = "original_gross_value") val originalGrossValue: MonetaryValue? = null,
 
-    @SerialName(value = "original_currency") val originalCurrency: TransactionOriginalCurrency? = null,
+    @SerialName(value = "original_currency") val originalCurrency: Currency? = null,
 
     /* Commission taken on the transaction. */
-    @SerialName(value = "commission") val commission: kotlin.Double? = null,
+    @SerialName(value = "commission") val commission: MonetaryValue? = null,
 
-    @SerialName(value = "commission_currency") val commissionCurrency: TransactionCommissionCurrency? = null,
+    @SerialName(value = "commission_currency") val commissionCurrency: Currency? = null,
 
     /* Label of the transaction, can be edited. */
     @SerialName(value = "wording") val wording: kotlin.String? = null,
 
     /* ID of the related category. */
     @Deprecated(message = "This property is deprecated.")
-    @SerialName(value = "id_category") val idCategory: kotlin.Long? = null,
+    @SerialName(value = "id_category") val categoryId: kotlin.Long? = null,
 
     /* Realization date and time of the transaction, if available, in UTC. */
-    @SerialName(value = "rdatetime") val rdatetime: kotlin.String? = null,
+    @SerialName(value = "rdatetime") val realizationDateTime: kotlinx.datetime.LocalDateTime? = null,
 
     /* Value date of the transaction. */
-    @SerialName(value = "vdate") val vdate: kotlinx.datetime.LocalDate? = null,
+    @SerialName(value = "vdate") val valueDate: kotlinx.datetime.LocalDate? = null,
 
     /* Value date and time of the transaction, if available, in UTC. */
-    @SerialName(value = "vdatetime") val vdatetime: kotlin.String? = null,
+    @SerialName(value = "vdatetime") val valueDateTime: kotlinx.datetime.LocalDateTime? = null,
 
     /* Date used by the bank for the transaction. */
-    @SerialName(value = "bdate") val bdate: kotlinx.datetime.LocalDate? = null,
+    @SerialName(value = "bdate") val bankDate: kotlinx.datetime.LocalDate? = null,
 
     /* Date and time used by the bank for the transaction, if available, in UTC. */
-    @SerialName(value = "bdatetime") val bdatetime: kotlin.String? = null,
+    @SerialName(value = "bdatetime") val bankDateTime: kotlinx.datetime.LocalDateTime? = null,
 
     /* If the transaction is part of a cluster. */
-    @SerialName(value = "id_cluster") val idCluster: kotlin.Long? = null,
+    @SerialName(value = "id_cluster") val clusterId: kotlin.Long? = null,
 
     /* Original country. */
     @SerialName(value = "country") val country: kotlin.String? = null,
@@ -150,12 +148,12 @@ data class Transaction (
     @SerialName(value = "comment") val comment: kotlin.String? = null,
 
     /* Last update of the transaction. */
-    @SerialName(value = "last_update") val lastUpdate: kotlin.String? = null,
+    @SerialName(value = "last_update") val lastUpdate: kotlinx.datetime.LocalDateTime? = null,
 
     /* If set, this transaction has been removed from the bank. */
-    @SerialName(value = "deleted") val deleted: kotlin.String? = null,
+    @SerialName(value = "deleted") val deleted: kotlinx.datetime.LocalDateTime? = null,
 
-    @SerialName(value = "account") val account: TransactionAccount? = null
+    @SerialName(value = "account") val account: BankAccount? = null
 
 )
 

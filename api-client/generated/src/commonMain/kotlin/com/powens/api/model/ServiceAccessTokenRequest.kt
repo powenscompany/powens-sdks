@@ -42,11 +42,11 @@ data class ServiceAccessTokenRequest (
     /**
      * The only accepted value is `client_credentials`.
      *
-     * Values: clientCredentials
+     * Values: ClientCredentials
      */
     @Serializable
     enum class GrantType(val value: kotlin.String) {
-        @SerialName(value = "client_credentials") clientCredentials("client_credentials");
+        @SerialName(value = "client_credentials") ClientCredentials("client_credentials");
     }
 }
 

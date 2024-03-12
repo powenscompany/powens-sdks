@@ -19,48 +19,48 @@ package com.powens.api.model
 import kotlinx.serialization.*
 
 /**
- * The type of a bank transaction:  * `transfer`: Transfer  * `order`: Order  * `check`: Check  * `deposit`: Deposit  * `payback`: Payback  * `withdrawal`: Withdrawal  * `loan_payment`: Loan payment  * `bank`: Bank fees  * `card`: Card operation  * `deferred_card`: Deferred card operation  * `summary_card`: Mensual debit of a deferred card  * `unknown`: Unknown transaction type 
+ * The type of a bank transaction:  * `transfer`: Transfer  * `order`: Order  * `check`: Check  * `deposit`: Deposit  * `payback`: Payback  * `withdrawal`: Withdrawal  * `loan_payment`: Loan payment  * `bank`: Bank fees  * `card`: Card operation  * `deferred_card`: Deferred card operation  * `summary_card`: Monthly debit of a deferred card  * `unknown`: Unknown transaction type 
  *
- * Values: transfer,order,check,deposit,payback,withdrawal,loanPayment,bank,card,deferredCard,summaryCard,unknown
+ * Values: Transfer,Order,Check,Deposit,Payback,Withdrawal,LoanPayment,Bank,Card,DeferredCard,SummaryCard,Unknown
  */
 @Serializable
 enum class TransactionType(val value: kotlin.String) {
 
     @SerialName(value = "transfer")
-    transfer("transfer"),
+    Transfer("transfer"),
 
     @SerialName(value = "order")
-    order("order"),
+    Order("order"),
 
     @SerialName(value = "check")
-    check("check"),
+    Check("check"),
 
     @SerialName(value = "deposit")
-    deposit("deposit"),
+    Deposit("deposit"),
 
     @SerialName(value = "payback")
-    payback("payback"),
+    Payback("payback"),
 
     @SerialName(value = "withdrawal")
-    withdrawal("withdrawal"),
+    Withdrawal("withdrawal"),
 
     @SerialName(value = "loan_payment")
-    loanPayment("loan_payment"),
+    LoanPayment("loan_payment"),
 
     @SerialName(value = "bank")
-    bank("bank"),
+    Bank("bank"),
 
     @SerialName(value = "card")
-    card("card"),
+    Card("card"),
 
     @SerialName(value = "deferred_card")
-    deferredCard("deferred_card"),
+    DeferredCard("deferred_card"),
 
     @SerialName(value = "summary_card")
-    summaryCard("summary_card"),
+    SummaryCard("summary_card"),
 
     @SerialName(value = "unknown")
-    unknown("unknown");
+    Unknown("unknown");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

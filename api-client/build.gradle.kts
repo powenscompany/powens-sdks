@@ -1,39 +1,39 @@
+﻿import org.jetbrains.kotlin.cli.common.incrementalCompilationIsEnabled
+import org.openapitools.generator.gradle.plugin.extensions.OpenApiGeneratorGenerateExtension
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.android.library)
     alias(libs.plugins.openApi.generator)
     alias(libs.plugins.kotlin.cocoapods)
 }
 
 openApiGenerate {
-    generatorName.set("kotlin")
-    inputSpec.set("$projectDir/specs/api-schema.yml")
+    inputSpec.set("$projectDir/specs/powens-api.yml")
     outputDir.set("$projectDir/generated")
-    apiPackage.set("com.powens.api.client")
-    modelPackage.set("com.powens.api.model")
+    generatorName.set("kotlin")
     library.set("multiplatform")
-    instantiationTypes.set(mapOf(
-        "map" to "AdditionalProperties"
-        //"LocalDate" to "kotlinx.datetime.LocalDate"
-    ))
-    importMappings.set(mapOf(
-        "LocalDate" to "kotlinx.datetime.LocalDate",
-        "Int" to "kotlin.Int",
-        "Long" to "kotlin.Long",
-    ))
-    typeMappings.set(mapOf(
-        "map" to "AdditionalProperties",
-        "date" to "LocalDate",
-        "number+int64" to "Long",
-        "number+int32" to "Int",
-        "number+monetary" to "BigDecimal"
-    ))
-    configOptions.set(mapOf(
-        "dateLibrary" to "kotlinx-datetime",
-        "omitGradlePluginVersions" to "true",
-        "omitGradleWrapper" to "true"
-    ))
+    apiPackage.set("com.powens.api.client.internal")
+    modelPackage.set("com.powens.api.model")
+    packageName.set("com.powens.api")
+    configFile.set("$projectDir/generator-config.yml")
+}
+
+openApiValidate {
+    inputSpec.set("$projectDir/specs/powens-api.yml")
+}
+
+// Configure the whole spec dir for invalidation of the generator cache
+tasks.withType(org.openapitools.generator.gradle.plugin.tasks.GenerateTask::class.java) {
+    inputs.dir("$projectDir/specs")
+    outputs.upToDateWhen { false }
+    outputs.cacheIf { false }
+}
+tasks.withType(org.openapitools.generator.gradle.plugin.tasks.ValidateTask::class.java) {
+    inputs.dir("$projectDir/specs")
+    outputs.upToDateWhen { false }
+    outputs.cacheIf { false }
 }
 
 kotlin {
@@ -47,18 +47,65 @@ kotlin {
     }
     
     jvm()
-    
+
     listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "PowensApiClient"
             isStatic = true
         }
     }
+
+    /*js {
+        browser()
+        nodejs()
+    }*/
     
     sourceSets {
-        commonMain.dependencies {
-            implementation(projects.apiClient.generated)
+
+        // Register generated source folders
+        listOf(commonMain/*, commonTest, iosTest, jsTest, jvmTest*/).forEach {
+            it.get().kotlin.srcDir("generated/src/${it.name}/kotlin")
         }
+
+        commonMain.dependencies {
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.contentNegotiation)
+            implementation(libs.ktor.client.serialization)
+            implementation(libs.ktor.serialization.kotlinxJson)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.kotlinx.coroutines)
+            implementation(libs.kotlinx.serialization.core)
+        }
+
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+            api(libs.ktor.client.mock)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+        }
+
+        jvmMain.dependencies {
+            implementation(kotlin("stdlib-jdk7"))
+            implementation(libs.ktor.client.cio.jvm)
+        }
+
+        jvmTest.dependencies {
+            implementation(kotlin("test-junit"))
+        }
+
+        /*jsMain.dependencies {
+            implementation(libs.ktor.client.js)
+        }
+
+        jsTest*/
+
+        /*all {
+            languageSettings.apply {
+                optIn("kotlin.Experimental")
+            }
+        }*/
     }
 
     cocoapods {
@@ -80,3 +127,21 @@ android {
         minSdk = libs.versions.android.minSdk.get().toInt()
     }
 }
+
+/*tasks {
+    register("iosTest") {
+        val device = project.findProperty("device")?.toString() ?: "iPhone 8"
+        dependsOn("linkDebugTestIosX64")
+        group = JavaBasePlugin.VERIFICATION_GROUP
+        description = "Execute unit tests on ${device} simulator"
+        doLast {
+            val binary = kotlin.targets.getByName<KotlinNativeTarget>("iosX64").binaries.getTest("DEBUG")
+            exec {
+                commandLine("xcrun", "simctl", "spawn", device, binary.outputFile)
+            }
+        }
+    }
+    register("test") {
+        dependsOn("allTests")
+    }
+}*/

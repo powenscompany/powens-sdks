@@ -19,48 +19,45 @@ package com.powens.api.model
 import kotlinx.serialization.*
 
 /**
- * If the last update failed, the state code. The `null` value indicates a successful sync.  * `SCARequired`: An SCA process must be performed to resume the synchronization process.  * `webauthRequired`: A web-based authentication process is required using the /webauth endpoint.  * `additionalInformationNeeded`: Additional information is needed to resume synchronization, such as an OTP. Connections in this state have a `fields` property.  * `decoupled`: User validation is required on a third-party app or device (ex: digital key).  * `validating`: User validation is being processed on our side. This state is temporary.  * `actionNeeded`: An action is needed on the website by the user, synchronization is blocked.  * `passwordExpired`: The password has expired and needs to be changed by the user before the synchronization can be retried.  * `wrongpass`: The authentication on website has failed and new credentials must be obtained from the user. Connections in this state have a `fields` property.  * `rateLimiting`: The target website or API is temporarily blocking synchronizations due to rate limiting.  * `websiteUnavailable`: The connector website or API is unavailable.  * `bug`: An internal error has occurred during the synchronization. 
+ * If the last update failed, the state code. The `null` value> indicates a successful sync.  * `SCARequired`: An SCA process must be performed to resume the synchronization process.  * `webauthRequired`: A web-based authentication process is required using the /webauth endpoint.  * `additionalInformationNeeded`: Additional information is needed to resume synchronization, such as an OTP. Connections in this state have a `fields` property.  * `decoupled`: User validation is required on a third-party app or device (ex: digital key).  * `validating`: User validation is being processed on our side. This state is temporary.  * `actionNeeded`: An action is needed on the website by the user, synchronization is blocked.  * `passwordExpired`: The password has expired and needs to be changed by the user before the synchronization can be retried.  * `wrongpass`: The authentication on website has failed and new credentials must be obtained from the user. Connections in this state have a `fields` property.  * `rateLimiting`: The target website or API is temporarily blocking synchronizations due to rate limiting.  * `websiteUnavailable`: The connector website or API is unavailable.  * `bug`: An internal error has occurred during the synchronization. 
  *
- * Values: sCARequired,webauthRequired,additionalInformationNeeded,decoupled,validating,actionNeeded,passwordExpired,wrongpass,rateLimiting,websiteUnavailable,bug,`null`
+ * Values: SCARequired,WebAuthRequired,AdditionalInformationNeeded,Decoupled,Validating,ActionNeeded,PasswordExpired,WrongPass,RateLimiting,WebsiteUnavailable,Bug
  */
 @Serializable
 enum class ConnectionState(val value: kotlin.String) {
 
     @SerialName(value = "SCARequired")
-    sCARequired("SCARequired"),
+    SCARequired("SCARequired"),
 
     @SerialName(value = "webauthRequired")
-    webauthRequired("webauthRequired"),
+    WebAuthRequired("webauthRequired"),
 
     @SerialName(value = "additionalInformationNeeded")
-    additionalInformationNeeded("additionalInformationNeeded"),
+    AdditionalInformationNeeded("additionalInformationNeeded"),
 
     @SerialName(value = "decoupled")
-    decoupled("decoupled"),
+    Decoupled("decoupled"),
 
     @SerialName(value = "validating")
-    validating("validating"),
+    Validating("validating"),
 
     @SerialName(value = "actionNeeded")
-    actionNeeded("actionNeeded"),
+    ActionNeeded("actionNeeded"),
 
     @SerialName(value = "passwordExpired")
-    passwordExpired("passwordExpired"),
+    PasswordExpired("passwordExpired"),
 
     @SerialName(value = "wrongpass")
-    wrongpass("wrongpass"),
+    WrongPass("wrongpass"),
 
     @SerialName(value = "rateLimiting")
-    rateLimiting("rateLimiting"),
+    RateLimiting("rateLimiting"),
 
     @SerialName(value = "websiteUnavailable")
-    websiteUnavailable("websiteUnavailable"),
+    WebsiteUnavailable("websiteUnavailable"),
 
     @SerialName(value = "bug")
-    bug("bug"),
-
-    @SerialName(value = "null")
-    `null`("null");
+    Bug("bug");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

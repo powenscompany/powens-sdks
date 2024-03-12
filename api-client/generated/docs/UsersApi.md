@@ -19,7 +19,7 @@ Delete the user associated with the authorization token. All associated data is 
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = UsersApi()
@@ -61,7 +61,7 @@ Get information for the user associated with the authentication token.
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = UsersApi()

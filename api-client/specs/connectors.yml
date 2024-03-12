@@ -1,0 +1,478 @@
+paths:
+  /connectors:
+    parameters:
+      - $ref: "#/components/parameters/ConnectorExpand"
+    get:
+      tags:
+        - connectors
+      summary: List connectors
+      description: List all connectors available on a domain. By default, only connectors not `hidden` are returned.
+      operationId: listConnectors
+      responses:
+        "200":
+          description: List of connectors
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectorsList"
+    patch:
+      tags:
+        - connectors
+      summary: Batch enable/disable connectors
+      description: Enable or disable a list of connectors by UUID in a single operation.
+      operationId: updateConnectors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                $ref: "#/components/schemas/ConnectorPatch"
+      responses:
+        "200":
+          description: The list of updated connectors
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectorsList"
+  "/connectors/{connectorId}":
+    parameters:
+      - in: path
+        name: connectorId
+        description: Connector ID.
+        schema:
+          $ref: "core.yml#/components/schemas/Id"
+        required: true
+      - $ref: "#/components/parameters/ConnectorExpand"
+    get:
+      tags:
+        - connectors
+      summary: Connector
+      description: Get a single connector by ID.
+      operationId: getConnector
+      responses:
+        "200":
+          description: Connector
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Connector"
+  "/connectors/{connectorUuid}":
+    parameters:
+      - in: path
+        name: connectorUuid
+        description: Connector UUID.
+        schema:
+          type: string
+          format: uuid
+        required: true
+      - $ref: "#/components/parameters/ConnectorExpand"
+    get:
+      tags:
+        - connectors
+      summary: Connector
+      description: Get a single connector by UUID.
+      operationId: getConnectorByUuid
+      responses:
+        "200":
+          description: Connector
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Connector"
+  "/connectors/{connectorIds}":
+    parameters:
+      - in: path
+        name: connectorIds
+        description: Connector IDs.
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+            minimum: 1
+        required: true
+      - $ref: "#/components/parameters/ConnectorExpand"
+    put:
+      deprecated: true
+      tags:
+        - connectors
+      summary: Batch enable/disable connectors (deprecated)
+      description: Enable or disable a list of connectors by IDs in a single operation.
+      operationId: batchEnableConnectorsById
+      responses:
+        "200":
+          description: The list of updated connectors
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectorsList"
+  /banks:
+    parameters:
+      - $ref: "#/components/parameters/ConnectorExpand"
+    get:
+      deprecated: true
+      tags:
+        - connectors
+      summary: List banks
+      description: List connectors with the `bank` capability. `Use /connectors` instead.
+      operationId: listBanks
+      responses:
+        "200":
+          description: List of connectors
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BanksList"
+  "/banks/{connectorId}":
+    parameters:
+      - in: path
+        name: connectorId
+        description: Connector ID.
+        schema:
+          $ref: "core.yml#/components/schemas/Id"
+        required: true
+      - $ref: "#/components/parameters/ConnectorExpand"
+    get:
+      deprecated: true
+      tags:
+        - connectors
+      summary: Bank connector
+      description: Get a single bank connector by ID. Use `/connectors/{id}` instead.
+      operationId: getBank
+      responses:
+        "200":
+          description: Connector
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Connector"
+  /providers:
+    parameters:
+      - $ref: "#/components/parameters/ConnectorExpand"
+    get:
+      deprecated: true
+      tags:
+        - connectors
+      summary: List providers
+      description: List connectors with the `document` capability. `Use /connectors`
+        instead.
+      operationId: listProviders
+      responses:
+        "200":
+          description: List of connectors
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProvidersList"
+  "/providers/{connectorId}":
+    parameters:
+      - in: path
+        name: connectorId
+        description: Connector ID.
+        schema:
+          $ref: "core.yml#/components/schemas/Id"
+        required: true
+      - $ref: "#/components/parameters/ConnectorExpand"
+    get:
+      deprecated: true
+      tags:
+        - connectors
+      summary: Get a provider
+      description: Get a single provider connector by ID. Use `/connectors/{id}` instead.
+      operationId: getProvider
+      responses:
+        "200":
+          description: Connector
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Connector"
+components:
+  schemas:
+    Connector:
+      type: object
+      description: A connector (bank or provider).
+      properties:
+        id:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the connector.
+        uuid:
+          type: string
+          format: uuid
+          description: Unique connector identifier, stable across API domains.
+        name:
+          type: string
+          description: Name of the bank or provider.
+        hidden:
+          type: boolean
+          nullable: true
+          description: Whether this connector is hidden from users.
+        charged:
+          type: boolean
+          description: Whether usage of this connector is charged.
+        code:
+          type: string
+          nullable: true
+          description: For bank connectors, the bank code.
+        beta:
+          type: boolean
+          description: If true, this connector is likely instable.
+        color:
+          type: string
+          nullable: true
+          format: hex-color
+          description: Branding color of the bank or provider.
+        slug:
+          type: string
+          nullable: true
+          description: A short letter code to identify the connector. Slugs are not unique.
+        capabilities:
+          type: array
+          description: A list of capabilities supported by this connector.
+          items:
+            type: string
+            enum:
+              - bank
+              - bankwealth
+              - transfer
+              - document
+              - profile
+              - contact
+        urls:
+          type: array
+          nullable: true
+          description: A list of websites associated with the connector.
+          items:
+            type: string
+            format: url
+        sync_periodicity:
+          type: number
+          nullable: true
+          format: float
+          description: How many days to wait between syncs.
+        months_to_fetch:
+          type: integer
+          nullable: true
+          format: int32
+          description: Number of months of history to fetch when synchronizing a connection.
+        auth_mechanism:
+          $ref: "#/components/schemas/AuthMechanism"
+        transfer_mechanism:
+          $ref: "#/components/schemas/AuthMechanism"
+        siret:
+          type: string
+          nullable: true
+          description: For provider connectors, the SIRET code.
+        restricted:
+          type: boolean
+          description: If true, new connections cannot be added with this connector.
+        sources:
+          type:
+            - array
+            - null
+          description: "Optional `expand`: The details of the sources available for the
+            connector."
+          items:
+            $ref: "#/components/schemas/ConnectorSource"
+        fields:
+          type:
+            - array
+            - null
+          description: "Optional `expand`: The list of initial form fields associated with
+            the connector. Only relevant when building a custom connection
+            integration."
+          items:
+            $ref: "#/components/schemas/CredentialsField"
+        countries:
+          type:
+            - array
+            - null
+          description: "Optional `expand`: Countries where users can open or have
+            accounts/subscriptions with the given institution."
+          items:
+            $ref: "#/components/schemas/ConnectorCountry"
+      required:
+        - id
+        - uuid
+        - name
+        - charged
+        - beta
+        - capabilities
+        - auth_mechanism
+        - restricted
+    ConnectorSource:
+      type: object
+      description: A connector source, to perform a partial sync of data regarding
+        PSD2 regulation.
+      properties:
+        id:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the connector source.
+        id_connector:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the related connector.
+        name:
+          type: string
+          pattern: ^[a-z]+$
+          description: Name of the connector source.
+        auth_mechanism:
+          $ref: "#/components/schemas/AuthMechanism"
+        disabled:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: If set, this source is ignored on synchronizing the connection.
+        priority:
+          type: integer
+          format: int32
+          description: The source priority order for the synchronization. Sources must be
+            added following priority order.
+      required:
+        - id
+        - id_connector
+        - name
+        - auth_mechanism
+        - priority
+    ConnectorCountry:
+      type: object
+      description: A country item.
+      properties:
+        id:
+          type: string
+          format: iso-3166-1-alpha-2
+          description: The country ISO 3166-1 alpha-2 code.
+        name:
+          type: string
+          description: The country name.
+      required:
+        - id
+        - name
+    ConnectorsList:
+      type: object
+      description: A list of connectors.
+      properties:
+        connectors:
+          type: array
+          description: The connectors list.
+          items:
+            $ref: "#/components/schemas/Connector"
+      required:
+        - connectors
+    BanksList:
+      type: object
+      deprecated: true
+      description: A list of bank connectors.
+      properties:
+        banks:
+          type: array
+          description: The connectors list.
+          items:
+            $ref: "#/components/schemas/Connector"
+      required:
+        - banks
+    ProvidersList:
+      type: object
+      deprecated: true
+      description: A list of provider connectors.
+      properties:
+        providers:
+          type: array
+          description: The connectors list.
+          items:
+            $ref: "#/components/schemas/Connector"
+      required:
+        - providers
+    ConnectorPatch:
+      type: object
+      properties:
+        hidden:
+          type: boolean
+          nullable: true
+          description: Whether this connector is hidden from users.
+    CredentialsField:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Technical name of the field.
+        type:
+          type: string
+          enum:
+            - text
+            - list
+            - date
+            - number
+            - password
+          description: The type of the field, to determine the appropriate UI component.
+        auth_mechanisms:
+          type: array
+          items:
+            $ref: "#/components/schemas/AuthMechanism"
+          description: The list of the authentication mechanisms associated with this field.
+        label:
+          type: string
+          description: A short display label for the field.
+        description:
+          type: string
+          nullable: true
+          description: A longer help text for the field.
+        required:
+          type: boolean
+          description: Whether posting the field value is required when creating or
+            updating the connection.
+        regex:
+          type: string
+          nullable: true
+          format: regex
+          description: An optional regular expression that the value must match.
+        values:
+          type:
+            - array
+            - null
+          description: For `list` fields, the possible values.
+          items:
+            $ref: "#/components/schemas/CredentialsFieldValue"
+      required:
+        - name
+        - type
+        - auth_mechanisms
+        - label
+        - required
+    CredentialsFieldValue:
+      type: object
+      properties:
+        value:
+          type: string
+          description: The value to use for the field.
+        label:
+          type: string
+          description: The display label associated with the value.
+      required:
+        - value
+        - label
+    AuthMechanism:
+      type: string
+      description: A supported authentication mechanism to use when interacting with
+        the connection services. `credentials` connectors or sources rely on
+        posting values on the connection creation or update endpoint, whereas
+        `webauth` implies usage of the /webauth redirection endpoint.
+      enum:
+        - credentials
+        - webauth
+  parameters:
+    ConnectorExpand:
+      in: query
+      name: expand
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - fields
+            - sources
+            - countries
+      explode: false
+      allowReserved: true

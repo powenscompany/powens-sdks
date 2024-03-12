@@ -4,29 +4,29 @@
 ## Enum
 
 
-    * `transfer` (value: `"transfer"`)
+    * `Transfer` (value: `"transfer"`)
 
-    * `order` (value: `"order"`)
+    * `Order` (value: `"order"`)
 
-    * `check` (value: `"check"`)
+    * `Check` (value: `"check"`)
 
-    * `deposit` (value: `"deposit"`)
+    * `Deposit` (value: `"deposit"`)
 
-    * `payback` (value: `"payback"`)
+    * `Payback` (value: `"payback"`)
 
-    * `withdrawal` (value: `"withdrawal"`)
+    * `Withdrawal` (value: `"withdrawal"`)
 
-    * `loanPayment` (value: `"loan_payment"`)
+    * `LoanPayment` (value: `"loan_payment"`)
 
-    * `bank` (value: `"bank"`)
+    * `Bank` (value: `"bank"`)
 
-    * `card` (value: `"card"`)
+    * `Card` (value: `"card"`)
 
-    * `deferredCard` (value: `"deferred_card"`)
+    * `DeferredCard` (value: `"deferred_card"`)
 
-    * `summaryCard` (value: `"summary_card"`)
+    * `SummaryCard` (value: `"summary_card"`)
 
-    * `unknown` (value: `"unknown"`)
+    * `Unknown` (value: `"unknown"`)
 
 
 

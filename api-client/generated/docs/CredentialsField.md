@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **required** | **kotlin.Boolean** | Whether posting the field value is required when creating or updating the connection. | 
 **description** | **kotlin.String** | A longer help text for the field. |  [optional]
 **regex** | **kotlin.String** | An optional regular expression that the value must match. |  [optional]
-**propertyValues** | [**kotlin.collections.List&lt;CredentialsFieldValuesInner&gt;**](CredentialsFieldValuesInner.md) | For &#x60;list&#x60; fields, the possible values. |  [optional]
+**propertyValues** | [**kotlin.collections.List&lt;CredentialsFieldValue&gt;**](CredentialsFieldValue.md) | For &#x60;list&#x60; fields, the possible values. |  [optional]
 
 
 <a id="Type"></a>

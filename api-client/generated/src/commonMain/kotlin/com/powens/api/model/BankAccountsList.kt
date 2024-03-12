@@ -15,8 +15,8 @@
 
 package com.powens.api.model
 
-import com.powens.api.model.AdditionalProperties
 import com.powens.api.model.BankAccount
+import com.powens.api.model.MonetaryValue
 
 import kotlinx.serialization.*
 import kotlinx.serialization.descriptors.*
@@ -36,7 +36,7 @@ data class BankAccountsList (
     @SerialName(value = "accounts") @Required val accounts: kotlin.collections.List<BankAccount>,
 
     /* Associative map of ISO 4217 currency codes to the total balance of accounts in the given currency. */
-    @SerialName(value = "balances") @Required val balances: AdditionalProperties<kotlin.String, kotlin.Double>
+    @SerialName(value = "balances") @Required val balances: kotlin.collections.Map<kotlin.String, MonetaryValue>
 
 )
 

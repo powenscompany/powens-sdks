@@ -4,9 +4,9 @@
 ## Enum
 
 
-    * `credentials` (value: `"credentials"`)
+    * `Credentials` (value: `"credentials"`)
 
-    * `webauth` (value: `"webauth"`)
+    * `WebAuth` (value: `"webauth"`)
 
 
 

@@ -21,16 +21,16 @@ import kotlinx.serialization.*
 /**
  * A supported authentication mechanism to use when interacting with the connection services. `credentials` connectors or sources rely on posting values on the connection creation or update endpoint, whereas `webauth` implies usage of the /webauth redirection endpoint.
  *
- * Values: credentials,webauth
+ * Values: Credentials,WebAuth
  */
 @Serializable
 enum class AuthMechanism(val value: kotlin.String) {
 
     @SerialName(value = "credentials")
-    credentials("credentials"),
+    Credentials("credentials"),
 
     @SerialName(value = "webauth")
-    webauth("webauth");
+    WebAuth("webauth");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

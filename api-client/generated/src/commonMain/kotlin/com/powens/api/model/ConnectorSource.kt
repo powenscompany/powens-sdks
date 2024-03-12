@@ -24,8 +24,8 @@ import kotlinx.serialization.encoding.*
 /**
  * A connector source, to perform a partial sync of data regarding PSD2 regulation.
  *
- * @param id ID of the connector source.
- * @param idConnector ID of the related connector.
+ * @param id 
+ * @param connectorId 
  * @param name Name of the connector source.
  * @param authMechanism 
  * @param priority The source priority order for the synchronization. Sources must be added following priority order.
@@ -35,11 +35,9 @@ import kotlinx.serialization.encoding.*
 
 data class ConnectorSource (
 
-    /* ID of the connector source. */
     @SerialName(value = "id") @Required val id: kotlin.Long,
 
-    /* ID of the related connector. */
-    @SerialName(value = "id_connector") @Required val idConnector: kotlin.Long,
+    @SerialName(value = "id_connector") @Required val connectorId: kotlin.Long,
 
     /* Name of the connector source. */
     @SerialName(value = "name") @Required val name: kotlin.String,
@@ -50,7 +48,7 @@ data class ConnectorSource (
     @SerialName(value = "priority") @Required val priority: kotlin.Int,
 
     /* If set, this source is ignored on synchronizing the connection. */
-    @SerialName(value = "disabled") val disabled: kotlin.String? = null
+    @SerialName(value = "disabled") val disabled: kotlinx.datetime.LocalDateTime? = null
 
 )
 

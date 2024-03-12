@@ -21,19 +21,19 @@ import kotlinx.serialization.*
 /**
  * Account usage:   * `PRIV`: Private account   * `ORGA`: Professional account   * `ASSO`: Community 
  *
- * Values: pRIV,oRGA,aSSO
+ * Values: Private,Professional,Community
  */
 @Serializable
 enum class BankAccountUsage(val value: kotlin.String) {
 
     @SerialName(value = "PRIV")
-    pRIV("PRIV"),
+    Private("PRIV"),
 
     @SerialName(value = "ORGA")
-    oRGA("ORGA"),
+    Professional("ORGA"),
 
     @SerialName(value = "ASSO")
-    aSSO("ASSO");
+    Community("ASSO");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

@@ -1,0 +1,41 @@
+paths:
+  /users/me:
+    get:
+      tags:
+        - users
+      summary: Authenticated user
+      description: Get information for the user associated with the authentication token.
+      operationId: getUser
+      responses:
+        "200":
+          description: User
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+    delete:
+      tags:
+        - users
+      summary: Delete the authenticated user
+      description: Delete the user associated with the authorization token. All associated data is removed from the API.
+      operationId: deleteUser
+      responses:
+        "204":
+          description: User successfully deleted
+components:
+  schemas:
+    User:
+      type: object
+      description: A user, the root of personal data in the API.
+      properties:
+        id:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the user.
+        signin:
+          type: string
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: The creation date of the user.
+      required:
+        - id
+        - signin

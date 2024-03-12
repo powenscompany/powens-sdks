@@ -16,7 +16,7 @@
 package com.powens.api.model
 
 import com.powens.api.model.AuthMechanism
-import com.powens.api.model.ConnectorCountriesInner
+import com.powens.api.model.ConnectorCountry
 import com.powens.api.model.ConnectorSource
 import com.powens.api.model.CredentialsField
 
@@ -27,7 +27,7 @@ import kotlinx.serialization.encoding.*
 /**
  * A connector (bank or provider).
  *
- * @param id ID of the connector.
+ * @param id 
  * @param uuid Unique connector identifier, stable across API domains.
  * @param name Name of the bank or provider.
  * @param charged Whether usage of this connector is charged.
@@ -52,7 +52,6 @@ import kotlinx.serialization.encoding.*
 
 data class Connector (
 
-    /* ID of the connector. */
     @SerialName(value = "id") @Required val id: kotlin.Long,
 
     /* Unique connector identifier, stable across API domains. */
@@ -108,23 +107,23 @@ data class Connector (
     @SerialName(value = "fields") val fields: kotlin.collections.List<CredentialsField>? = null,
 
     /* Optional `expand`: Countries where users can open or have accounts/subscriptions with the given institution. */
-    @SerialName(value = "countries") val countries: kotlin.collections.List<ConnectorCountriesInner>? = null
+    @SerialName(value = "countries") val countries: kotlin.collections.List<ConnectorCountry>? = null
 
 ) {
 
     /**
      * A list of capabilities supported by this connector.
      *
-     * Values: bank,bankwealth,transfer,document,profile,contact
+     * Values: Bank,BankWealth,Transfer,Document,Profile,Contact
      */
     @Serializable
     enum class Capabilities(val value: kotlin.String) {
-        @SerialName(value = "bank") bank("bank"),
-        @SerialName(value = "bankwealth") bankwealth("bankwealth"),
-        @SerialName(value = "transfer") transfer("transfer"),
-        @SerialName(value = "document") document("document"),
-        @SerialName(value = "profile") profile("profile"),
-        @SerialName(value = "contact") contact("contact");
+        @SerialName(value = "bank") Bank("bank"),
+        @SerialName(value = "bankwealth") BankWealth("bankwealth"),
+        @SerialName(value = "transfer") Transfer("transfer"),
+        @SerialName(value = "document") Document("document"),
+        @SerialName(value = "profile") Profile("profile"),
+        @SerialName(value = "contact") Contact("contact");
     }
 }
 

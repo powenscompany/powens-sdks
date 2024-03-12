@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **kotlin.Long** | ID of the connector. | 
+**id** | **kotlin.Long** |  | 
 **uuid** | **kotlin.String** | Unique connector identifier, stable across API domains. | 
 **name** | **kotlin.String** | Name of the bank or provider. | 
 **charged** | **kotlin.Boolean** | Whether usage of this connector is charged. | 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **siret** | **kotlin.String** | For provider connectors, the SIRET code. |  [optional]
 **sources** | [**kotlin.collections.List&lt;ConnectorSource&gt;**](ConnectorSource.md) | Optional &#x60;expand&#x60;: The details of the sources available for the connector. |  [optional]
 **fields** | [**kotlin.collections.List&lt;CredentialsField&gt;**](CredentialsField.md) | Optional &#x60;expand&#x60;: The list of initial form fields associated with the connector. Only relevant when building a custom connection integration. |  [optional]
-**countries** | [**kotlin.collections.List&lt;ConnectorCountriesInner&gt;**](ConnectorCountriesInner.md) | Optional &#x60;expand&#x60;: Countries where users can open or have accounts/subscriptions with the given institution. |  [optional]
+**countries** | [**kotlin.collections.List&lt;ConnectorCountry&gt;**](ConnectorCountry.md) | Optional &#x60;expand&#x60;: Countries where users can open or have accounts/subscriptions with the given institution. |  [optional]
 
 
 <a id="kotlin.collections.List<Capabilities>"></a>

@@ -23,18 +23,17 @@ import kotlinx.serialization.encoding.*
 /**
  * A user, the root of personal data in the API.
  *
- * @param id ID of the user.
- * @param signin The creation date of the user.
+ * @param id 
+ * @param signIn The creation date of the user.
  */
 @Serializable
 
 data class User (
 
-    /* ID of the user. */
     @SerialName(value = "id") @Required val id: kotlin.Long,
 
     /* The creation date of the user. */
-    @SerialName(value = "signin") @Required val signin: kotlin.String
+    @SerialName(value = "signin") @Required val signIn: kotlinx.datetime.LocalDateTime
 
 )
 

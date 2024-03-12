@@ -21,28 +21,28 @@ import kotlinx.serialization.*
 /**
  * The possible scopes are: * `payments:admin`: Grants all rights on payments. * `payments:read-only`: Only GET requests are allowed on payments. * `payments:allow-sensitive`: Grants read access on sensitive information for payments. * `payments:validate`: Allows to execute payments. * `payments:cancel`: Allows to submit payment cancellation requests. * ~~`payments`~~ (deprecated):  Alias for `payments:admin`. 
  *
- * Values: paymentsColonAdmin,paymentsColonReadMinusOnly,paymentsColonAllowMinusSensitive,paymentsColonValidate,paymentsColonCancel,payments
+ * Values: PaymentsAdmin,PaymentsReadOnly,PaymentsAllowSensitive,PaymentsValidate,PaymentsCancel,Payments
  */
 @Serializable
 enum class ServiceTokenScope(val value: kotlin.String) {
 
     @SerialName(value = "payments:admin")
-    paymentsColonAdmin("payments:admin"),
+    PaymentsAdmin("payments:admin"),
 
     @SerialName(value = "payments:read-only")
-    paymentsColonReadMinusOnly("payments:read-only"),
+    PaymentsReadOnly("payments:read-only"),
 
     @SerialName(value = "payments:allow-sensitive")
-    paymentsColonAllowMinusSensitive("payments:allow-sensitive"),
+    PaymentsAllowSensitive("payments:allow-sensitive"),
 
     @SerialName(value = "payments:validate")
-    paymentsColonValidate("payments:validate"),
+    PaymentsValidate("payments:validate"),
 
     @SerialName(value = "payments:cancel")
-    paymentsColonCancel("payments:cancel"),
+    PaymentsCancel("payments:cancel"),
 
     @SerialName(value = "payments")
-    payments("payments");
+    Payments("payments");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

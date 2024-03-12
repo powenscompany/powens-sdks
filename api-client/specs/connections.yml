@@ -1,0 +1,501 @@
+paths:
+  /users/me/connections:
+    post:
+      tags:
+        - connections
+      summary: Add a connection
+      description: >
+        Create a new connection for the authenticated user, for
+        `credentials` connectors. The request implies a synchronous interaction
+        with the connector website or API to perform the initial credentials
+        check, so client-side timeouts must be configured to allow a response
+        time up to a few minutes.
+      operationId: createUserConnection
+      parameters:
+        - $ref: "#/components/parameters/ConnectionSource"
+        - $ref: "#/components/parameters/ConnectionExpand"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConnectionRequest"
+        required: true
+      responses:
+        "200":
+          description: Connection successfully created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Connection"
+        "400":
+          description: Invalid credentials submitted
+          content:
+            application/json:
+              schema:
+                $ref: "core.yml#/components/schemas/ServiceError"
+      security:
+        - bi_auth:
+            - user
+    get:
+      tags:
+        - connections
+      summary: List connections
+      description: List all connections of the authenticated user.
+      operationId: listUserConnections
+      parameters:
+        - $ref: "#/components/parameters/ConnectionExpand"
+      responses:
+        "200":
+          description: List of connections
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectionsList"
+      security:
+        - bi_auth:
+            - user
+  "/users/me/connections/{connectionId}":
+    parameters:
+      - in: path
+        name: connectionId
+        schema:
+          $ref: "core.yml#/components/schemas/Id"
+        description: Connection ID.
+        required: true
+    get:
+      tags:
+        - connections
+      summary: Connection
+      description: Get a single connection of the authenticated user by ID.
+      operationId: getUserConnection
+      parameters:
+        - $ref: "#/components/parameters/ConnectionExpand"
+      responses:
+        "200":
+          description: Connection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Connection"
+      security:
+        - bi_auth:
+            - user
+    post:
+      tags:
+        - connections
+      summary: Update and/or sync a connection
+      description: Update the configuration or the credentials of a connection, and/or
+        perform a sync afterward.
+      operationId: updateSyncUserConnection
+      parameters:
+        - $ref: "#/components/parameters/ConnectionSource"
+        - $ref: "#/components/parameters/Background"
+        - $ref: "#/components/parameters/ConnectionExpand"
+      requestBody:
+        description: The request can optionally include new credentials or values to
+          update the connection. An empty request performs a sync.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConnectionUpdateRequest"
+        required: false
+      responses:
+        "200":
+          description: Connection successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Connection"
+        "400":
+          description: Invalid credentials submitted
+          content:
+            application/json:
+              schema:
+                $ref: "core.yml#/components/schemas/ServiceError"
+      security:
+        - bi_auth:
+            - user
+    delete:
+      tags:
+        - connections
+      summary: Delete a connection
+      description: Delete a user connection. All associated data is permanently made
+        unavailable in the API.
+      operationId: deleteUserConnection
+      responses:
+        "204":
+          description: Connection successfully deleted
+      security:
+        - bi_auth:
+            - user
+  /webauth:
+    get:
+      tags:
+        - connections
+      summary: Open the connector webview
+      description: A special redirection endpoint for `webauth` connections. The URL
+        must be opened in a browser.
+      operationId: openWebAuth
+      parameters:
+        - in: query
+          name: client_id
+          schema:
+            $ref: "core.yml#/components/schemas/Id"
+          required: true
+          description: The client ID of your client application.
+        - in: query
+          name: token
+          schema:
+            type: string
+          required: true
+          description: A temporary authorization code to secure the call.
+        - in: query
+          name: redirect_uri
+          schema:
+            type: string
+            format: url
+          required: true
+          description: The final redirect URL to be redirected to after the flow has
+            completed. This URL must not contain query parameters. Be sure to
+            properly encode it.
+        - in: query
+          name: id_connector
+          schema:
+            $ref: "core.yml#/components/schemas/Id"
+          description: To add a new connection only, the ID of the connector. The
+            connector must have `webauth` as its `auth_mechanism`.
+        - in: query
+          name: id_connection
+          schema:
+            $ref: "core.yml#/components/schemas/Id"
+          description: To recover or resume a connection only, the ID of the connection.
+        - in: query
+          name: source
+          schema:
+            type: string
+            pattern: ^[a-z]+$
+            description: The specific source (designated by its `name`) to target when
+              interacting with multi-source bank connectors.
+        - in: query
+          name: state
+          schema:
+            type: string
+          description: An optional opaque string that will be returned 'as is' with the
+            redirect URL.
+      responses:
+        "302":
+          description: Redirection to the connector webview.
+          headers:
+            location:
+              schema:
+                type: string
+                format: url
+              description: The URL of the connector webview.
+      callbacks:
+        WebAuthCallback:
+          "{$request.query.redirect_uri}":
+            get:
+              operationId: webviewCallback
+              parameters:
+                - in: query
+                  name: id_connection
+                  schema:
+                    $ref: "core.yml#/components/schemas/Id"
+                  description: In case of success, the ID of the connection that was created or
+                    updated during the Web Auth flow.
+                - in: query
+                  name: error
+                  schema:
+                    $ref: "core.yml#/components/schemas/ServiceErrorCode"
+                  description: This parameter is added if an error occurred.
+                - in: query
+                  name: error_description
+                  schema:
+                    type: string
+                  description: The description of the error, if available.
+              responses:
+                "200":
+                  description: The redirection happens in a browser, your `redirect_uri` must
+                    handle and process the received parameters.
+components:
+  schemas:
+    ConnectionRequest:
+      type: object
+      description: A request to create a new connection. To add a connection to a
+        connector/source using `credentials` *AuthMechanism*, you must also
+        include in the request values from the connector `fields` definition.
+      properties:
+        id_connector:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the connector. Required if `connector_uuid` is not provided.
+        connector_uuid:
+          type: string
+          format: uuid
+          description: UUID of the connector. Required if `id_connector` is not provided.
+      additionalProperties:
+        type: string
+      examples:
+        - connector_uuid: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+          username: test
+          password: hello
+    Connection:
+      type: object
+      description: A connection materializes the link between a user and a connector.
+      properties:
+        id:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the connection.
+        id_user:
+          type: integer
+          nullable: true
+          format: int64
+          minimum: 1
+          description: ID of the related user.
+        id_connector:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the related connector.
+        id_provider:
+          $ref: "core.yml#/components/schemas/Id"
+          deprecated: true
+          description: ID of the provider.
+        id_bank:
+          $ref: "core.yml#/components/schemas/Id"
+          deprecated: true
+          description: ID of the bank.
+        state:
+          oneOf:
+            - $ref: "#/components/schemas/ConnectionState"
+            - type: null
+        error:
+          $ref: "#/components/schemas/ConnectionState"
+        error_message:
+          type: string
+          nullable: true
+          description: If the last update failed, an optional message from the connector
+            to guide the user into recovering from the error.
+        fields:
+          type: array
+          nullable: true
+          items:
+            $ref: "connectors.yml#/components/schemas/CredentialsField"
+          description: For connections in an error state, an optional list of form fields
+            that must be prompted to the end-user.
+        last_update:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Last successful update.
+        created:
+          type: string
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Creation date of the connection.
+        active:
+          type: boolean
+          description: Whether this connection is active and will be automatically synced.
+        last_push:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Last successful push.
+        expire:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Highest value among expiration dates of connection sources.
+        connector_uuid:
+          type: string
+          format: uuid
+          description: UUID of the connector. Required if `id_connector` is not provided.
+        next_try:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Scheduled date of next synchronization.
+        connector:
+          oneOf:
+            - $ref: "connectors.yml#/components/schemas/Connector"
+            - type: null
+          description: "Optional `expand`: The connector associated with this connection."
+          examples:
+            - null
+        sources:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/ConnectionSource"
+          description: "Optional `expand`: The details of the sources configured for the
+            connection."
+        accounts:
+          type: array
+          nullable: true
+          items:
+            $ref: "bank-accounts.yml#/components/schemas/BankAccount"
+          description: "Optional `expand`: The list of activated bank accounts associated
+            with the connection (disabled accounts are omitted)."
+          examples:
+            - null
+          x-requiredTags:
+            - connections
+        all_accounts:
+          type: array
+          nullable: true
+          items:
+            $ref: "bank-accounts.yml#/components/schemas/BankAccount"
+          description: "Optional `expand`: The list of all bank accounts associated with
+            the connection, including disabled ones."
+          examples:
+            - null
+          x-requiredTags:
+            - connections
+      required:
+        - id
+        - id_connector
+        - created
+        - active
+    ConnectionSource:
+      type: object
+      description: A connection source, to describe partial sync of data for this
+        connection regarding PSD2 regulation.
+      properties:
+        id:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the connection source.
+        id_connection:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the related connection.
+        id_connector_source:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the related connector source.
+        name:
+          type: string
+          pattern: ^[a-z]+$
+          description: Technical code name of the connection source.
+        state:
+          $ref: "#/components/schemas/ConnectionState"
+        last_update:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Last successful update of the source.
+        disabled:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: If set, this source is ignored on synchronizing the connection.
+        created:
+          type: string
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Creation date of the source.
+        next_try:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Scheduled date of next synchronization.
+        access_expire:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Expiration date of the access, if known.
+      required:
+        - id
+        - id_connection
+        - id_connector_source
+        - name
+        - created
+    ConnectionState:
+      type:
+        - string
+        - null
+      description: |
+        If the last update failed, the state code. The `null` value> indicates a successful sync.
+         * `SCARequired`: An SCA process must be performed to resume the synchronization process.
+         * `webauthRequired`: A web-based authentication process is required using the /webauth endpoint.
+         * `additionalInformationNeeded`: Additional information is needed to resume synchronization, such as an OTP. Connections in this state have a `fields` property.
+         * `decoupled`: User validation is required on a third-party app or device (ex: digital key).
+         * `validating`: User validation is being processed on our side. This state is temporary.
+         * `actionNeeded`: An action is needed on the website by the user, synchronization is blocked.
+         * `passwordExpired`: The password has expired and needs to be changed by the user before the synchronization can be retried.
+         * `wrongpass`: The authentication on website has failed and new credentials must be obtained from the user. Connections in this state have a `fields` property.
+         * `rateLimiting`: The target website or API is temporarily blocking synchronizations due to rate limiting.
+         * `websiteUnavailable`: The connector website or API is unavailable.
+         * `bug`: An internal error has occurred during the synchronization.
+      enum:
+        - SCARequired
+        - webauthRequired
+        - additionalInformationNeeded
+        - decoupled
+        - validating
+        - actionNeeded
+        - passwordExpired
+        - wrongpass
+        - rateLimiting
+        - websiteUnavailable
+        - bug
+    ConnectionUpdateRequest:
+      type: object
+      description: A request to update or sync a connection.
+      properties:
+        resume:
+          type: string
+          description: Resume a connection in the decoupled state.
+          enum:
+            - true
+      additionalProperties:
+        type: string
+      examples:
+        - resume: true
+    ConnectionsList:
+      type: object
+      description: A list of connections.
+      properties:
+        connections:
+          type: array
+          description: The list of connections.
+          items:
+            $ref: "#/components/schemas/Connection"
+      required:
+        - connections
+  parameters:
+    Background:
+      in: query
+      name: background
+      schema:
+        type: boolean
+        enum:
+          - true
+      allowEmptyValue: true
+      description: Flag to make the request asynchronous (i.e. the API will respond
+        immediately and process the action in background). When using this
+        option, you must implement polling on the resource to monitor the state.
+    ConnectionSource:
+      in: query
+      name: source
+      schema:
+        type: string
+        pattern: ^[a-z]+$
+        description: The specific source (designated by its `name`) to target when
+          interacting with multi-source bank connectors.
+    ConnectionExpand:
+      in: query
+      name: expand
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - connector
+            - sources
+            - accounts
+            - all_accounts
+      explode: false
+      allowReserved: true

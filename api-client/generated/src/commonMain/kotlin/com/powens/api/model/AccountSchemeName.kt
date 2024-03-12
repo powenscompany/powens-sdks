@@ -21,19 +21,19 @@ import kotlinx.serialization.*
 /**
  * Type of identifier provided for a bank account:  * `iban`: International Bank Account Number  * `bban`: Basic Bank Account Number  * `sort_code_account_number`: United Kingdom local account number 
  *
- * Values: iban,bban,sortCodeAccountNumber
+ * Values: Iban,Bban,SortCodeAccountNumber
  */
 @Serializable
 enum class AccountSchemeName(val value: kotlin.String) {
 
     @SerialName(value = "iban")
-    iban("iban"),
+    Iban("iban"),
 
     @SerialName(value = "bban")
-    bban("bban"),
+    Bban("bban"),
 
     @SerialName(value = "sort_code_account_number")
-    sortCodeAccountNumber("sort_code_account_number");
+    SortCodeAccountNumber("sort_code_account_number");
 
     /**
      * Override [toString()] to avoid using the enum variable name as the value, and instead use

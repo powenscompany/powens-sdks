@@ -20,5 +20,5 @@ dependencyResolutionManagement {
 }
 
 include(":api-client")
-include(":api-client:generated")
+//include(":api-client:generated")
 include(":ui-kit")

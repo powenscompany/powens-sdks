@@ -4,17 +4,17 @@
 ## Enum
 
 
-    * `paymentsColonAdmin` (value: `"payments:admin"`)
+    * `PaymentsAdmin` (value: `"payments:admin"`)
 
-    * `paymentsColonReadMinusOnly` (value: `"payments:read-only"`)
+    * `PaymentsReadOnly` (value: `"payments:read-only"`)
 
-    * `paymentsColonAllowMinusSensitive` (value: `"payments:allow-sensitive"`)
+    * `PaymentsAllowSensitive` (value: `"payments:allow-sensitive"`)
 
-    * `paymentsColonValidate` (value: `"payments:validate"`)
+    * `PaymentsValidate` (value: `"payments:validate"`)
 
-    * `paymentsColonCancel` (value: `"payments:cancel"`)
+    * `PaymentsCancel` (value: `"payments:cancel"`)
 
-    * `payments` (value: `"payments"`)
+    * `Payments` (value: `"payments"`)
 
 
 

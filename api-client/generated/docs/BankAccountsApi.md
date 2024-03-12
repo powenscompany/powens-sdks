@@ -20,7 +20,7 @@ Get a single bank account of the authenticated user by ID.
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = BankAccountsApi()
@@ -73,7 +73,7 @@ List bank accounts of the authenticated user. By default, only active (not &#x60
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = BankAccountsApi()
@@ -124,7 +124,7 @@ Update a bank account. The resource mirrors bank accounts available through the 
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = BankAccountsApi()

@@ -16,7 +16,7 @@
 package com.powens.api.model
 
 import com.powens.api.model.AuthMechanism
-import com.powens.api.model.CredentialsFieldValuesInner
+import com.powens.api.model.CredentialsFieldValue
 
 import kotlinx.serialization.*
 import kotlinx.serialization.descriptors.*
@@ -60,22 +60,22 @@ data class CredentialsField (
     @SerialName(value = "regex") val regex: kotlin.String? = null,
 
     /* For `list` fields, the possible values. */
-    @SerialName(value = "values") val propertyValues: kotlin.collections.List<CredentialsFieldValuesInner>? = null
+    @SerialName(value = "values") val propertyValues: kotlin.collections.List<CredentialsFieldValue>? = null
 
 ) {
 
     /**
      * The type of the field, to determine the appropriate UI component.
      *
-     * Values: text,list,date,number,password
+     * Values: Text,List,Date,Number,Password
      */
     @Serializable
     enum class Type(val value: kotlin.String) {
-        @SerialName(value = "text") text("text"),
-        @SerialName(value = "list") list("list"),
-        @SerialName(value = "date") date("date"),
-        @SerialName(value = "number") number("number"),
-        @SerialName(value = "password") password("password");
+        @SerialName(value = "text") Text("text"),
+        @SerialName(value = "list") List("list"),
+        @SerialName(value = "date") Date("date"),
+        @SerialName(value = "number") Number("number"),
+        @SerialName(value = "password") Password("password");
     }
 }
 

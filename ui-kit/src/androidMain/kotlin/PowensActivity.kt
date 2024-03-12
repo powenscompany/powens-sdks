@@ -24,7 +24,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.viewModelScope
 import com.powens.kit.theme.PowensKitTheme
-import com.powens.webview.WebviewClient
+import com.powens.api.client.WebviewClient
 import kotlinx.coroutines.launch
 
 class PowensActivity : ComponentActivity() {

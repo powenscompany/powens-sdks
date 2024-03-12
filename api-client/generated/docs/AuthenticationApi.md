@@ -23,7 +23,7 @@ This endpoint uses the received temporary token to generate a permanent user acc
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = AuthenticationApi()
@@ -65,12 +65,12 @@ No authorization required
 
 Generate a temporary code
 
-This endpoint requires header authentication with a valid user access token. This endpoint generates a new temporary code for the current user. In case the access token is already used by a trusted device, and you want to temporarily let another one (for example a web browser) access user resources, use this endpoint to generate a code that will expire in 30 minutes. If the generated code is intended to be used with our webview, you can use the singleAccess token type. 
+This endpoint requires header authentication with a valid user access token. This endpoint generates a new temporary code for the current user. In case the access token is already used by a trusted device, and you want to temporarily let another one (for example a web browser) access user resources, use this endpoint to generate a code that will expire in 30 minutes. If the generated code is intended to be used with our webview, you can use the &#x60;singleAccess&#x60; token type. 
 
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = AuthenticationApi()
@@ -117,7 +117,7 @@ This endpoint generates a special access token with a dedicated service scope. T
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = AuthenticationApi()
@@ -164,7 +164,7 @@ This endpoint generates a new token related to a *new anonymous user*. If &#x60;
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = AuthenticationApi()
@@ -211,7 +211,7 @@ This endpoint generates a new permanent access token for an existing user, and r
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = AuthenticationApi()
@@ -258,7 +258,7 @@ This endpoint invalidates permanent access tokens. Subsequent calls using the pr
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
+//import com.powens.api.infrastructure.*
 //import com.powens.api.model.*
 
 val apiInstance = AuthenticationApi()

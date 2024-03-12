@@ -16,6 +16,7 @@
 package com.powens.api.model
 
 import com.powens.api.model.BankAccountTypeName
+import com.powens.api.model.CalendarBound
 
 import kotlinx.serialization.*
 import kotlinx.serialization.descriptors.*
@@ -24,19 +25,18 @@ import kotlinx.serialization.encoding.*
 /**
  * Details about a bank account type
  *
- * @param id ID of the bank account type.
+ * @param id 
  * @param name 
  * @param isInvest Whether the type corresponds to an 'investment' account type. These types usually present investments and may have limitations regarding transfers.
  * @param displayName The display name of the account type, in French.
- * @param displayNameP The plural display name of the account type, in French.
- * @param idParent Optional, the ID of the parent type.
+ * @param displayNamePlural The plural display name of the account type, in French.
+ * @param parentId Optional, the ID of the parent type.
  */
 @Serializable
 
 data class BankAccountType (
 
-    /* ID of the bank account type. */
-    @SerialName(value = "id") @Required val id: kotlin.Long,
+    @SerialName(value = "id") @Required val id: CalendarBound,
 
     @SerialName(value = "name") @Required val name: BankAccountTypeName,
 
@@ -47,10 +47,10 @@ data class BankAccountType (
     @SerialName(value = "display_name") @Required val displayName: kotlin.String,
 
     /* The plural display name of the account type, in French. */
-    @SerialName(value = "display_name_p") @Required val displayNameP: kotlin.String,
+    @SerialName(value = "display_name_p") @Required val displayNamePlural: kotlin.String,
 
     /* Optional, the ID of the parent type. */
-    @SerialName(value = "id_parent") val idParent: kotlin.Long? = null
+    @SerialName(value = "id_parent") val parentId: kotlin.Long? = null
 
 )
 

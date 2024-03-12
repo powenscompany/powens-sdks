@@ -41,11 +41,11 @@ data class ExchangeAccessToken (
     /**
      * The type of token. The only value is `Bearer`.
      *
-     * Values: bearer
+     * Values: Bearer
      */
     @Serializable
     enum class TokenType(val value: kotlin.String) {
-        @SerialName(value = "Bearer") bearer("Bearer");
+        @SerialName(value = "Bearer") Bearer("Bearer");
     }
 }
 

@@ -24,13 +24,13 @@ import kotlinx.serialization.encoding.*
 /**
  * 
  *
- * @param accounttypes 
+ * @param accountTypes 
  */
 @Serializable
 
 data class BankAccountTypesList (
 
-    @SerialName(value = "accounttypes") @Required val accounttypes: kotlin.collections.List<BankAccountType>
+    @SerialName(value = "accounttypes") @Required val accountTypes: kotlin.collections.List<BankAccountType>
 
 )
 
