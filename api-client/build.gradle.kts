@@ -1,7 +1,4 @@
-﻿import org.jetbrains.kotlin.cli.common.incrementalCompilationIsEnabled
-import org.openapitools.generator.gradle.plugin.extensions.OpenApiGeneratorGenerateExtension
-
-plugins {
+﻿plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.android.library)
@@ -27,13 +24,9 @@ openApiValidate {
 // Configure the whole spec dir for invalidation of the generator cache
 tasks.withType(org.openapitools.generator.gradle.plugin.tasks.GenerateTask::class.java) {
     inputs.dir("$projectDir/specs")
-    outputs.upToDateWhen { false }
-    outputs.cacheIf { false }
 }
 tasks.withType(org.openapitools.generator.gradle.plugin.tasks.ValidateTask::class.java) {
     inputs.dir("$projectDir/specs")
-    outputs.upToDateWhen { false }
-    outputs.cacheIf { false }
 }
 
 kotlin {
