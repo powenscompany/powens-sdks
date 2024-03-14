@@ -31,7 +31,7 @@ Enable or disable a list of connectors by IDs in a single operation.
 
 val apiInstance = ConnectorsApi()
 val connectorIds : kotlin.collections.List<kotlin.Long> =  // kotlin.collections.List<kotlin.Long> | Connector IDs.
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : ConnectorsList = apiInstance.batchEnableConnectorsById(connectorIds, expand)
     println(result)
@@ -49,7 +49,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connectorIds** | [**kotlin.collections.List&lt;kotlin.Long&gt;**](kotlin.Long.md)| Connector IDs. |
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
 
 ### Return type
 
@@ -80,7 +80,7 @@ Get a single bank connector by ID. Use &#x60;/connectors/{id}&#x60; instead.
 
 val apiInstance = ConnectorsApi()
 val connectorId : kotlin.Long = 789 // kotlin.Long | Connector ID.
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : Connector = apiInstance.getBank(connectorId, expand)
     println(result)
@@ -98,7 +98,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connectorId** | **kotlin.Long**| Connector ID. |
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
 
 ### Return type
 
@@ -129,7 +129,7 @@ Get a single connector by ID.
 
 val apiInstance = ConnectorsApi()
 val connectorId : kotlin.Long = 789 // kotlin.Long | Connector ID.
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : Connector = apiInstance.getConnector(connectorId, expand)
     println(result)
@@ -147,7 +147,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connectorId** | **kotlin.Long**| Connector ID. |
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
 
 ### Return type
 
@@ -178,7 +178,7 @@ Get a single connector by UUID.
 
 val apiInstance = ConnectorsApi()
 val connectorUuid : kotlin.String = 38400000-8cf0-11bd-b23e-10b96e4ef00d // kotlin.String | Connector UUID.
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : Connector = apiInstance.getConnectorByUuid(connectorUuid, expand)
     println(result)
@@ -196,7 +196,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connectorUuid** | **kotlin.String**| Connector UUID. |
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
 
 ### Return type
 
@@ -227,7 +227,7 @@ Get a single provider connector by ID. Use &#x60;/connectors/{id}&#x60; instead.
 
 val apiInstance = ConnectorsApi()
 val connectorId : kotlin.Long = 789 // kotlin.Long | Connector ID.
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : Connector = apiInstance.getProvider(connectorId, expand)
     println(result)
@@ -245,7 +245,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connectorId** | **kotlin.Long**| Connector ID. |
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
 
 ### Return type
 
@@ -275,7 +275,7 @@ List connectors with the &#x60;bank&#x60; capability. &#x60;Use /connectors&#x60
 //import com.powens.api.model.*
 
 val apiInstance = ConnectorsApi()
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : BanksList = apiInstance.listBanks(expand)
     println(result)
@@ -292,7 +292,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
 
 ### Return type
 
@@ -322,7 +322,7 @@ List all connectors available on a domain. By default, only connectors not &#x60
 //import com.powens.api.model.*
 
 val apiInstance = ConnectorsApi()
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : ConnectorsList = apiInstance.listConnectors(expand)
     println(result)
@@ -339,7 +339,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
 
 ### Return type
 
@@ -369,7 +369,7 @@ List connectors with the &#x60;document&#x60; capability. &#x60;Use /connectors&
 //import com.powens.api.model.*
 
 val apiInstance = ConnectorsApi()
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : ProvidersList = apiInstance.listProviders(expand)
     println(result)
@@ -386,7 +386,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
 
 ### Return type
 
@@ -417,7 +417,7 @@ Enable or disable a list of connectors by UUID in a single operation.
 
 val apiInstance = ConnectorsApi()
 val requestBody : kotlin.collections.Map<kotlin.String, ConnectorPatch> =  // kotlin.collections.Map<kotlin.String, ConnectorPatch> | 
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : ConnectorsList = apiInstance.updateConnectors(requestBody, expand)
     println(result)
@@ -435,7 +435,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **requestBody** | [**kotlin.collections.Map&lt;kotlin.String, ConnectorPatch&gt;**](ConnectorPatch.md)|  |
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: fields, sources, countries]
 
 ### Return type
 

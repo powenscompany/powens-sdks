@@ -355,5 +355,6 @@ components:
           type: string
           enum:
             - connection
+        uniqueItems: true
       explode: false
       allowReserved: true

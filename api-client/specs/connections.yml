@@ -497,5 +497,6 @@ components:
             - sources
             - accounts
             - all_accounts
+        uniqueItems: true
       explode: false
       allowReserved: true

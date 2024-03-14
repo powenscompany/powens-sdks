@@ -405,6 +405,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/AuthMechanism"
+          uniqueItems: true
           description: The list of the authentication mechanisms associated with this field.
         label:
           type: string
@@ -478,5 +479,6 @@ components:
             - fields
             - sources
             - countries
+        uniqueItems: true
       explode: false
       allowReserved: true

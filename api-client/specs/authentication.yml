@@ -240,6 +240,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ServiceTokenScope"
+          uniqueItems: true
           description: The service permission scopes to authorize for this token.
       required:
         - grant_type

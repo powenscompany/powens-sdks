@@ -45,7 +45,7 @@ data class CredentialsField (
     @SerialName(value = "type") @Required val type: CredentialsField.Type,
 
     /* The list of the authentication mechanisms associated with this field. */
-    @SerialName(value = "auth_mechanisms") @Required val authMechanisms: kotlin.collections.List<AuthMechanism>,
+    @SerialName(value = "auth_mechanisms") @Required val authMechanisms: kotlin.collections.Set<AuthMechanism>,
 
     /* A short display label for the field. */
     @SerialName(value = "label") @Required val label: kotlin.String,

@@ -26,7 +26,7 @@ Get a single bank transaction of the authenticated user by ID.
 val apiInstance = BankTransactionsApi()
 val transactionId : kotlin.Long = 789 // kotlin.Long | Transaction ID.
 val all : kotlin.Boolean = true // kotlin.Boolean | Flag to include disabled and deleted items in the list.
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : Transaction = apiInstance.getUserTransaction(transactionId, all, expand)
     println(result)
@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **transactionId** | **kotlin.Long**| Transaction ID. |
  **all** | **kotlin.Boolean**| Flag to include disabled and deleted items in the list. | [optional]
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: account, documents]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: account, documents]
 
 ### Return type
 
@@ -77,7 +77,7 @@ List bank transactions of the authenticated user. By default, only active (not &
 //import com.powens.api.model.*
 
 val apiInstance = BankTransactionsApi()
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 val all : kotlin.Boolean = true // kotlin.Boolean | Flag to include disabled and deleted items in the list.
 val minDate : CalendarBound =  // CalendarBound | Filter items after the specified date.
 val maxDate : CalendarBound =  // CalendarBound | Filter items before the specified date.
@@ -105,7 +105,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: account, documents]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: account, documents]
  **all** | **kotlin.Boolean**| Flag to include disabled and deleted items in the list. | [optional]
  **minDate** | [**CalendarBound**](.md)| Filter items after the specified date. | [optional]
  **maxDate** | [**CalendarBound**](.md)| Filter items before the specified date. | [optional]
@@ -151,7 +151,7 @@ val apiInstance = BankTransactionsApi()
 val transactionId : kotlin.Long = 789 // kotlin.Long | Transaction ID.
 val transactionUpdateRequest : TransactionUpdateRequest =  // TransactionUpdateRequest | 
 val all : kotlin.Boolean = true // kotlin.Boolean | Flag to include disabled and deleted items in the list.
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : Transaction = apiInstance.updateUserTransaction(transactionId, transactionUpdateRequest, all, expand)
     println(result)
@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
  **transactionId** | **kotlin.Long**| Transaction ID. |
  **transactionUpdateRequest** | [**TransactionUpdateRequest**](TransactionUpdateRequest.md)|  |
  **all** | **kotlin.Boolean**| Flag to include disabled and deleted items in the list. | [optional]
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: account, documents]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: account, documents]
 
 ### Return type
 

@@ -29,7 +29,7 @@ Create a new connection for the authenticated user, for &#x60;credentials&#x60; 
 val apiInstance = ConnectionsApi()
 val connectionRequest : ConnectionRequest =  // ConnectionRequest | 
 val source : kotlin.String = source_example // kotlin.String | 
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : Connection = apiInstance.createUserConnection(connectionRequest, source, expand)
     println(result)
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connectionRequest** | [**ConnectionRequest**](ConnectionRequest.md)|  |
  **source** | **kotlin.String**|  | [optional]
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connector, sources, accounts, all_accounts]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connector, sources, accounts, all_accounts]
 
 ### Return type
 
@@ -129,7 +129,7 @@ Get a single connection of the authenticated user by ID.
 
 val apiInstance = ConnectionsApi()
 val connectionId : kotlin.Long = 789 // kotlin.Long | Connection ID.
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : Connection = apiInstance.getUserConnection(connectionId, expand)
     println(result)
@@ -147,7 +147,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connectionId** | **kotlin.Long**| Connection ID. |
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connector, sources, accounts, all_accounts]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connector, sources, accounts, all_accounts]
 
 ### Return type
 
@@ -179,7 +179,7 @@ List all connections of the authenticated user.
 //import com.powens.api.model.*
 
 val apiInstance = ConnectionsApi()
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : ConnectionsList = apiInstance.listUserConnections(expand)
     println(result)
@@ -196,7 +196,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connector, sources, accounts, all_accounts]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connector, sources, accounts, all_accounts]
 
 ### Return type
 
@@ -289,7 +289,7 @@ val apiInstance = ConnectionsApi()
 val connectionId : kotlin.Long = 789 // kotlin.Long | Connection ID.
 val source : kotlin.String = source_example // kotlin.String | 
 val background : kotlin.Boolean = true // kotlin.Boolean | Flag to make the request asynchronous (i.e. the API will respond immediately and process the action in background). When using this option, you must implement polling on the resource to monitor the state.
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 val connectionUpdateRequest : ConnectionUpdateRequest =  // ConnectionUpdateRequest | The request can optionally include new credentials or values to update the connection. An empty request performs a sync.
 try {
     val result : Connection = apiInstance.updateSyncUserConnection(connectionId, source, background, expand, connectionUpdateRequest)
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
  **connectionId** | **kotlin.Long**| Connection ID. |
  **source** | **kotlin.String**|  | [optional]
  **background** | **kotlin.Boolean**| Flag to make the request asynchronous (i.e. the API will respond immediately and process the action in background). When using this option, you must implement polling on the resource to monitor the state. | [optional]
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connector, sources, accounts, all_accounts]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connector, sources, accounts, all_accounts]
  **connectionUpdateRequest** | [**ConnectionUpdateRequest**](ConnectionUpdateRequest.md)| The request can optionally include new credentials or values to update the connection. An empty request performs a sync. | [optional]
 
 ### Return type

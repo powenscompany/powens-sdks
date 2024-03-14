@@ -42,6 +42,7 @@ paths:
             type: array
             items:
               $ref: "#/components/schemas/TransactionValueFilter"
+          uniqueItems: true
           style: pipeDelimited
           description: Value of the transaction. "XX|-XX" and "±XX" are also accepted.
         - in: query
@@ -397,5 +398,6 @@ components:
           enum:
             - account
             - documents
+        uniqueItems: true
       explode: false
       allowReserved: true
