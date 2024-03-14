@@ -16,6 +16,7 @@
 package com.powens.api.model
 
 import com.powens.api.model.BankAccountTypeName
+import com.powens.api.model.BankAccountUsage
 import com.powens.api.model.Connection
 import com.powens.api.model.Currency
 import com.powens.api.model.Loan
@@ -32,6 +33,10 @@ import kotlinx.serialization.encoding.*
  * @param connectionId 
  * @param userId 
  * @param idSource 
+ * @param display Whether the bank account should be displayed and included in aggregated metrics.
+ * @param name Display name of the account.
+ * @param bookmarked Whether the bank account is bookmarked.
+ * @param usage 
  * @param originalName Original name of the account, as exposed on the connector API or website.
  * @param type 
  * @param idType 
@@ -58,6 +63,17 @@ data class BankAccount (
     @SerialName(value = "id_user") @Required val userId: kotlin.Long,
 
     @SerialName(value = "id_source") @Required val idSource: kotlin.Long,
+
+    /* Whether the bank account should be displayed and included in aggregated metrics. */
+    @SerialName(value = "display") @Required val display: kotlin.Boolean,
+
+    /* Display name of the account. */
+    @SerialName(value = "name") @Required val name: kotlin.String,
+
+    /* Whether the bank account is bookmarked. */
+    @SerialName(value = "bookmarked") @Required val bookmarked: kotlin.Boolean,
+
+    @SerialName(value = "usage") @Required val usage: BankAccountUsage,
 
     /* Original name of the account, as exposed on the connector API or website. */
     @SerialName(value = "original_name") @Required val originalName: kotlin.String,

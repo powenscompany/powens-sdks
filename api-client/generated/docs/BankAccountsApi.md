@@ -26,7 +26,7 @@ Get a single bank account of the authenticated user by ID.
 val apiInstance = BankAccountsApi()
 val accountId : kotlin.Long = 789 // kotlin.Long | Bank account ID.
 val all : kotlin.Boolean = true // kotlin.Boolean | Flag to include disabled and deleted items in the list.
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : BankAccount = apiInstance.getUserAccount(accountId, all, expand)
     println(result)
@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accountId** | **kotlin.Long**| Bank account ID. |
  **all** | **kotlin.Boolean**| Flag to include disabled and deleted items in the list. | [optional]
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connection]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connection]
 
 ### Return type
 
@@ -78,7 +78,7 @@ List bank accounts of the authenticated user. By default, only active (not &#x60
 
 val apiInstance = BankAccountsApi()
 val all : kotlin.Boolean = true // kotlin.Boolean | Flag to include disabled and deleted items in the list.
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : BankAccountsList = apiInstance.listUserAccounts(all, expand)
     println(result)
@@ -96,7 +96,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **all** | **kotlin.Boolean**| Flag to include disabled and deleted items in the list. | [optional]
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connection]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connection]
 
 ### Return type
 
@@ -131,7 +131,7 @@ val apiInstance = BankAccountsApi()
 val accountId : kotlin.Long = 789 // kotlin.Long | Bank account ID.
 val bankAccountUpdateRequest : BankAccountUpdateRequest =  // BankAccountUpdateRequest | 
 val all : kotlin.Boolean = true // kotlin.Boolean | Flag to include disabled and deleted items in the list.
-val expand : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | 
+val expand : kotlin.collections.Set<kotlin.String> =  // kotlin.collections.Set<kotlin.String> | 
 try {
     val result : BankAccount = apiInstance.updateUserAccount(accountId, bankAccountUpdateRequest, all, expand)
     println(result)
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
  **accountId** | **kotlin.Long**| Bank account ID. |
  **bankAccountUpdateRequest** | [**BankAccountUpdateRequest**](BankAccountUpdateRequest.md)|  |
  **all** | **kotlin.Boolean**| Flag to include disabled and deleted items in the list. | [optional]
- **expand** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connection]
+ **expand** | [**kotlin.collections.Set&lt;kotlin.String&gt;**](kotlin.String.md)|  | [optional] [enum: connection]
 
 ### Return type
 

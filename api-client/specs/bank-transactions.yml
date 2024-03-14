@@ -373,14 +373,15 @@ components:
       description: A list of bank transactions.
       allOf:
         - $ref: "core.yml#/components/schemas/DateBoundedList"
-      properties:
-        transactions:
-          type: array
-          description: The transactions list.
-          items:
-            $ref: "#/components/schemas/Transaction"
-      required:
-        - transactions
+        - type: object
+          properties:
+            transactions:
+              type: array
+              description: The transactions list.
+              items:
+                $ref: "#/components/schemas/Transaction"
+          required:
+            - transactions
     TransactionValueFilter:
       oneOf:
         - type: number

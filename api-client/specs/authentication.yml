@@ -199,22 +199,23 @@ components:
       type: object
       allOf:
         - $ref: "#/components/schemas/AccessTokenRequest"
-      properties:
-        grant_type:
-          type: string
-          description: The only accepted (and default) value is `authorization_code`.
-          enum:
-            - authorization_code
-        code:
-          type: string
-          description: The temporary code that was delivered.
-        redirect_uri:
-          type: string
-          description: The exact `redirect_uri` that was specified during the initial OAuth2 step.
-      required:
-        - client_id
-        - client_secret
-        - code
+        - type: object
+          properties:
+            grant_type:
+              type: string
+              description: The only accepted (and default) value is `authorization_code`.
+              enum:
+                - authorization_code
+            code:
+              type: string
+              description: The temporary code that was delivered.
+            redirect_uri:
+              type: string
+              description: The exact `redirect_uri` that was specified during the initial OAuth2 step.
+          required:
+            - client_id
+            - client_secret
+            - code
     ExchangeAccessToken:
       type: object
       properties:
@@ -230,23 +231,24 @@ components:
       type: object
       allOf:
         - $ref: "#/components/schemas/AccessTokenRequest"
-      properties:
-        grant_type:
-          type: string
-          description: The only accepted value is `client_credentials`.
-          enum:
-            - client_credentials
-        scope:
-          type: array
-          items:
-            $ref: "#/components/schemas/ServiceTokenScope"
-          uniqueItems: true
-          description: The service permission scopes to authorize for this token.
-      required:
-        - grant_type
-        - client_id
-        - client_secret
-        - scope
+        - type: object
+          properties:
+            grant_type:
+              type: string
+              description: The only accepted value is `client_credentials`.
+              enum:
+                - client_credentials
+            scope:
+              type: array
+              items:
+                $ref: "#/components/schemas/ServiceTokenScope"
+              uniqueItems: true
+              description: The service permission scopes to authorize for this token.
+          required:
+            - grant_type
+            - client_id
+            - client_secret
+            - scope
     ServiceAccessToken:
       type: object
       properties:
@@ -277,20 +279,21 @@ components:
       type: object
       allOf:
         - $ref: "#/components/schemas/AccessTokenRequest"
-      properties:
-        grant_type:
-          type: string
-          description: The only accepted value is `client_credentials`.
-          enum:
-            - client_credentials
-        id_user:
-          $ref: "core.yml#/components/schemas/Id"
-          description: User for whom the token has to be generated. If not supplied, a user will be created.
-        revoke_previous:
-          type: boolean
-          description: If true, all other permanent tokens for the user will be deleted. The default is false.
-      required:
-        - grant_type
-        - client_id
-        - client_secret
-        - code
+        - type: object
+          properties:
+            grant_type:
+              type: string
+              description: The only accepted value is `client_credentials`.
+              enum:
+                - client_credentials
+            id_user:
+              $ref: "core.yml#/components/schemas/Id"
+              description: User for whom the token has to be generated. If not supplied, a user will be created.
+            revoke_previous:
+              type: boolean
+              description: If true, all other permanent tokens for the user will be deleted. The default is false.
+          required:
+            - grant_type
+            - client_id
+            - client_secret
+            - code

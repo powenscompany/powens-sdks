@@ -26,6 +26,8 @@ import kotlinx.serialization.encoding.*
  *
  * @param clientId Client ID of the application.
  * @param clientSecret The client secret associated with the client ID.
+ * @param grantType The only accepted value is `client_credentials`.
+ * @param scope The service permission scopes to authorize for this token.
  */
 @Serializable
 
@@ -35,7 +37,13 @@ data class ServiceAccessTokenRequest (
     @SerialName(value = "client_id") @Required val clientId: kotlin.String?,
 
     /* The client secret associated with the client ID. */
-    @SerialName(value = "client_secret") @Required val clientSecret: kotlin.String?
+    @SerialName(value = "client_secret") @Required val clientSecret: kotlin.String?,
+
+    /* The only accepted value is `client_credentials`. */
+    @SerialName(value = "grant_type") @Required val grantType: ServiceAccessTokenRequest.GrantType,
+
+    /* The service permission scopes to authorize for this token. */
+    @SerialName(value = "scope") @Required val scope: kotlin.collections.Set<ServiceTokenScope>
 
 ) {
 

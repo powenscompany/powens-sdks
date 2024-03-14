@@ -8,6 +8,10 @@ Name | Type | Description | Notes
 **connectionId** | **kotlin.Long** |  | 
 **userId** | **kotlin.Long** |  | 
 **idSource** | **kotlin.Long** |  | 
+**display** | **kotlin.Boolean** | Whether the bank account should be displayed and included in aggregated metrics. | 
+**name** | **kotlin.String** | Display name of the account. | 
+**bookmarked** | **kotlin.Boolean** | Whether the bank account is bookmarked. | 
+**usage** | [**BankAccountUsage**](BankAccountUsage.md) |  | 
 **originalName** | **kotlin.String** | Original name of the account, as exposed on the connector API or website. | 
 **type** | [**BankAccountTypeName**](BankAccountTypeName.md) |  | 
 **idType** | **kotlin.Long** |  | 

@@ -77,8 +77,6 @@ components:
     BankAccount:
       type: object
       description: A bank account.
-      #allOf:
-      #  - $ref: "#/components/schemas/BankAccountUpdateRequest"
       properties:
         id:
           $ref: "core.yml#/components/schemas/Id"
@@ -97,6 +95,18 @@ components:
             - $ref: "core.yml#/components/schemas/Id"
             - type: null
           description: ID of the parent account, if any.
+        display:
+          type: boolean
+          description: Whether the bank account should be displayed and included in
+            aggregated metrics.
+        name:
+          type: string
+          description: Display name of the account.
+        bookmarked:
+          type: boolean
+          description: Whether the bank account is bookmarked.
+        usage:
+          $ref: "#/components/schemas/BankAccountUsage"
         original_name:
           type: string
           description: Original name of the account, as exposed on the connector API or

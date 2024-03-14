@@ -25,6 +25,9 @@ import kotlinx.serialization.encoding.*
  *
  * @param clientId Client ID of the application.
  * @param clientSecret The client secret associated with the client ID.
+ * @param code The temporary code that was delivered.
+ * @param grantType The only accepted (and default) value is `authorization_code`.
+ * @param redirectUri The exact `redirect_uri` that was specified during the initial OAuth2 step.
  */
 @Serializable
 
@@ -34,7 +37,16 @@ data class ExchangeAccessTokenRequest (
     @SerialName(value = "client_id") @Required val clientId: kotlin.String?,
 
     /* The client secret associated with the client ID. */
-    @SerialName(value = "client_secret") @Required val clientSecret: kotlin.String?
+    @SerialName(value = "client_secret") @Required val clientSecret: kotlin.String?,
+
+    /* The temporary code that was delivered. */
+    @SerialName(value = "code") @Required val code: kotlin.String,
+
+    /* The only accepted (and default) value is `authorization_code`. */
+    @SerialName(value = "grant_type") val grantType: ExchangeAccessTokenRequest.GrantType? = null,
+
+    /* The exact `redirect_uri` that was specified during the initial OAuth2 step. */
+    @SerialName(value = "redirect_uri") val redirectUri: kotlin.String? = null
 
 ) {
 

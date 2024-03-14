@@ -28,6 +28,7 @@ import kotlinx.serialization.encoding.*
  * @param lastDate Maximum available date for results.
  * @param resultMinDate Minimum date of results in the current response.
  * @param resultMaxDate Maximum date of results in the current response.
+ * @param transactions The transactions list.
  */
 @Serializable
 
@@ -43,7 +44,10 @@ data class TransactionsList (
     @SerialName(value = "result_min_date") @Required val resultMinDate: kotlinx.datetime.LocalDate,
 
     /* Maximum date of results in the current response. */
-    @SerialName(value = "result_max_date") @Required val resultMaxDate: kotlinx.datetime.LocalDate
+    @SerialName(value = "result_max_date") @Required val resultMaxDate: kotlinx.datetime.LocalDate,
+
+    /* The transactions list. */
+    @SerialName(value = "transactions") @Required val transactions: kotlin.collections.List<Transaction>
 
 )
 
