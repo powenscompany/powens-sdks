@@ -1,8 +1,8 @@
 package com.powens.api.client
 
-import io.ktor.http.ParametersBuilder
-import io.ktor.http.URLBuilder
-import io.ktor.http.appendPathSegments
+import com.powens.api.model.ConnectorCapability
+import io.ktor.http.*
+
 class WebviewClient(private val root: String, private val clientId: String) {
 
     companion object {
@@ -15,7 +15,7 @@ class WebviewClient(private val root: String, private val clientId: String) {
     }
 
     init {
-        // Client IDS must be digits-only
+        // Client IDs must be digits-only
         require(clientId.matches("\\d+".toRegex())) { "Invalid client ID: $clientId" }
     }
 
@@ -23,7 +23,7 @@ class WebviewClient(private val root: String, private val clientId: String) {
         accessToken: String,
         redirectUri: String,
         connectorUuids: List<String>? = null,
-        connectorCapabilities: List<String>? = null
+        connectorCapabilities: List<ConnectorCapability>? = null
     ): String {
         return this.buildUrl(accessToken, "connect", redirectUri) {
             if (!connectorUuids.isNullOrEmpty()) append(

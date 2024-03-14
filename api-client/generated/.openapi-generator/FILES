@@ -25,6 +25,7 @@ docs/ConnectionUpdateRequest.md
 docs/ConnectionsApi.md
 docs/ConnectionsList.md
 docs/Connector.md
+docs/ConnectorCapability.md
 docs/ConnectorCountry.md
 docs/ConnectorPatch.md
 docs/ConnectorSource.md
@@ -94,6 +95,7 @@ src/commonMain/kotlin/com/powens/api/model/ConnectionState.kt
 src/commonMain/kotlin/com/powens/api/model/ConnectionUpdateRequest.kt
 src/commonMain/kotlin/com/powens/api/model/ConnectionsList.kt
 src/commonMain/kotlin/com/powens/api/model/Connector.kt
+src/commonMain/kotlin/com/powens/api/model/ConnectorCapability.kt
 src/commonMain/kotlin/com/powens/api/model/ConnectorCountry.kt
 src/commonMain/kotlin/com/powens/api/model/ConnectorPatch.kt
 src/commonMain/kotlin/com/powens/api/model/ConnectorSource.kt

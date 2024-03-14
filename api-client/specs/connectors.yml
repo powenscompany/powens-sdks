@@ -232,14 +232,8 @@ components:
           type: array
           description: A list of capabilities supported by this connector.
           items:
-            type: string
-            enum:
-              - bank
-              - bankwealth
-              - transfer
-              - document
-              - profile
-              - contact
+            $ref: "#/components/schemas/ConnectorCapability"
+          uniqueItems: true
         urls:
           type: array
           nullable: true
@@ -462,6 +456,16 @@ components:
       enum:
         - credentials
         - webauth
+    ConnectorCapability:
+      type: string
+      description: A flag on a connector to indicate support for a set of features.
+      enum:
+        - bank
+        - bankwealth
+        - transfer
+        - document
+        - profile
+        - contact
   parameters:
     ConnectorExpand:
       in: query

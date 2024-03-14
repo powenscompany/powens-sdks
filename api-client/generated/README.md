@@ -94,6 +94,7 @@ Class | Method | HTTP request | Description
  - [com.powens.api.model.ConnectionUpdateRequest](docs/ConnectionUpdateRequest.md)
  - [com.powens.api.model.ConnectionsList](docs/ConnectionsList.md)
  - [com.powens.api.model.Connector](docs/Connector.md)
+ - [com.powens.api.model.ConnectorCapability](docs/ConnectorCapability.md)
  - [com.powens.api.model.ConnectorCountry](docs/ConnectorCountry.md)
  - [com.powens.api.model.ConnectorPatch](docs/ConnectorPatch.md)
  - [com.powens.api.model.ConnectorSource](docs/ConnectorSource.md)

@@ -16,6 +16,7 @@
 package com.powens.api.model
 
 import com.powens.api.model.AuthMechanism
+import com.powens.api.model.ConnectorCapability
 import com.powens.api.model.ConnectorCountry
 import com.powens.api.model.ConnectorSource
 import com.powens.api.model.CredentialsField
@@ -67,7 +68,7 @@ data class Connector (
     @SerialName(value = "beta") @Required val beta: kotlin.Boolean,
 
     /* A list of capabilities supported by this connector. */
-    @SerialName(value = "capabilities") @Required val capabilities: kotlin.collections.List<Connector.Capabilities>,
+    @SerialName(value = "capabilities") @Required val capabilities: kotlin.collections.Set<ConnectorCapability>,
 
     @SerialName(value = "auth_mechanism") @Required val authMechanism: AuthMechanism,
 
@@ -109,21 +110,5 @@ data class Connector (
     /* Optional `expand`: Countries where users can open or have accounts/subscriptions with the given institution. */
     @SerialName(value = "countries") val countries: kotlin.collections.List<ConnectorCountry>? = null
 
-) {
-
-    /**
-     * A list of capabilities supported by this connector.
-     *
-     * Values: Bank,BankWealth,Transfer,Document,Profile,Contact
-     */
-    @Serializable
-    enum class Capabilities(val value: kotlin.String) {
-        @SerialName(value = "bank") Bank("bank"),
-        @SerialName(value = "bankwealth") BankWealth("bankwealth"),
-        @SerialName(value = "transfer") Transfer("transfer"),
-        @SerialName(value = "document") Document("document"),
-        @SerialName(value = "profile") Profile("profile"),
-        @SerialName(value = "contact") Contact("contact");
-    }
-}
+)
 
