@@ -13,7 +13,7 @@
     "UnusedImport"
 )
 
-package com.powens.api.client.internal
+package com.powens.api.client.services
 
 import com.powens.api.model.Connection
 import com.powens.api.model.ConnectionRequest

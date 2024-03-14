@@ -1,6 +1,6 @@
 package com.powens.api.client
 
-import com.powens.api.client.internal.*
+import com.powens.api.client.services.*
 import com.powens.api.model.ServiceError
 import io.ktor.client.*
 import io.ktor.client.call.*

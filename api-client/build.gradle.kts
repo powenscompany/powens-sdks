@@ -11,7 +11,7 @@ openApiGenerate {
     outputDir.set("$projectDir/generated")
     generatorName.set("kotlin")
     library.set("multiplatform")
-    apiPackage.set("com.powens.api.client.internal")
+    apiPackage.set("com.powens.api.client.services")
     modelPackage.set("com.powens.api.model")
     packageName.set("com.powens.api")
     configFile.set("$projectDir/generator-config.yml")

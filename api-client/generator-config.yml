@@ -16,11 +16,12 @@ importMappings:
   LocalDateTime: kotlinx.datetime.LocalDateTime
 
 instantiationTypes:
-  # Support requests with free additional properties with a custom type
+  # Support requests with free key-value additional properties in addition to schema-defined ones
+  # As of v7.4, the generator incorrectly defines inheritance from HashMap
   map: AdditionalPropertiesRequest
 
 enumNameMappings:
-  # Fix case inconsistencies
+  # Fix case inconsistencies in generated models
   lifeinsurance: LifeInsurance
   webauth: WebAuth
   webauthRequired: WebAuthRequired
