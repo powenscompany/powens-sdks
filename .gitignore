@@ -1,20 +1,22 @@
 .gradle
 build/
+!**/src/**/build/
 !gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
 
 ### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+/.idea/jarRepositories.xml
+/.idea/compiler.xml
 *.iws
 *.iml
 *.ipr
 out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+!**/src/**/out/
 
 ### Eclipse ###
 .apt_generated
@@ -40,3 +42,9 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Android Studio
+/captures
+.externalNativeBuild
+.cxx
+local.properties
