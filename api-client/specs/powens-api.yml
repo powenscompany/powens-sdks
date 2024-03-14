@@ -6,7 +6,7 @@ info:
   termsOfService: https://www.budget-insight.com/
   contact:
     email: contact@budget-insight.com
-  version: "2.0.1"
+  version: "2.0"
 externalDocs:
   description: Guides and Reference documentation
   url: https://docs.budget-insight.com
