@@ -12,6 +12,7 @@ build/
 /.idea/assetWizardSettings.xml
 /.idea/jarRepositories.xml
 /.idea/compiler.xml
+./idea/uiDesigner.xml
 *.iws
 *.iml
 *.ipr
