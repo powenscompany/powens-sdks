@@ -56,13 +56,13 @@ import kotlinx.serialization.encoding.*
 
 data class BankAccount (
 
-    @SerialName(value = "id") @Required val id: kotlin.Long,
+    @SerialName(value = "id") @Required val id: kotlin.ULong,
 
-    @SerialName(value = "id_connection") @Required val connectionId: kotlin.Long,
+    @SerialName(value = "id_connection") @Required val connectionId: kotlin.ULong,
 
-    @SerialName(value = "id_user") @Required val userId: kotlin.Long,
+    @SerialName(value = "id_user") @Required val userId: kotlin.ULong,
 
-    @SerialName(value = "id_source") @Required val idSource: kotlin.Long,
+    @SerialName(value = "id_source") @Required val idSource: kotlin.ULong,
 
     /* Whether the bank account should be displayed and included in aggregated metrics. */
     @SerialName(value = "display") @Required val display: kotlin.Boolean,
@@ -80,9 +80,9 @@ data class BankAccount (
 
     @SerialName(value = "type") @Required val type: BankAccountTypeName,
 
-    @SerialName(value = "id_type") @Required val idType: kotlin.Long,
+    @SerialName(value = "id_type") @Required val idType: kotlin.ULong,
 
-    @SerialName(value = "id_parent") val parentId: kotlin.Long? = null,
+    @SerialName(value = "id_parent") val parentId: kotlin.ULong? = null,
 
     /* The balance of the bank account. */
     @SerialName(value = "balance") val balance: MonetaryValue? = null,

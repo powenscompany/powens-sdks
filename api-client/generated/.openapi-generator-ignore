@@ -30,6 +30,10 @@ gradle/
 # Omit unsupported oneOf models
 **/CalendarBound.kt
 **/TransactionValueFilter.kt
+**/*Expand.kt
 
 # Omit test skeletons
 src/test/
+
+# Omit docs
+docs/

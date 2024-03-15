@@ -16,6 +16,7 @@
 package com.powens.api.client.services
 
 import com.powens.api.model.Connection
+import com.powens.api.model.ConnectionExpand
 import com.powens.api.model.ConnectionRequest
 import com.powens.api.model.ConnectionUpdateRequest
 import com.powens.api.model.ConnectionsList
@@ -46,27 +47,6 @@ open class ConnectionsApi : ApiClient {
         httpClient: HttpClient
     ): super(baseUrl = baseUrl, httpClient = httpClient)
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandCreateUserConnection(val value: kotlin.String) {
-        
-        @SerialName(value = "connector")
-        Connector("connector"),
-        
-        @SerialName(value = "sources")
-        Sources("sources"),
-        
-        @SerialName(value = "accounts")
-        Accounts("accounts"),
-        
-        @SerialName(value = "all_accounts")
-        AllAccounts("all_accounts")
-        
-    }
-
     /**
      * Add a connection
      * Create a new connection for the authenticated user, for &#x60;credentials&#x60; connectors. The request implies a synchronous interaction with the connector website or API to perform the initial credentials check, so client-side timeouts must be configured to allow a response time up to a few minutes. 
@@ -76,7 +56,7 @@ open class ConnectionsApi : ApiClient {
      * @return Connection
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun createUserConnection(connectionRequest: ConnectionRequest, source: kotlin.String? = null, expand: kotlin.collections.List<ExpandCreateUserConnection>? = null): HttpResponse<Connection> {
+    open suspend fun createUserConnection(connectionRequest: ConnectionRequest, source: kotlin.String? = null, expand: kotlin.collections.Set<ConnectionExpand>? = null): HttpResponse<Connection> {
 
         val localVariableAuthNames = listOf<String>("bi_auth")
 
@@ -110,7 +90,7 @@ open class ConnectionsApi : ApiClient {
      * @param connectionId Connection ID.
      * @return void
      */
-    open suspend fun deleteUserConnection(connectionId: kotlin.Long): HttpResponse<Unit> {
+    open suspend fun deleteUserConnection(connectionId: kotlin.ULong): HttpResponse<Unit> {
 
         val localVariableAuthNames = listOf<String>("bi_auth")
 
@@ -136,27 +116,6 @@ open class ConnectionsApi : ApiClient {
     }
 
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandGetUserConnection(val value: kotlin.String) {
-        
-        @SerialName(value = "connector")
-        Connector("connector"),
-        
-        @SerialName(value = "sources")
-        Sources("sources"),
-        
-        @SerialName(value = "accounts")
-        Accounts("accounts"),
-        
-        @SerialName(value = "all_accounts")
-        AllAccounts("all_accounts")
-        
-    }
-
     /**
      * Connection
      * Get a single connection of the authenticated user by ID.
@@ -165,7 +124,7 @@ open class ConnectionsApi : ApiClient {
      * @return Connection
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun getUserConnection(connectionId: kotlin.Long, expand: kotlin.collections.List<ExpandGetUserConnection>? = null): HttpResponse<Connection> {
+    open suspend fun getUserConnection(connectionId: kotlin.ULong, expand: kotlin.collections.Set<ConnectionExpand>? = null): HttpResponse<Connection> {
 
         val localVariableAuthNames = listOf<String>("bi_auth")
 
@@ -192,27 +151,6 @@ open class ConnectionsApi : ApiClient {
     }
 
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandListUserConnections(val value: kotlin.String) {
-        
-        @SerialName(value = "connector")
-        Connector("connector"),
-        
-        @SerialName(value = "sources")
-        Sources("sources"),
-        
-        @SerialName(value = "accounts")
-        Accounts("accounts"),
-        
-        @SerialName(value = "all_accounts")
-        AllAccounts("all_accounts")
-        
-    }
-
     /**
      * List connections
      * List all connections of the authenticated user.
@@ -220,7 +158,7 @@ open class ConnectionsApi : ApiClient {
      * @return ConnectionsList
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun listUserConnections(expand: kotlin.collections.List<ExpandListUserConnections>? = null): HttpResponse<ConnectionsList> {
+    open suspend fun listUserConnections(expand: kotlin.collections.Set<ConnectionExpand>? = null): HttpResponse<ConnectionsList> {
 
         val localVariableAuthNames = listOf<String>("bi_auth")
 
@@ -253,13 +191,14 @@ open class ConnectionsApi : ApiClient {
      * @param clientId The client ID of your client application.
      * @param token A temporary authorization code to secure the call.
      * @param redirectUri The final redirect URL to be redirected to after the flow has completed. This URL must not contain query parameters. Be sure to properly encode it.
-     * @param idConnector To add a new connection only, the ID of the connector. The connector must have &#x60;webauth&#x60; as its &#x60;auth_mechanism&#x60;. (optional)
+     * @param idConnector To add a new connection only, the ID of the connector. The connector must have &#x60;webauth&#x60; as its &#x60;auth_mechanism&#x60;. Use &#x60;connector_uuid&#x60; instead. (optional)
+     * @param connectorUuid To add a new connection only, the UUID of the connector. The connector must have &#x60;webauth&#x60; as its &#x60;auth_mechanism&#x60;. (optional)
      * @param idConnection To recover or resume a connection only, the ID of the connection. (optional)
      * @param source  (optional)
      * @param state An optional opaque string that will be returned &#39;as is&#39; with the redirect URL. (optional)
      * @return void
      */
-    open suspend fun openWebAuth(clientId: kotlin.Long, token: kotlin.String, redirectUri: kotlin.String, idConnector: kotlin.Long? = null, idConnection: kotlin.Long? = null, source: kotlin.String? = null, state: kotlin.String? = null): HttpResponse<Unit> {
+    open suspend fun openWebAuth(clientId: kotlin.ULong, token: kotlin.String, redirectUri: kotlin.String, idConnector: kotlin.ULong? = null, connectorUuid: kotlin.String? = null, idConnection: kotlin.ULong? = null, source: kotlin.String? = null, state: kotlin.String? = null): HttpResponse<Unit> {
 
         val localVariableAuthNames = listOf<String>()
 
@@ -271,6 +210,7 @@ open class ConnectionsApi : ApiClient {
         token?.apply { localVariableQuery["token"] = listOf("$token") }
         redirectUri?.apply { localVariableQuery["redirect_uri"] = listOf("$redirectUri") }
         idConnector?.apply { localVariableQuery["id_connector"] = listOf("$idConnector") }
+        connectorUuid?.apply { localVariableQuery["connector_uuid"] = listOf("$connectorUuid") }
         idConnection?.apply { localVariableQuery["id_connection"] = listOf("$idConnection") }
         source?.apply { localVariableQuery["source"] = listOf("$source") }
         state?.apply { localVariableQuery["state"] = listOf("$state") }
@@ -292,27 +232,6 @@ open class ConnectionsApi : ApiClient {
     }
 
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandUpdateSyncUserConnection(val value: kotlin.String) {
-        
-        @SerialName(value = "connector")
-        Connector("connector"),
-        
-        @SerialName(value = "sources")
-        Sources("sources"),
-        
-        @SerialName(value = "accounts")
-        Accounts("accounts"),
-        
-        @SerialName(value = "all_accounts")
-        AllAccounts("all_accounts")
-        
-    }
-
     /**
      * Update and/or sync a connection
      * Update the configuration or the credentials of a connection, and/or perform a sync afterward.
@@ -324,7 +243,7 @@ open class ConnectionsApi : ApiClient {
      * @return Connection
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun updateSyncUserConnection(connectionId: kotlin.Long, source: kotlin.String? = null, background: kotlin.Boolean? = null, expand: kotlin.collections.List<ExpandUpdateSyncUserConnection>? = null, connectionUpdateRequest: ConnectionUpdateRequest? = null): HttpResponse<Connection> {
+    open suspend fun updateSyncUserConnection(connectionId: kotlin.ULong, source: kotlin.String? = null, background: kotlin.Boolean? = null, expand: kotlin.collections.Set<ConnectionExpand>? = null, connectionUpdateRequest: ConnectionUpdateRequest? = null): HttpResponse<Connection> {
 
         val localVariableAuthNames = listOf<String>("bi_auth")
 

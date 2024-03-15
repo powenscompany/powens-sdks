@@ -38,7 +38,7 @@ data class AccessToken (
     /* Type of the access token. */
     @SerialName(value = "type") @Required val type: AccessToken.Type,
 
-    @SerialName(value = "id_user") @Required val userId: kotlin.Long,
+    @SerialName(value = "id_user") @Required val userId: kotlin.ULong,
 
     /* Duration in seconds of the token validity. If not specified, the token does not expire. */
     @SerialName(value = "expires_in") val expiresIn: kotlin.Int? = null

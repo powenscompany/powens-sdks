@@ -182,10 +182,9 @@ components:
           nullable: true
           description: Label of the transaction, can be edited.
         id_category:
-          type: integer
-          nullable: true
-          format: int64
-          minimum: 1
+          oneOf:
+            - $ref: "core.yml#/components/schemas/Id"
+            - type: null
           deprecated: true
           description: ID of the related category.
         date_scraped:
@@ -233,10 +232,9 @@ components:
           type: boolean
           description: If false, PFM services will ignore this transaction.
         id_cluster:
-          type: integer
-          nullable: true
-          format: int64
-          minimum: 1
+          oneOf:
+            - $ref: "core.yml#/components/schemas/Id"
+            - type: null
           description: If the transaction is part of a cluster.
         country:
           type: string

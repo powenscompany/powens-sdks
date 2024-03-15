@@ -35,9 +35,9 @@ import kotlinx.serialization.encoding.*
 
 data class ConnectorSource (
 
-    @SerialName(value = "id") @Required val id: kotlin.Long,
+    @SerialName(value = "id") @Required val id: kotlin.ULong,
 
-    @SerialName(value = "id_connector") @Required val connectorId: kotlin.Long,
+    @SerialName(value = "id_connector") @Required val connectorId: kotlin.ULong,
 
     /* Name of the connector source. */
     @SerialName(value = "name") @Required val name: kotlin.String,

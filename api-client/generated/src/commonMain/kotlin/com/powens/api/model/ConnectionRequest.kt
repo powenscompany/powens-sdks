@@ -31,7 +31,7 @@ import kotlinx.serialization.encoding.*
 
 data class ConnectionRequest (
 
-    @SerialName(value = "id_connector") val connectorId: kotlin.Long? = null,
+    @SerialName(value = "id_connector") val connectorId: kotlin.ULong? = null,
 
     /* UUID of the connector. Required if `id_connector` is not provided. */
     @SerialName(value = "connector_uuid") val connectorUuid: kotlin.String? = null

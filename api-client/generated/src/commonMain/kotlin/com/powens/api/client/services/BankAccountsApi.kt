@@ -16,6 +16,7 @@
 package com.powens.api.client.services
 
 import com.powens.api.model.BankAccount
+import com.powens.api.model.BankAccountExpand
 import com.powens.api.model.BankAccountUpdateRequest
 import com.powens.api.model.BankAccountsList
 import com.powens.api.model.ServiceError1
@@ -45,18 +46,6 @@ open class BankAccountsApi : ApiClient {
         httpClient: HttpClient
     ): super(baseUrl = baseUrl, httpClient = httpClient)
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandGetUserAccount(val value: kotlin.String) {
-        
-        @SerialName(value = "connection")
-        Connection("connection")
-        
-    }
-
     /**
      * Bank account
      * Get a single bank account of the authenticated user by ID.
@@ -66,7 +55,7 @@ open class BankAccountsApi : ApiClient {
      * @return BankAccount
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun getUserAccount(accountId: kotlin.Long, all: kotlin.Boolean? = null, expand: kotlin.collections.List<ExpandGetUserAccount>? = null): HttpResponse<BankAccount> {
+    open suspend fun getUserAccount(accountId: kotlin.ULong, all: kotlin.Boolean? = null, expand: kotlin.collections.Set<BankAccountExpand>? = null): HttpResponse<BankAccount> {
 
         val localVariableAuthNames = listOf<String>("bi_auth")
 
@@ -94,18 +83,6 @@ open class BankAccountsApi : ApiClient {
     }
 
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandListUserAccounts(val value: kotlin.String) {
-        
-        @SerialName(value = "connection")
-        Connection("connection")
-        
-    }
-
     /**
      * List bank accounts
      * List bank accounts of the authenticated user. By default, only active (not &#x60;deleted&#x60;) accounts are returned, use the &#x60;all&#x60; parameter to get the full list.
@@ -114,7 +91,7 @@ open class BankAccountsApi : ApiClient {
      * @return BankAccountsList
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun listUserAccounts(all: kotlin.Boolean? = null, expand: kotlin.collections.List<ExpandListUserAccounts>? = null): HttpResponse<BankAccountsList> {
+    open suspend fun listUserAccounts(all: kotlin.Boolean? = null, expand: kotlin.collections.Set<BankAccountExpand>? = null): HttpResponse<BankAccountsList> {
 
         val localVariableAuthNames = listOf<String>("bi_auth")
 
@@ -142,18 +119,6 @@ open class BankAccountsApi : ApiClient {
     }
 
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandUpdateUserAccount(val value: kotlin.String) {
-        
-        @SerialName(value = "connection")
-        Connection("connection")
-        
-    }
-
     /**
      * Update a bank account
      * Update a bank account. The resource mirrors bank accounts available through the connector, so editing is limited to metadata.
@@ -164,7 +129,7 @@ open class BankAccountsApi : ApiClient {
      * @return BankAccount
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun updateUserAccount(accountId: kotlin.Long, bankAccountUpdateRequest: BankAccountUpdateRequest, all: kotlin.Boolean? = null, expand: kotlin.collections.List<ExpandUpdateUserAccount>? = null): HttpResponse<BankAccount> {
+    open suspend fun updateUserAccount(accountId: kotlin.ULong, bankAccountUpdateRequest: BankAccountUpdateRequest, all: kotlin.Boolean? = null, expand: kotlin.collections.Set<BankAccountExpand>? = null): HttpResponse<BankAccount> {
 
         val localVariableAuthNames = listOf<String>("bi_auth")
 

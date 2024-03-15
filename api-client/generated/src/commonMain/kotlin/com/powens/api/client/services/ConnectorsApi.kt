@@ -17,6 +17,7 @@ package com.powens.api.client.services
 
 import com.powens.api.model.BanksList
 import com.powens.api.model.Connector
+import com.powens.api.model.ConnectorExpand
 import com.powens.api.model.ConnectorPatch
 import com.powens.api.model.ConnectorsList
 import com.powens.api.model.ProvidersList
@@ -46,24 +47,6 @@ open class ConnectorsApi : ApiClient {
         httpClient: HttpClient
     ): super(baseUrl = baseUrl, httpClient = httpClient)
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandBatchEnableConnectorsById(val value: kotlin.String) {
-        
-        @SerialName(value = "fields")
-        Fields("fields"),
-        
-        @SerialName(value = "sources")
-        Sources("sources"),
-        
-        @SerialName(value = "countries")
-        Countries("countries")
-        
-    }
-
     /**
      * Batch enable/disable connectors (deprecated)
      * Enable or disable a list of connectors by IDs in a single operation.
@@ -72,7 +55,7 @@ open class ConnectorsApi : ApiClient {
      * @return ConnectorsList
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun batchEnableConnectorsById(connectorIds: kotlin.collections.List<kotlin.Long>, expand: kotlin.collections.List<ExpandBatchEnableConnectorsById>? = null): HttpResponse<ConnectorsList> {
+    open suspend fun batchEnableConnectorsById(connectorIds: kotlin.collections.Set<kotlin.ULong>, expand: kotlin.collections.Set<ConnectorExpand>? = null): HttpResponse<ConnectorsList> {
 
         val localVariableAuthNames = listOf<String>()
 
@@ -99,24 +82,6 @@ open class ConnectorsApi : ApiClient {
     }
 
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandGetBank(val value: kotlin.String) {
-        
-        @SerialName(value = "fields")
-        Fields("fields"),
-        
-        @SerialName(value = "sources")
-        Sources("sources"),
-        
-        @SerialName(value = "countries")
-        Countries("countries")
-        
-    }
-
     /**
      * Bank connector
      * Get a single bank connector by ID. Use &#x60;/connectors/{id}&#x60; instead.
@@ -125,7 +90,7 @@ open class ConnectorsApi : ApiClient {
      * @return Connector
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun getBank(connectorId: kotlin.Long, expand: kotlin.collections.List<ExpandGetBank>? = null): HttpResponse<Connector> {
+    open suspend fun getBank(connectorId: kotlin.ULong, expand: kotlin.collections.Set<ConnectorExpand>? = null): HttpResponse<Connector> {
 
         val localVariableAuthNames = listOf<String>()
 
@@ -152,24 +117,6 @@ open class ConnectorsApi : ApiClient {
     }
 
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandGetConnector(val value: kotlin.String) {
-        
-        @SerialName(value = "fields")
-        Fields("fields"),
-        
-        @SerialName(value = "sources")
-        Sources("sources"),
-        
-        @SerialName(value = "countries")
-        Countries("countries")
-        
-    }
-
     /**
      * Connector
      * Get a single connector by ID.
@@ -178,7 +125,7 @@ open class ConnectorsApi : ApiClient {
      * @return Connector
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun getConnector(connectorId: kotlin.Long, expand: kotlin.collections.List<ExpandGetConnector>? = null): HttpResponse<Connector> {
+    open suspend fun getConnector(connectorId: kotlin.ULong, expand: kotlin.collections.Set<ConnectorExpand>? = null): HttpResponse<Connector> {
 
         val localVariableAuthNames = listOf<String>()
 
@@ -205,24 +152,6 @@ open class ConnectorsApi : ApiClient {
     }
 
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandGetConnectorByUuid(val value: kotlin.String) {
-        
-        @SerialName(value = "fields")
-        Fields("fields"),
-        
-        @SerialName(value = "sources")
-        Sources("sources"),
-        
-        @SerialName(value = "countries")
-        Countries("countries")
-        
-    }
-
     /**
      * Connector
      * Get a single connector by UUID.
@@ -231,7 +160,7 @@ open class ConnectorsApi : ApiClient {
      * @return Connector
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun getConnectorByUuid(connectorUuid: kotlin.String, expand: kotlin.collections.List<ExpandGetConnectorByUuid>? = null): HttpResponse<Connector> {
+    open suspend fun getConnectorByUuid(connectorUuid: kotlin.String, expand: kotlin.collections.Set<ConnectorExpand>? = null): HttpResponse<Connector> {
 
         val localVariableAuthNames = listOf<String>()
 
@@ -258,24 +187,6 @@ open class ConnectorsApi : ApiClient {
     }
 
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandGetProvider(val value: kotlin.String) {
-        
-        @SerialName(value = "fields")
-        Fields("fields"),
-        
-        @SerialName(value = "sources")
-        Sources("sources"),
-        
-        @SerialName(value = "countries")
-        Countries("countries")
-        
-    }
-
     /**
      * Get a provider
      * Get a single provider connector by ID. Use &#x60;/connectors/{id}&#x60; instead.
@@ -284,7 +195,7 @@ open class ConnectorsApi : ApiClient {
      * @return Connector
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun getProvider(connectorId: kotlin.Long, expand: kotlin.collections.List<ExpandGetProvider>? = null): HttpResponse<Connector> {
+    open suspend fun getProvider(connectorId: kotlin.ULong, expand: kotlin.collections.Set<ConnectorExpand>? = null): HttpResponse<Connector> {
 
         val localVariableAuthNames = listOf<String>()
 
@@ -311,24 +222,6 @@ open class ConnectorsApi : ApiClient {
     }
 
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandListBanks(val value: kotlin.String) {
-        
-        @SerialName(value = "fields")
-        Fields("fields"),
-        
-        @SerialName(value = "sources")
-        Sources("sources"),
-        
-        @SerialName(value = "countries")
-        Countries("countries")
-        
-    }
-
     /**
      * List banks
      * List connectors with the &#x60;bank&#x60; capability. &#x60;Use /connectors&#x60; instead.
@@ -336,7 +229,7 @@ open class ConnectorsApi : ApiClient {
      * @return BanksList
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun listBanks(expand: kotlin.collections.List<ExpandListBanks>? = null): HttpResponse<BanksList> {
+    open suspend fun listBanks(expand: kotlin.collections.Set<ConnectorExpand>? = null): HttpResponse<BanksList> {
 
         val localVariableAuthNames = listOf<String>()
 
@@ -363,24 +256,6 @@ open class ConnectorsApi : ApiClient {
     }
 
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandListConnectors(val value: kotlin.String) {
-        
-        @SerialName(value = "fields")
-        Fields("fields"),
-        
-        @SerialName(value = "sources")
-        Sources("sources"),
-        
-        @SerialName(value = "countries")
-        Countries("countries")
-        
-    }
-
     /**
      * List connectors
      * List all connectors available on a domain. By default, only connectors not &#x60;hidden&#x60; are returned.
@@ -388,7 +263,7 @@ open class ConnectorsApi : ApiClient {
      * @return ConnectorsList
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun listConnectors(expand: kotlin.collections.List<ExpandListConnectors>? = null): HttpResponse<ConnectorsList> {
+    open suspend fun listConnectors(expand: kotlin.collections.Set<ConnectorExpand>? = null): HttpResponse<ConnectorsList> {
 
         val localVariableAuthNames = listOf<String>()
 
@@ -415,24 +290,6 @@ open class ConnectorsApi : ApiClient {
     }
 
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandListProviders(val value: kotlin.String) {
-        
-        @SerialName(value = "fields")
-        Fields("fields"),
-        
-        @SerialName(value = "sources")
-        Sources("sources"),
-        
-        @SerialName(value = "countries")
-        Countries("countries")
-        
-    }
-
     /**
      * List providers
      * List connectors with the &#x60;document&#x60; capability. &#x60;Use /connectors&#x60; instead.
@@ -440,7 +297,7 @@ open class ConnectorsApi : ApiClient {
      * @return ProvidersList
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun listProviders(expand: kotlin.collections.List<ExpandListProviders>? = null): HttpResponse<ProvidersList> {
+    open suspend fun listProviders(expand: kotlin.collections.Set<ConnectorExpand>? = null): HttpResponse<ProvidersList> {
 
         val localVariableAuthNames = listOf<String>()
 
@@ -467,24 +324,6 @@ open class ConnectorsApi : ApiClient {
     }
 
 
-
-    /**
-     * enum for parameter expand
-     */
-    @Serializable
-    enum class ExpandUpdateConnectors(val value: kotlin.String) {
-        
-        @SerialName(value = "fields")
-        Fields("fields"),
-        
-        @SerialName(value = "sources")
-        Sources("sources"),
-        
-        @SerialName(value = "countries")
-        Countries("countries")
-        
-    }
-
     /**
      * Batch enable/disable connectors
      * Enable or disable a list of connectors by UUID in a single operation.
@@ -493,7 +332,7 @@ open class ConnectorsApi : ApiClient {
      * @return ConnectorsList
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun updateConnectors(requestBody: kotlin.collections.Map<kotlin.String, ConnectorPatch>, expand: kotlin.collections.List<ExpandUpdateConnectors>? = null): HttpResponse<ConnectorsList> {
+    open suspend fun updateConnectors(requestBody: kotlin.collections.Map<kotlin.String, ConnectorPatch>, expand: kotlin.collections.Set<ConnectorExpand>? = null): HttpResponse<ConnectorsList> {
 
         val localVariableAuthNames = listOf<String>()
 

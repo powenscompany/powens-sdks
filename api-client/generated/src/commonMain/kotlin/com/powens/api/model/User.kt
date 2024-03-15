@@ -30,7 +30,7 @@ import kotlinx.serialization.encoding.*
 
 data class User (
 
-    @SerialName(value = "id") @Required val id: kotlin.Long,
+    @SerialName(value = "id") @Required val id: kotlin.ULong,
 
     /* The creation date of the user. */
     @SerialName(value = "signin") @Required val signIn: kotlinx.datetime.LocalDateTime

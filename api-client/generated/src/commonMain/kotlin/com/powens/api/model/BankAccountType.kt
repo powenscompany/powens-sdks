@@ -30,7 +30,7 @@ import kotlinx.serialization.encoding.*
  * @param isInvest Whether the type corresponds to an 'investment' account type. These types usually present investments and may have limitations regarding transfers.
  * @param displayName The display name of the account type, in French.
  * @param displayNamePlural The plural display name of the account type, in French.
- * @param parentId Optional, the ID of the parent type.
+ * @param parentId 
  */
 @Serializable
 
@@ -49,8 +49,7 @@ data class BankAccountType (
     /* The plural display name of the account type, in French. */
     @SerialName(value = "display_name_p") @Required val displayNamePlural: kotlin.String,
 
-    /* Optional, the ID of the parent type. */
-    @SerialName(value = "id_parent") val parentId: kotlin.Long? = null
+    @SerialName(value = "id_parent") val parentId: kotlin.ULong? = null
 
 )
 

@@ -53,7 +53,7 @@ import kotlinx.serialization.encoding.*
 
 data class Connector (
 
-    @SerialName(value = "id") @Required val id: kotlin.Long,
+    @SerialName(value = "id") @Required val id: kotlin.ULong,
 
     /* Unique connector identifier, stable across API domains. */
     @SerialName(value = "uuid") @Required val uuid: kotlin.String,

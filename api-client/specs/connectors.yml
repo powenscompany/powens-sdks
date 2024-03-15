@@ -89,9 +89,8 @@ paths:
         schema:
           type: array
           items:
-            type: integer
-            format: int64
-            minimum: 1
+            $ref: "core.yml#/components/schemas/Id"
+          uniqueItems: true
         required: true
       - $ref: "#/components/parameters/ConnectorExpand"
     put:
@@ -197,6 +196,7 @@ components:
       properties:
         id:
           $ref: "core.yml#/components/schemas/Id"
+          deprecated: true
           description: ID of the connector.
         uuid:
           type: string
@@ -467,6 +467,16 @@ components:
         - document
         - profile
         - contact
+    ConnectorExpand:
+      oneOf:
+        - $ref: "#/components/schemas/ConnectorExpandField"
+        - type: string
+    ConnectorExpandField:
+      type: string
+      enum:
+        - fields
+        - sources
+        - countries
   parameters:
     ConnectorExpand:
       in: query
@@ -474,11 +484,7 @@ components:
       schema:
         type: array
         items:
-          type: string
-          enum:
-            - fields
-            - sources
-            - countries
+          $ref: "#/components/schemas/ConnectorExpand"
         uniqueItems: true
       explode: false
       allowReserved: true

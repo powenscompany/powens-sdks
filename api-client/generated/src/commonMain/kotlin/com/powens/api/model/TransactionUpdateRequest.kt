@@ -39,7 +39,7 @@ data class TransactionUpdateRequest (
     /* New application date of the transaction. */
     @SerialName(value = "application_date") val applicationDate: kotlinx.datetime.LocalDate? = null,
 
-    @SerialName(value = "id_category") val categoryId: kotlin.Long? = null,
+    @SerialName(value = "id_category") val categoryId: kotlin.ULong? = null,
 
     /* New comment of the transaction. */
     @SerialName(value = "comment") val comment: kotlin.String? = null,

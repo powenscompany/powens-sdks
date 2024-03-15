@@ -3,6 +3,7 @@ components:
     Id:
       type: integer
       format: int64
+      x-unsigned: true
       minimum: 1
     CalendarBound:
       oneOf:

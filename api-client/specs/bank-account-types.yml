@@ -41,10 +41,9 @@ components:
         name:
           $ref: "#/components/schemas/BankAccountTypeName"
         id_parent:
-          type: integer
-          nullable: true
-          format: int64
-          minimum: 1
+          oneOf:
+            - $ref: "core.yml#/components/schemas/Id"
+            - type: null
           description: Optional, the ID of the parent type.
         is_invest:
           type: boolean

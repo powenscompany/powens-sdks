@@ -50,7 +50,7 @@ open class BankAccountTypesApi : ApiClient {
      * @return BankAccountType
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun getBankAccountType(typeId: kotlin.Long): HttpResponse<BankAccountType> {
+    open suspend fun getBankAccountType(typeId: kotlin.ULong): HttpResponse<BankAccountType> {
 
         val localVariableAuthNames = listOf<String>()
 

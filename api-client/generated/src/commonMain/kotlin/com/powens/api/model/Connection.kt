@@ -32,7 +32,7 @@ import kotlinx.serialization.encoding.*
  * @param connectorId 
  * @param created Creation date of the connection.
  * @param active Whether this connection is active and will be automatically synced.
- * @param userId ID of the related user.
+ * @param userId 
  * @param providerId 
  * @param bankId 
  * @param state 
@@ -53,9 +53,9 @@ import kotlinx.serialization.encoding.*
 
 data class Connection (
 
-    @SerialName(value = "id") @Required val id: kotlin.Long,
+    @SerialName(value = "id") @Required val id: kotlin.ULong,
 
-    @SerialName(value = "id_connector") @Required val connectorId: kotlin.Long,
+    @SerialName(value = "id_connector") @Required val connectorId: kotlin.ULong,
 
     /* Creation date of the connection. */
     @SerialName(value = "created") @Required val created: kotlinx.datetime.LocalDateTime,
@@ -63,12 +63,11 @@ data class Connection (
     /* Whether this connection is active and will be automatically synced. */
     @SerialName(value = "active") @Required val active: kotlin.Boolean,
 
-    /* ID of the related user. */
-    @SerialName(value = "id_user") val userId: kotlin.Long? = null,
+    @SerialName(value = "id_user") val userId: kotlin.ULong? = null,
 
-    @SerialName(value = "id_provider") val providerId: kotlin.Long? = null,
+    @SerialName(value = "id_provider") val providerId: kotlin.ULong? = null,
 
-    @SerialName(value = "id_bank") val bankId: kotlin.Long? = null,
+    @SerialName(value = "id_bank") val bankId: kotlin.ULong? = null,
 
     @SerialName(value = "state") val state: ConnectionState? = null,
 

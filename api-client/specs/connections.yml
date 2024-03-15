@@ -162,7 +162,15 @@ paths:
           name: id_connector
           schema:
             $ref: "core.yml#/components/schemas/Id"
+          deprecated: true
           description: To add a new connection only, the ID of the connector. The
+            connector must have `webauth` as its `auth_mechanism`. Use `connector_uuid` instead.
+        - in: query
+          name: connector_uuid
+          schema:
+            type: string
+            format: uuid
+          description: To add a new connection only, the UUID of the connector. The
             connector must have `webauth` as its `auth_mechanism`.
         - in: query
           name: id_connection
@@ -227,7 +235,8 @@ components:
       properties:
         id_connector:
           $ref: "core.yml#/components/schemas/Id"
-          description: ID of the connector. Required if `connector_uuid` is not provided.
+          deprecated: true
+          description: ID of the connector. Use `connector_uuid` instead.
         connector_uuid:
           type: string
           format: uuid
@@ -246,10 +255,9 @@ components:
           $ref: "core.yml#/components/schemas/Id"
           description: ID of the connection.
         id_user:
-          type: integer
-          nullable: true
-          format: int64
-          minimum: 1
+          oneOf:
+            - $ref: "core.yml#/components/schemas/Id"
+            - type: null
           description: ID of the related user.
         id_connector:
           $ref: "core.yml#/components/schemas/Id"
@@ -465,6 +473,17 @@ components:
             $ref: "#/components/schemas/Connection"
       required:
         - connections
+    ConnectionExpand:
+      oneOf:
+        - $ref: "#/components/schemas/ConnectionExpandField"
+        - type: string
+    ConnectionExpandField:
+      type: string
+      enum:
+        - connector
+        - sources
+        - accounts
+        - all_accounts
   parameters:
     Background:
       in: query
@@ -491,12 +510,7 @@ components:
       schema:
         type: array
         items:
-          type: string
-          enum:
-            - connector
-            - sources
-            - accounts
-            - all_accounts
+          $ref: "#/components/schemas/ConnectionExpand"
         uniqueItems: true
       explode: false
       allowReserved: true

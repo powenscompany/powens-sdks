@@ -355,6 +355,14 @@ components:
       required:
         - accounts
         - balances
+    BankAccountExpand:
+      oneOf:
+        - $ref: "#/components/schemas/BankAccountExpandField"
+        - type: string
+    BankAccountExpandField:
+      type: string
+      enum:
+        - connection
   parameters:
     BankAccountExpand:
       in: query
@@ -362,9 +370,7 @@ components:
       schema:
         type: array
         items:
-          type: string
-          enum:
-            - connection
+          $ref: "#/components/schemas/BankAccountExpand"
         uniqueItems: true
       explode: false
       allowReserved: true

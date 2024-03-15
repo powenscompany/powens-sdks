@@ -71,7 +71,7 @@ open class BankTransactionsApi : ApiClient {
      * @return Transaction
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun getUserTransaction(transactionId: kotlin.Long, all: kotlin.Boolean? = null, expand: kotlin.collections.List<ExpandGetUserTransaction>? = null): HttpResponse<Transaction> {
+    open suspend fun getUserTransaction(transactionId: kotlin.ULong, all: kotlin.Boolean? = null, expand: kotlin.collections.List<ExpandGetUserTransaction>? = null): HttpResponse<Transaction> {
 
         val localVariableAuthNames = listOf<String>("bi_auth")
 
@@ -195,7 +195,7 @@ open class BankTransactionsApi : ApiClient {
      * @return Transaction
      */
     @Suppress("UNCHECKED_CAST")
-    open suspend fun updateUserTransaction(transactionId: kotlin.Long, transactionUpdateRequest: TransactionUpdateRequest, all: kotlin.Boolean? = null, expand: kotlin.collections.List<ExpandUpdateUserTransaction>? = null): HttpResponse<Transaction> {
+    open suspend fun updateUserTransaction(transactionId: kotlin.ULong, transactionUpdateRequest: TransactionUpdateRequest, all: kotlin.Boolean? = null, expand: kotlin.collections.List<ExpandUpdateUserTransaction>? = null): HttpResponse<Transaction> {
 
         val localVariableAuthNames = listOf<String>("bi_auth")
 

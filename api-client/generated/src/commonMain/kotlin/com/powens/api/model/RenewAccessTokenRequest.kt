@@ -42,7 +42,7 @@ data class RenewAccessTokenRequest (
     /* The only accepted value is `client_credentials`. */
     @SerialName(value = "grant_type") @Required val grantType: RenewAccessTokenRequest.GrantType,
 
-    @SerialName(value = "id_user") val userId: kotlin.Long? = null,
+    @SerialName(value = "id_user") val userId: kotlin.ULong? = null,
 
     /* If true, all other permanent tokens for the user will be deleted. The default is false. */
     @SerialName(value = "revoke_previous") val revokePrevious: kotlin.Boolean? = null
