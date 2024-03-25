@@ -129,11 +129,6 @@ paths:
     $ref: "./bank-transactions.yml#/paths/~1users~1me~1transactions~1%7BtransactionId%7D"
 components:
   securitySchemes:
-    bi_auth:
-      type: oauth2
-      description: OAuth2 authentication
-      flows:
-        clientCredentials:
-          tokenUrl: https://demo.biapi.pro/2.0/auth/token
-          scopes:
-            user: Default scope for user-scoped access tokens
+    bearerAuth:
+      type: http
+      scheme: bearer

@@ -57,7 +57,7 @@ open class BankAccountsApi : ApiClient {
     @Suppress("UNCHECKED_CAST")
     open suspend fun getUserAccount(accountId: kotlin.ULong, all: kotlin.Boolean? = null, expand: kotlin.collections.Set<BankAccountExpand>? = null): HttpResponse<BankAccount> {
 
-        val localVariableAuthNames = listOf<String>("bi_auth")
+        val localVariableAuthNames = listOf<String>("bearerAuth")
 
         val localVariableBody = 
             io.ktor.client.utils.EmptyContent
@@ -93,7 +93,7 @@ open class BankAccountsApi : ApiClient {
     @Suppress("UNCHECKED_CAST")
     open suspend fun listUserAccounts(all: kotlin.Boolean? = null, expand: kotlin.collections.Set<BankAccountExpand>? = null): HttpResponse<BankAccountsList> {
 
-        val localVariableAuthNames = listOf<String>("bi_auth")
+        val localVariableAuthNames = listOf<String>("bearerAuth")
 
         val localVariableBody = 
             io.ktor.client.utils.EmptyContent
@@ -131,7 +131,7 @@ open class BankAccountsApi : ApiClient {
     @Suppress("UNCHECKED_CAST")
     open suspend fun updateUserAccount(accountId: kotlin.ULong, bankAccountUpdateRequest: BankAccountUpdateRequest, all: kotlin.Boolean? = null, expand: kotlin.collections.Set<BankAccountExpand>? = null): HttpResponse<BankAccount> {
 
-        val localVariableAuthNames = listOf<String>("bi_auth")
+        val localVariableAuthNames = listOf<String>("bearerAuth")
 
         val localVariableBody = bankAccountUpdateRequest
 

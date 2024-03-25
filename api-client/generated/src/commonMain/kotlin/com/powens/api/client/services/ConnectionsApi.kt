@@ -58,7 +58,7 @@ open class ConnectionsApi : ApiClient {
     @Suppress("UNCHECKED_CAST")
     open suspend fun createUserConnection(connectionRequest: ConnectionRequest, source: kotlin.String? = null, expand: kotlin.collections.Set<ConnectionExpand>? = null): HttpResponse<Connection> {
 
-        val localVariableAuthNames = listOf<String>("bi_auth")
+        val localVariableAuthNames = listOf<String>("bearerAuth")
 
         val localVariableBody = connectionRequest
 
@@ -92,7 +92,7 @@ open class ConnectionsApi : ApiClient {
      */
     open suspend fun deleteUserConnection(connectionId: kotlin.ULong): HttpResponse<Unit> {
 
-        val localVariableAuthNames = listOf<String>("bi_auth")
+        val localVariableAuthNames = listOf<String>("bearerAuth")
 
         val localVariableBody = 
             io.ktor.client.utils.EmptyContent
@@ -126,7 +126,7 @@ open class ConnectionsApi : ApiClient {
     @Suppress("UNCHECKED_CAST")
     open suspend fun getUserConnection(connectionId: kotlin.ULong, expand: kotlin.collections.Set<ConnectionExpand>? = null): HttpResponse<Connection> {
 
-        val localVariableAuthNames = listOf<String>("bi_auth")
+        val localVariableAuthNames = listOf<String>("bearerAuth")
 
         val localVariableBody = 
             io.ktor.client.utils.EmptyContent
@@ -160,7 +160,7 @@ open class ConnectionsApi : ApiClient {
     @Suppress("UNCHECKED_CAST")
     open suspend fun listUserConnections(expand: kotlin.collections.Set<ConnectionExpand>? = null): HttpResponse<ConnectionsList> {
 
-        val localVariableAuthNames = listOf<String>("bi_auth")
+        val localVariableAuthNames = listOf<String>("bearerAuth")
 
         val localVariableBody = 
             io.ktor.client.utils.EmptyContent
@@ -245,7 +245,7 @@ open class ConnectionsApi : ApiClient {
     @Suppress("UNCHECKED_CAST")
     open suspend fun updateSyncUserConnection(connectionId: kotlin.ULong, source: kotlin.String? = null, background: kotlin.Boolean? = null, expand: kotlin.collections.Set<ConnectionExpand>? = null, connectionUpdateRequest: ConnectionUpdateRequest? = null): HttpResponse<Connection> {
 
-        val localVariableAuthNames = listOf<String>("bi_auth")
+        val localVariableAuthNames = listOf<String>("bearerAuth")
 
         val localVariableBody = connectionUpdateRequest
 

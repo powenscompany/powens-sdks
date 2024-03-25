@@ -61,7 +61,7 @@ class WebviewClient(private val root: String, private val clientId: String) {
         redirectUri: String? = null,
         paramsBuilder: ParametersBuilder.() -> Unit
     ): String {
-        val authCode = PowensApiClient(root, "").auth.apply {
+        val authCode = PowensApiClient(root, clientId).auth.apply {
             setBearerToken(accessToken)
         }.getAuthCode().body().code
         return URLBuilder(root).apply {

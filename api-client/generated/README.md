@@ -134,14 +134,10 @@ Class | Method | HTTP request | Description
 
 
 Authentication schemes defined for the API:
-<a id="bi_auth"></a>
-### bi_auth
+<a id="bearerAuth"></a>
+### bearerAuth
 
-- **Type**: OAuth
-- **Flow**: application
-- **Authorization URL**: 
-- **Scopes**: 
-  - user: Default scope for user-scoped access tokens
+- **Type**: HTTP Bearer Token authentication
 
 
 

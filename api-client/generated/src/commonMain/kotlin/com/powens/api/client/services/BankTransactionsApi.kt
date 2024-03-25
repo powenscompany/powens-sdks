@@ -73,7 +73,7 @@ open class BankTransactionsApi : ApiClient {
     @Suppress("UNCHECKED_CAST")
     open suspend fun getUserTransaction(transactionId: kotlin.ULong, all: kotlin.Boolean? = null, expand: kotlin.collections.List<ExpandGetUserTransaction>? = null): HttpResponse<Transaction> {
 
-        val localVariableAuthNames = listOf<String>("bi_auth")
+        val localVariableAuthNames = listOf<String>("bearerAuth")
 
         val localVariableBody = 
             io.ktor.client.utils.EmptyContent
@@ -134,7 +134,7 @@ open class BankTransactionsApi : ApiClient {
     @Suppress("UNCHECKED_CAST")
     open suspend fun listUserTransactions(expand: kotlin.collections.List<ExpandListUserTransactions>? = null, all: kotlin.Boolean? = null, minDate: CalendarBound? = null, maxDate: CalendarBound? = null, income: kotlin.Boolean? = null, deleted: kotlin.Boolean? = null, lastUpdate: kotlinx.datetime.LocalDateTime? = null, wording: kotlin.String? = null, `value`: kotlin.collections.List<TransactionValueFilter>? = null, search: kotlin.String? = null, offset: kotlin.Int? = null, limit: kotlin.Int? = null): HttpResponse<TransactionsList> {
 
-        val localVariableAuthNames = listOf<String>("bi_auth")
+        val localVariableAuthNames = listOf<String>("bearerAuth")
 
         val localVariableBody = 
             io.ktor.client.utils.EmptyContent
@@ -197,7 +197,7 @@ open class BankTransactionsApi : ApiClient {
     @Suppress("UNCHECKED_CAST")
     open suspend fun updateUserTransaction(transactionId: kotlin.ULong, transactionUpdateRequest: TransactionUpdateRequest, all: kotlin.Boolean? = null, expand: kotlin.collections.List<ExpandUpdateUserTransaction>? = null): HttpResponse<Transaction> {
 
-        val localVariableAuthNames = listOf<String>("bi_auth")
+        val localVariableAuthNames = listOf<String>("bearerAuth")
 
         val localVariableBody = transactionUpdateRequest
 

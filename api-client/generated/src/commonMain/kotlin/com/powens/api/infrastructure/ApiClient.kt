@@ -51,7 +51,7 @@ open class ApiClient(
 
     private val authentications: kotlin.collections.Map<String, Authentication> by lazy {
         mapOf(
-                "bi_auth" to OAuth())
+                "bearerAuth" to HttpBearerAuth("bearer"))
     }
 
     companion object {

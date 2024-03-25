@@ -21,7 +21,7 @@ paths:
         "400":
           $ref: "core.yml#/components/responses/NoAccountError"
       security:
-        - bi_auth:
+        - bearerAuth:
             - user
   "/users/me/accounts/{accountId}":
     parameters:
@@ -47,7 +47,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/BankAccount"
       security:
-        - bi_auth:
+        - bearerAuth:
             - user
     post:
       tags:
@@ -70,7 +70,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/BankAccount"
       security:
-        - bi_auth:
+        - bearerAuth:
             - user
 components:
   schemas:
