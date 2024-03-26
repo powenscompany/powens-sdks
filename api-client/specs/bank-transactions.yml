@@ -62,8 +62,7 @@ paths:
         "400":
           $ref: "core.yml#/components/responses/NoAccountError"
       security:
-        - bearerAuth:
-            - user
+        - bearerAuth: []
   "/users/me/transactions/{transactionId}":
     parameters:
       - in: path
@@ -88,8 +87,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Transaction"
       security:
-        - bearerAuth:
-            - user
+        - bearerAuth: []
     post:
       tags:
         - bank-transactions
@@ -111,8 +109,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Transaction"
       security:
-        - bearerAuth:
-            - user
+        - bearerAuth: []
 components:
   schemas:
     Transaction:

@@ -34,8 +34,7 @@ paths:
               schema:
                 $ref: "core.yml#/components/schemas/ServiceError"
       security:
-        - bearerAuth:
-            - user
+        - bearerAuth: []
     get:
       tags:
         - connections
@@ -52,8 +51,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ConnectionsList"
       security:
-        - bearerAuth:
-            - user
+        - bearerAuth: []
   "/users/me/connections/{connectionId}":
     parameters:
       - in: path
@@ -78,8 +76,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Connection"
       security:
-        - bearerAuth:
-            - user
+        - bearerAuth: []
     post:
       tags:
         - connections
@@ -113,8 +110,7 @@ paths:
               schema:
                 $ref: "core.yml#/components/schemas/ServiceError"
       security:
-        - bearerAuth:
-            - user
+        - bearerAuth: []
     delete:
       tags:
         - connections
@@ -126,8 +122,7 @@ paths:
         "204":
           description: Connection successfully deleted
       security:
-        - bearerAuth:
-            - user
+        - bearerAuth: []
   /webauth:
     get:
       tags:

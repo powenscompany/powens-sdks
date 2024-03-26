@@ -54,6 +54,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AuthCode"
+      security:
+        - bearerAuth: []
   /auth/token/access:
     post:
       tags:
