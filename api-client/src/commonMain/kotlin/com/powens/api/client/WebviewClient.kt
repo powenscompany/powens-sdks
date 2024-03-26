@@ -6,7 +6,6 @@ import io.ktor.http.*
 class WebviewClient(private val root: String, private val clientId: String) {
 
     companion object {
-
         fun forPowensDomain(domain: String, clientId: String): WebviewClient {
             // Domains must use lowercase letters, digits and hyphens
             require(domain.matches("[a-z\\d]+(-[a-z\\d]+)*".toRegex())) { "Invalid domain" }
@@ -20,12 +19,12 @@ class WebviewClient(private val root: String, private val clientId: String) {
     }
 
     suspend fun buildConnectUrl(
-        accessToken: String,
+        accessToken: String?,
         redirectUri: String,
         connectorUuids: List<String>? = null,
         connectorCapabilities: List<ConnectorCapability>? = null
     ): String {
-        return this.buildUrl(accessToken, "connect", redirectUri) {
+        return this.buildUrl("connect", accessToken, redirectUri) {
             if (!connectorUuids.isNullOrEmpty()) append(
                 "connector_uuids",
                 connectorUuids.joinToString(",")
@@ -38,37 +37,42 @@ class WebviewClient(private val root: String, private val clientId: String) {
     }
 
     suspend fun buildReconnectUrl(
-        accessToken: String,
         connectionId: Long,
-        resetCredentials: Boolean = false,
-        redirectUri: String
+        accessToken: String,
+        redirectUri: String,
+        resetCredentials: Boolean = false
     ): String {
-        return this.buildUrl(accessToken, "reconnect", redirectUri) {
+        return this.buildUrl("reconnect", accessToken, redirectUri) {
             append("connection_id", connectionId.toString())
             if (resetCredentials) append("reset_credentials", "true")
         }
     }
 
     suspend fun buildManageUrl(
-        accessToken: String
+        connectionId: Long?,
+        accessToken: String,
+        redirectUri: String? = null,
     ): String {
-        return this.buildUrl(accessToken, "manage") {}
+        return this.buildUrl("manage", accessToken, redirectUri) {
+            if (connectionId != null) append("connection_id", connectionId.toString())
+        }
     }
 
     private suspend fun buildUrl(
-        accessToken: String,
         path: String,
+        accessToken: String? = null,
         redirectUri: String? = null,
         paramsBuilder: ParametersBuilder.() -> Unit
     ): String {
-        val authCode = PowensApiClient(root, clientId).auth.apply {
+        val authCode = if (accessToken.isNullOrEmpty()) null
+        else PowensApiClient(root, clientId).auth.apply {
             setBearerToken(accessToken)
         }.getAuthCode().body().code
         return URLBuilder(root).apply {
             appendPathSegments("auth", "webview", path)
             parameters.apply {
                 append("client_id", clientId)
-                append("code", authCode)
+                if (authCode != null) append("code", authCode)
                 if (redirectUri != null) append("redirect_uri", redirectUri)
                 paramsBuilder(this)
             }
