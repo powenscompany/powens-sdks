@@ -106,7 +106,7 @@ open class AuthenticationApi : ApiClient {
     @Suppress("UNCHECKED_CAST")
     open suspend fun getAuthCode(type: TypeGetAuthCode? = null): HttpResponse<AuthCode> {
 
-        val localVariableAuthNames = listOf<String>()
+        val localVariableAuthNames = listOf<String>("bearerAuth")
 
         val localVariableBody = 
             io.ktor.client.utils.EmptyContent
@@ -120,7 +120,7 @@ open class AuthenticationApi : ApiClient {
             "/auth/token/code",
             query = localVariableQuery,
             headers = localVariableHeaders,
-            requiresAuthentication = false,
+            requiresAuthentication = true,
         )
 
         return request(
