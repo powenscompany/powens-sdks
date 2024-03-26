@@ -9,7 +9,7 @@ class WebviewClient(private val root: String, private val clientId: String) {
 
         fun forPowensDomain(domain: String, clientId: String): WebviewClient {
             // Domains must use lowercase letters, digits and hyphens
-            require(domain.matches("/[a-z\\d]+(-[a-z\\d]+)*/".toRegex())) { "Invalid domain" }
+            require(domain.matches("[a-z\\d]+(-[a-z\\d]+)*".toRegex())) { "Invalid domain" }
             return WebviewClient("https://${domain}.biapi.pro/2.0/", clientId)
         }
     }
