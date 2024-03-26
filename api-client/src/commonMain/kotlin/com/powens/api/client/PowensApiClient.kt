@@ -3,8 +3,9 @@ package com.powens.api.client
 import com.powens.api.client.services.*
 import com.powens.api.model.ServiceError
 import io.ktor.client.*
-import io.ktor.client.call.*
 import io.ktor.client.plugins.*
+import io.ktor.client.statement.*
+import kotlinx.serialization.json.Json
 
 class PowensApiClient(private val root: String, private val clientId: String) {
 
@@ -14,7 +15,7 @@ class PowensApiClient(private val root: String, private val clientId: String) {
             handleResponseExceptionWithRequest { ex, _ ->
                 if (ex is ResponseException) {
                     val apiError = try {
-                        ex.response.body<ServiceError>()
+                        Json.decodeFromString<ServiceError>(ex.response.bodyAsText())
                     } catch (errorParsingEx: Throwable) {
                         ex.addSuppressed(errorParsingEx)
                         null
