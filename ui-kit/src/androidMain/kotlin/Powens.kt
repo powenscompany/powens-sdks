@@ -5,8 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Parcelable
 import androidx.activity.result.contract.ActivityResultContract
-import com.powens.api.model.ConnectorCapability
+import com.powens.api.model.ConnectWebviewOptions
 import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
 object Powens {
 
@@ -32,8 +33,7 @@ object Powens {
 @Parcelize
 data class ConnectConfig(
     val accessToken: String,
-    val connectorUuids: List<String>? = null,
-    val connectorCapabilities: List<ConnectorCapability>? = null,
+    val options: @RawValue ConnectWebviewOptions? = null,
     val themeDark: Boolean? = null,
     val themeDynamicColor: Boolean = true,
     val themePrimaryColor: Int? = null
