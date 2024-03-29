@@ -21,6 +21,7 @@ class PowensApiClient(private val root: String, private val clientId: String) {
         config.expectSuccess = true
         config.HttpResponseValidator {
             handleResponseExceptionWithRequest { ex, _ ->
+                @Throws(ServiceException::class)
                 if (ex is ResponseException) {
                     val apiError = try {
                         ApiClient.JSON_DEFAULT.decodeFromString<ServiceError>(ex.response.bodyAsText())
