@@ -1,5 +1,6 @@
 package com.powens.api.model
 
+import kotlinx.serialization.Serializable
 import kotlin.experimental.ExperimentalObjCName
 import kotlin.native.ObjCName
 
@@ -9,7 +10,8 @@ import kotlin.native.ObjCName
     "ConnectorFieldValue",
     true
 )
-class ConnectorFieldValue (
+@Serializable
+data class ConnectorFieldValue (
     val connectorUuid: String,
     val fieldName: String,
     val value: String
@@ -21,6 +23,7 @@ class ConnectorFieldValue (
     "WebviewOptions",
     true
 )
+@Serializable
 open class WebviewOptions {
     var connectorUuids: List<String>? = null
     var connectorCapabilities: List<ConnectorCapability>? = null
@@ -36,6 +39,7 @@ open class WebviewOptions {
     "ManageWebviewOptions",
     true
 )
+@Serializable
 class ManageWebviewOptions : WebviewOptions() {
 
 }
@@ -46,6 +50,7 @@ class ManageWebviewOptions : WebviewOptions() {
     "ConnectWebviewOptions",
     true
 )
+@Serializable
 class ConnectWebviewOptions : WebviewOptions() {
     var maxConnections: Int? = null
     var accountIbans: List<String>? = null
