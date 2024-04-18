@@ -3,18 +3,11 @@ package com.powens.api.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ConnectorFieldValue (
-    val connectorUuid: String,
-    val fieldName: String,
-    val value: String
-)
-
-@Serializable
 open class WebviewOptions {
     var connectorUuids: List<String>? = null
     var connectorCapabilities: List<ConnectorCapability>? = null
     var connectorCountry: String? = null
-    var connectorFieldValues: List<ConnectorFieldValue>? = null
+    var connectorFieldValues: Map<String, Map<String, String>>? = null
     var accountTypes: List<BankAccountTypeName>? = null
     var accountUsages: List<BankAccountUsage>? = null
 }

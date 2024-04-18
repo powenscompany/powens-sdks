@@ -102,9 +102,16 @@ class WebviewClient(private val root: String, private val clientId: String) {
             options.accountUsages?.let {
                 if (it.isNotEmpty()) append("account_usages", it.joinToString(","))
             }
-            options.connectorFieldValues?.let {
-                if (it.isNotEmpty()) {
-                    for (item in it) append("${item.connectorUuid}.${item.fieldName}", item.value)
+            options.connectorFieldValues?.let { dict ->
+                if (dict.keys.isNotEmpty()) {
+                    for (connectorUuid in dict.keys) {
+                        dict[connectorUuid]?.let { connectorDict ->
+                            for (fieldName in connectorDict.keys) {
+                                val value = connectorDict[fieldName]
+                                value?.let { append("${connectorUuid}.${fieldName}", it) }
+                            }
+                        }
+                    }
                 }
             }
         }
