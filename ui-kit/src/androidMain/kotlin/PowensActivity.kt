@@ -82,8 +82,7 @@ class PowensActivity : ComponentActivity() {
             val url = WebviewClient.forPowensDomain(domain, clientId).buildConnectUrl(
                 config.accessToken,
                 redirectUri,
-                config.connectorUuids,
-                config.connectorCapabilities
+                config.options
             )
             uiState = uiState.copy(pendingUrl = url)
         }
