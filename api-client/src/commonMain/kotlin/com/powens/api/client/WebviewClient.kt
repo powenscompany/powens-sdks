@@ -2,10 +2,12 @@ package com.powens.api.client
 
 import com.powens.api.model.ConnectorCapability
 import io.ktor.http.*
+import kotlin.coroutines.cancellation.CancellationException
 
 class WebviewClient(private val root: String, private val clientId: String) {
 
     companion object {
+        @Throws(IllegalArgumentException::class)
         fun forPowensDomain(domain: String, clientId: String): WebviewClient {
             // Domains must use lowercase letters, digits and hyphens
             require(domain.matches("[a-z\\d]+(-[a-z\\d]+)*".toRegex())) { "Invalid domain" }
@@ -58,6 +60,10 @@ class WebviewClient(private val root: String, private val clientId: String) {
         }
     }
 
+    @Throws(
+        CancellationException::class,
+        ServiceException::class
+    )
     private suspend fun buildUrl(
         path: String,
         accessToken: String? = null,
