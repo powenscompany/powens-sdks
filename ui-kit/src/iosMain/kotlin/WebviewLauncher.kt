@@ -4,7 +4,6 @@ import com.powens.api.client.WebviewClient
 import com.powens.api.model.ConnectWebviewOptions
 import com.powens.api.model.ManageWebviewOptions
 import com.powens.kit.exceptions.ConfigurationException
-import platform.Foundation.NSLog
 import platform.Foundation.NSURL
 import platform.SafariServices.SFSafariViewController
 import platform.SafariServices.SFSafariViewControllerDismissButtonStyle
@@ -12,6 +11,20 @@ import platform.UIKit.UIViewController
 import platform.darwin.dispatch_async
 import platform.darwin.dispatch_get_main_queue
 import kotlin.coroutines.cancellation.CancellationException
+
+class FlowHandle
+    internal constructor(private val url: String) {
+    fun presentOn(sourceViewController: UIViewController) {
+        val nsUrl = NSURL.URLWithString(url)
+        require(nsUrl != null) { "Invalid Webview URL" }
+
+        val sfSafariVC = SFSafariViewController(nsUrl)
+        sfSafariVC.dismissButtonStyle = SFSafariViewControllerDismissButtonStyle.SFSafariViewControllerDismissButtonStyleClose
+        dispatch_async(dispatch_get_main_queue()) {
+            sourceViewController.presentViewController(sfSafariVC, true, null)
+        }
+    }
+}
 
 object WebviewLauncher {
     private val webviewClient by lazy {
@@ -23,13 +36,12 @@ object WebviewLauncher {
         ConfigurationException::class,
         IllegalArgumentException::class,
     )
-    suspend fun presentConnectWebview(
-        sourceViewController: UIViewController,
+    suspend fun connectFlow(
         accessToken: String? = null,
-        options: ConnectWebviewOptions? = null
-    ) {
+        options: ConnectWebviewOptions? = null,
+    ): FlowHandle {
         val url = webviewClient.buildConnectUrl(accessToken, WebviewConfig.shared.redirectUri, options)
-        presentSFSafariViewController(sourceViewController, url)
+        return FlowHandle(url)
     }
 
     @Throws(
@@ -37,14 +49,13 @@ object WebviewLauncher {
         ConfigurationException::class,
         IllegalArgumentException::class,
     )
-    suspend fun presentReconnectWebview(
-        sourceViewController: UIViewController,
+    suspend fun reconnectFlow(
         accessToken: String,
         connectionId: Long,
-        resetCredentials: Boolean = false
-    ) {
+        resetCredentials: Boolean = false,
+    ): FlowHandle {
         val url = webviewClient.buildReconnectUrl(connectionId, accessToken, WebviewConfig.shared.redirectUri, resetCredentials)
-        presentSFSafariViewController(sourceViewController, url)
+        return FlowHandle(url)
     }
 
     @Throws(
@@ -52,28 +63,13 @@ object WebviewLauncher {
         ConfigurationException::class,
         IllegalArgumentException::class,
     )
-    suspend fun presentManageWebview(
-        sourceViewController: UIViewController,
+    suspend fun manageFlow(
         accessToken: String,
         connectionId: Long? = null,
-        options: ManageWebviewOptions? = null
-    ) {
+        options: ManageWebviewOptions? = null,
+    ): FlowHandle {
         val url = webviewClient.buildManageUrl(connectionId, accessToken, WebviewConfig.shared.redirectUri, options)
-        presentSFSafariViewController(sourceViewController, url)
+        return FlowHandle(url)
     }
 
-    @Throws(Exception::class)
-    private fun presentSFSafariViewController(sourceViewController: UIViewController, url: String) {
-        NSURL.URLWithString(url)?.also { nsUrl ->
-            val sfSafariVC = SFSafariViewController(nsUrl)
-            sfSafariVC.dismissButtonStyle = SFSafariViewControllerDismissButtonStyle.SFSafariViewControllerDismissButtonStyleClose
-            dispatch_async(dispatch_get_main_queue()) {
-                sourceViewController.presentViewController(sfSafariVC, true, null)
-            }
-        } ?: run {
-            NSLog("Powens UI SDK failed to initialize the Webview NSURL instance")
-            NSLog(url)
-            throw Exception("Powens UI SDK failed to initialize the Webview NSURL instance")
-        }
-    }
 }
