@@ -9,22 +9,9 @@ import platform.Foundation.NSURLQueryItem
 import platform.UIKit.UIViewController
 import platform.darwin.NSObjectProtocol
 
-class WebviewHandler
-    @Throws(
-        ConfigurationException::class,
-        IllegalArgumentException::class,
-        IllegalStateException::class,
-    )
-    private constructor() {
+object WebviewHandler {
     private val notificationName: NSNotificationName = "PowensWebviewCallback"
-    private val config = WebviewConfig.shared
     private var observer: NSObjectProtocol? = null
-
-    companion object {
-        val shared: WebviewHandler by lazy {
-            WebviewHandler()
-        }
-    }
 
     fun registerWebviewCallback(sourceViewController: UIViewController) {
         if (observer != null) {
@@ -41,9 +28,14 @@ class WebviewHandler
         }
     }
 
+    @Throws(
+        ConfigurationException::class,
+        IllegalArgumentException::class,
+        IllegalStateException::class,
+    )
     fun handleWebviewCallback(url: NSURL, completionHandler: (authCode: String?, connectionId: Long?, error: String?) -> Unit) {
-        if (url.scheme != config.appScheme) return
-        if (url.host != config.callbackHost) return
+        if (url.scheme != WebviewConfig.shared.appScheme) return
+        if (url.host != WebviewConfig.shared.callbackHost) return
 
         val userInfo: HashMap<String, Any?> = hashMapOf()
         if (extractErrorCodeFromCallback(url) != null)

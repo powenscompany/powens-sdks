@@ -6,7 +6,8 @@ import platform.Foundation.NSDictionary
 import platform.Foundation.NSLog
 import platform.Foundation.dictionaryWithContentsOfFile
 
-internal class WebviewConfig {
+internal class WebviewConfig
+    private constructor() {
     private val cfBundleUrlTypes = "CFBundleURLTypes"
     private val cfBundleUrlSchemes = "CFBundleURLSchemes"
 

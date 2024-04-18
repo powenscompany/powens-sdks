@@ -11,48 +11,54 @@ import platform.SafariServices.SFSafariViewControllerDismissButtonStyle
 import platform.UIKit.UIViewController
 import platform.darwin.dispatch_async
 import platform.darwin.dispatch_get_main_queue
+import kotlin.coroutines.cancellation.CancellationException
 
-class WebviewLauncher
+object WebviewLauncher {
+    private val webviewClient by lazy {
+        WebviewClient.forPowensDomain(WebviewConfig.shared.domain, WebviewConfig.shared.clientId)
+    }
+
     @Throws(
+        CancellationException::class,
         ConfigurationException::class,
         IllegalArgumentException::class,
     )
-    private constructor() {
-    private val config = WebviewConfig.shared
-    private val webviewClient = WebviewClient.forPowensDomain(config.domain, config.clientId)
-
-    companion object {
-        val shared: WebviewLauncher by lazy {
-            WebviewLauncher()
-        }
-    }
-
     suspend fun presentConnectWebview(
         sourceViewController: UIViewController,
         accessToken: String? = null,
         options: ConnectWebviewOptions? = null
     ) {
-        val url = webviewClient.buildConnectUrl(accessToken, config.redirectUri, options)
+        val url = webviewClient.buildConnectUrl(accessToken, WebviewConfig.shared.redirectUri, options)
         presentSFSafariViewController(sourceViewController, url)
     }
 
+    @Throws(
+        CancellationException::class,
+        ConfigurationException::class,
+        IllegalArgumentException::class,
+    )
     suspend fun presentReconnectWebview(
         sourceViewController: UIViewController,
         accessToken: String,
         connectionId: Long,
         resetCredentials: Boolean = false
     ) {
-        val url = webviewClient.buildReconnectUrl(connectionId, accessToken, config.redirectUri, resetCredentials)
+        val url = webviewClient.buildReconnectUrl(connectionId, accessToken, WebviewConfig.shared.redirectUri, resetCredentials)
         presentSFSafariViewController(sourceViewController, url)
     }
 
+    @Throws(
+        CancellationException::class,
+        ConfigurationException::class,
+        IllegalArgumentException::class,
+    )
     suspend fun presentManageWebview(
         sourceViewController: UIViewController,
         accessToken: String,
         connectionId: Long? = null,
         options: ManageWebviewOptions? = null
     ) {
-        val url = webviewClient.buildManageUrl(connectionId, accessToken, config.redirectUri, options)
+        val url = webviewClient.buildManageUrl(connectionId, accessToken, WebviewConfig.shared.redirectUri, options)
         presentSFSafariViewController(sourceViewController, url)
     }
 
