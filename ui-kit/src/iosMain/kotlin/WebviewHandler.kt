@@ -1,6 +1,5 @@
 package com.powens.kit
 
-import com.powens.kit.exceptions.ConfigurationException
 import platform.Foundation.NSNotificationCenter
 import platform.Foundation.NSNotificationName
 import platform.Foundation.NSURL
@@ -8,6 +7,8 @@ import platform.Foundation.NSURLComponents
 import platform.Foundation.NSURLQueryItem
 import platform.UIKit.UIViewController
 import platform.darwin.NSObjectProtocol
+import platform.darwin.dispatch_async
+import platform.darwin.dispatch_get_main_queue
 
 object WebviewHandler {
     private val notificationName: NSNotificationName = "PowensWebviewCallback"
@@ -24,12 +25,13 @@ object WebviewHandler {
             null
         ) {
             // Dismiss the SFSafariViewController instance
-            sourceViewController.dismissViewControllerAnimated(true, null)
+            dispatch_async(dispatch_get_main_queue()) {
+                sourceViewController.dismissViewControllerAnimated(true, null)
+            }
         }
     }
 
     @Throws(
-        ConfigurationException::class,
         IllegalArgumentException::class,
         IllegalStateException::class,
     )
