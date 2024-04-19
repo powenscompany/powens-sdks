@@ -3,7 +3,6 @@ package com.powens.kit
 import com.powens.api.client.WebviewClient
 import com.powens.api.model.ConnectWebviewOptions
 import com.powens.api.model.ManageWebviewOptions
-import com.powens.kit.exceptions.ConfigurationException
 import platform.Foundation.NSURL
 import platform.SafariServices.SFSafariViewController
 import platform.SafariServices.SFSafariViewControllerDismissButtonStyle
@@ -15,10 +14,7 @@ import kotlin.coroutines.cancellation.CancellationException
 class FlowHandle
     internal constructor(private val url: String) {
     fun presentOn(sourceViewController: UIViewController) {
-        val nsUrl = NSURL.URLWithString(url)
-        require(nsUrl != null) { "Invalid Webview URL" }
-
-        val sfSafariVC = SFSafariViewController(nsUrl)
+        val sfSafariVC = SFSafariViewController(NSURL.URLWithString(url)!!)
         sfSafariVC.dismissButtonStyle = SFSafariViewControllerDismissButtonStyle.SFSafariViewControllerDismissButtonStyleClose
         dispatch_async(dispatch_get_main_queue()) {
             sourceViewController.presentViewController(sfSafariVC, true, null)
@@ -33,7 +29,6 @@ object WebviewLauncher {
 
     @Throws(
         CancellationException::class,
-        ConfigurationException::class,
         IllegalArgumentException::class,
     )
     suspend fun connectFlow(
@@ -46,7 +41,6 @@ object WebviewLauncher {
 
     @Throws(
         CancellationException::class,
-        ConfigurationException::class,
         IllegalArgumentException::class,
     )
     suspend fun reconnectFlow(
@@ -60,7 +54,6 @@ object WebviewLauncher {
 
     @Throws(
         CancellationException::class,
-        ConfigurationException::class,
         IllegalArgumentException::class,
     )
     suspend fun manageFlow(

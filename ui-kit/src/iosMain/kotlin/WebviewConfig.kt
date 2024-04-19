@@ -1,12 +1,11 @@
 package com.powens.kit
 
-import com.powens.kit.exceptions.ConfigurationException
 import platform.Foundation.NSBundle
 import platform.Foundation.NSDictionary
-import platform.Foundation.NSLog
 import platform.Foundation.dictionaryWithContentsOfFile
 
 internal class WebviewConfig
+    @Throws(IllegalArgumentException::class)
     private constructor() {
     private val cfBundleUrlTypes = "CFBundleURLTypes"
     private val cfBundleUrlSchemes = "CFBundleURLSchemes"
@@ -25,15 +24,18 @@ internal class WebviewConfig
 
     init {
         val infoPlist = getInfoPlist()
-        val powensUrlScheme = getPowensUrlScheme(infoPlist)
+        require(!infoPlist.isNullOrEmpty()) { "Failed to read Info.plist file" }
 
-        domain = infoPlist?.get("PowensDomain") as String
+        domain = infoPlist["PowensDomain"] as String? ?: ""
+        require(domain.isNotEmpty()) { "Invalid domain. Please make sure you have configured the Info.plist file appropriately." }
+
+        val powensUrlScheme = getPowensUrlScheme(infoPlist) ?: ""
         clientId = powensUrlScheme.replace("powens-", "")
+        require(clientId.isNotEmpty()) { "Invalid Powens URL scheme. Please make sure you have configured the Info.plist file appropriately." }
+
         appScheme = powensUrlScheme
         callbackHost = "webview-callback"
         redirectUri = "$appScheme://$callbackHost"
-
-        if (domain.isNullOrEmpty() || clientId.isNullOrEmpty()) throwConfigError()
     }
 
     private fun getInfoPlist(): Map<Any?, *>? {
@@ -41,20 +43,10 @@ internal class WebviewConfig
         return NSDictionary.dictionaryWithContentsOfFile(mainBundlePath ?: "")
     }
 
-    private fun getPowensUrlScheme(infoPlist: Map<Any?, *>?): String {
-        return ((infoPlist
-            ?.get(cfBundleUrlTypes) as List<Map<String, *>>?)
-            ?.find {
-                (it[cfBundleUrlSchemes] as List<String>?)
-                    ?.first()
-                    ?.contains("powens-\\d+".toRegex()) ?: false
-            }?.get(cfBundleUrlSchemes) as List<String>)[0]
+    private fun getPowensUrlScheme(infoPlist: Map<Any?, *>): String? {
+        val urlTypes = infoPlist[cfBundleUrlTypes] as List<Map<String, List<String>>>?
+        val powensSchemeDict = urlTypes?.find { it[cfBundleUrlSchemes]?.first()?.contains("powens-\\d+".toRegex()) ?: false }
+        return powensSchemeDict?.get(cfBundleUrlSchemes)?.get(0)
     }
 
-    @Throws(ConfigurationException::class)
-    private fun throwConfigError() {
-        NSLog("Powens UI SDK could not initialize properly.")
-        NSLog("Please make sure you have configured the Info.plist file appropriately.")
-        throw ConfigurationException("Powens UI SDK could not initialize properly. Please make sure you have configured the Info.plist file appropriately.")
-    }
 }
