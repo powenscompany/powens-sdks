@@ -35,17 +35,17 @@ object WebviewHandler {
         IllegalArgumentException::class,
         IllegalStateException::class,
     )
-    fun handleWebviewCallback(url: NSURL, completionHandler: (authCode: String?, connectionId: Long?, error: String?) -> Unit) {
+    fun handleWebviewCallback(url: NSURL, completionHandler: (authCode: String?, connectionId: Long?, connectionIds: List<Long>?, error: String?) -> Unit) {
         if (url.scheme != WebviewConfig.shared.appScheme) return
         if (url.host != WebviewConfig.shared.callbackHost) return
 
         val userInfo: HashMap<String, Any?> = hashMapOf()
-        if (extractErrorCodeFromCallback(url) != null)
-            userInfo["error"] = extractErrorCodeFromCallback(url)
-        if (extractAuthCodeFromCallback(url) != null)
-            userInfo["code"] = extractAuthCodeFromCallback(url)
-        if (extractConnectionIdFromCallback(url) != null)
-            userInfo["connection_id"] = extractConnectionIdFromCallback(url)
+        val queryItems = queryItemsFromUrl(url)
+
+        extractErrorCode(queryItems)?.let { userInfo["error"] = it }
+        extractAuthCode(queryItems)?.let { userInfo["code"] = it }
+        extractConnectionId(queryItems)?.let { userInfo["connection_id"] = it }
+        extractConnectionIds(queryItems)?.let { userInfo["connection_ids"] = it }
 
         NSNotificationCenter.defaultCenter.postNotificationName(
             notificationName,
@@ -56,28 +56,30 @@ object WebviewHandler {
         completionHandler(
             userInfo["code"] as? String,
             userInfo["connection_id"] as? Long,
+            userInfo["connection_ids"] as? List<Long>,
             userInfo["error"] as? String
         )
     }
 
-    private fun extractErrorCodeFromCallback(url: NSURL): String? {
-        val queryItemError = queryItemsFromUrl(url)
-            ?.firstOrNull { it.name == "error" }
-        return queryItemError?.value
+    private fun extractErrorCode(queryItems: List<NSURLQueryItem>?): String? {
+        val itemError = queryItems?.firstOrNull { it.name == "error" }
+        return itemError?.value
     }
 
-    private fun extractAuthCodeFromCallback(url: NSURL): String? {
-        val queryItemAuthCode = queryItemsFromUrl(url)
-            ?.firstOrNull { it.name == "code" }
-        return queryItemAuthCode?.value
+    private fun extractAuthCode(queryItems: List<NSURLQueryItem>?): String? {
+        val itemAuthCode = queryItems?.firstOrNull { it.name == "code" }
+        return itemAuthCode?.value
     }
 
-    private fun extractConnectionIdFromCallback(url: NSURL): Long? {
-        val queryItemConnectionId = queryItemsFromUrl(url)
-            ?.firstOrNull { it.name == "connection_id" }
-        val queryItemIdConnection = queryItemsFromUrl(url)
-            ?.firstOrNull { it.name == "id_connection" }
-        return (queryItemConnectionId?.value ?: queryItemIdConnection?.value)?.toLong()
+    private fun extractConnectionId(queryItems: List<NSURLQueryItem>?): Long? {
+        val itemConnectionId = queryItems?.firstOrNull { it.name == "connection_id" }
+        val itemIdConnection = queryItems?.firstOrNull { it.name == "id_connection" }
+        return (itemConnectionId?.value ?: itemIdConnection?.value)?.toLong()
+    }
+
+    private fun extractConnectionIds(queryItems: List<NSURLQueryItem>?): List<Long>? {
+        val itemConnectionIds = queryItems?.firstOrNull { it.name == "connection_ids" }
+        return itemConnectionIds?.value?.split(",")?.map { it.toLong() }
     }
 
     private fun queryItemsFromUrl(url: NSURL): List<NSURLQueryItem>? {
