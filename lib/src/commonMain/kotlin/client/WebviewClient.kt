@@ -8,7 +8,8 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 
-class WebviewClient(private val root: String, private val clientId: String) {
+class WebviewClient
+@Throws(IllegalArgumentException::class) constructor(private val root: String, private val clientId: String) {
 
     companion object {
 
