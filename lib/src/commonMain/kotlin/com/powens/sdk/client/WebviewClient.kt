@@ -7,6 +7,7 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
+import kotlin.coroutines.cancellation.CancellationException
 
 class WebviewClient
 @Throws(IllegalArgumentException::class) constructor(private val root: String, private val clientId: String) {
@@ -41,6 +42,7 @@ class WebviewClient
         require(clientId.matches("\\d+".toRegex())) { "Invalid client ID: $clientId" }
     }
 
+    @Throws(IllegalArgumentException::class, CancellationException::class)
     suspend fun buildConnectUrl(
         accessToken: String?,
         redirectUri: String,
@@ -58,6 +60,7 @@ class WebviewClient
         }
     }
 
+    @Throws(IllegalArgumentException::class, CancellationException::class)
     suspend fun buildReconnectUrl(
         connectionId: Long,
         resetCredentials: Boolean = false,
@@ -71,6 +74,7 @@ class WebviewClient
         }
     }
 
+    @Throws(IllegalArgumentException::class, CancellationException::class)
     suspend fun buildManageUrl(
         connectionId: Long?,
         accessToken: String,
@@ -84,6 +88,7 @@ class WebviewClient
         }
     }
 
+    @Throws(IllegalArgumentException::class, CancellationException::class)
     private suspend fun buildUrl(
         path: String,
         accessToken: String? = null,
@@ -100,7 +105,10 @@ class WebviewClient
             parameters.apply {
                 append("client_id", clientId)
                 authCode?.let { append("code", it) }
-                redirectUri?.let { append("redirect_uri", it) }
+                redirectUri?.let {
+                    require(Url(it).parameters.isEmpty()) { "Redirect URIs must not contain query parameters" }
+                    append("redirect_uri", it)
+                }
                 state?.let { append("state", it) }
                 paramsBuilder(this)
             }
