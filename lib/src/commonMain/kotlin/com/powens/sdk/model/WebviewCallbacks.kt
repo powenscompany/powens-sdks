@@ -22,6 +22,7 @@ data class WebviewConnectCallbackSuccess(
     val connectionId: String,
     @SerialName("connection_ids")
     val connectionIds: List<String>,
+    val code: String?,
     override val state: String?
 ): WebviewConnectCallbackResult
 
