@@ -1,0 +1,402 @@
+paths:
+  /users/me/transactions:
+    parameters:
+      - $ref: "#/components/parameters/TransactionExpand"
+      - $ref: "core.yml#/components/parameters/FilterAllFlag"
+    get:
+      tags:
+        - bank-transactions
+      summary: List bank transactions
+      description: List bank transactions of the authenticated user. By default, only
+        active (not `deleted`) transactions are returned, use the `all`
+        parameter to get the full list.
+      operationId: listUserTransactions
+      parameters:
+        - $ref: "core.yml#/components/parameters/MinDateBound"
+        - $ref: "core.yml#/components/parameters/MaxDateBound"
+        - in: query
+          name: income
+          schema:
+            type: boolean
+          description: Filter on incomes or expenditures.
+        - in: query
+          name: deleted
+          schema:
+            type: boolean
+          description: Filter on deleted transactions.
+        - in: query
+          name: last_update
+          schema:
+            type: string
+            format: sql-date-time
+            pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Filter transactions updated *after* the specified date.
+        - in: query
+          name: wording
+          schema:
+            type: string
+          description: Filter transactions containing the given string.
+        - in: query
+          name: value
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/TransactionValueFilter"
+          uniqueItems: true
+          style: pipeDelimited
+          description: Value of the transaction. "XX|-XX" and "±XX" are also accepted.
+        - in: query
+          name: search
+          schema:
+            type: string
+          description: Search in wording, dates, values, categories.
+        - $ref: "core.yml#/components/parameters/ListOffset"
+        - $ref: "core.yml#/components/parameters/ListLimit"
+      responses:
+        "200":
+          description: List of bank transactions
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionsList"
+        "400":
+          $ref: "core.yml#/components/responses/NoAccountError"
+      security:
+        - bearerAuth: []
+  "/users/me/transactions/{transactionId}":
+    parameters:
+      - in: path
+        name: transactionId
+        description: Transaction ID.
+        schema:
+          $ref: "core.yml#/components/schemas/Id"
+        required: true
+      - $ref: "core.yml#/components/parameters/FilterAllFlag"
+      - $ref: "#/components/parameters/TransactionExpand"
+    get:
+      tags:
+        - bank-transactions
+      summary: Get a bank transaction
+      description: Get a single bank transaction of the authenticated user by ID.
+      operationId: getUserTransaction
+      responses:
+        "200":
+          description: Transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+      security:
+        - bearerAuth: []
+    post:
+      tags:
+        - bank-transactions
+      summary: Update a bank transaction
+      description: Update a bank transaction. The resource mirrors bank transactions
+        available through the connector, so editing is limited to metadata.
+      operationId: updateUserTransaction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransactionUpdateRequest"
+        required: true
+      responses:
+        "200":
+          description: Transaction successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+      security:
+        - bearerAuth: []
+components:
+  schemas:
+    Transaction:
+      type: object
+      description: A bank transaction.
+      properties:
+        id:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the transaction.
+        id_account:
+          $ref: "core.yml#/components/schemas/Id"
+          description: ID of the related account.
+        application_date:
+          type: string
+          nullable: true
+          format: date
+          description: Date considered by PFM services. This date can be edited.
+        date:
+          type: string
+          format: date
+          description: Debit date.
+        datetime:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Date and time of the debit of the transaction, if available, in UTC.
+        value:
+          type: number
+          nullable: true
+          format: monetary
+          description: Value of the transaction.
+        gross_value:
+          type: number
+          nullable: true
+          format: monetary
+          description: Gross value of the transaction.
+        original_value:
+          type: number
+          nullable: true
+          format: monetary
+          description: Value in the original currency.
+        original_gross_value:
+          type: number
+          nullable: true
+          format: monetary
+          description: Gross value in the original currency.
+        original_currency:
+          oneOf:
+            - $ref: "bank-accounts.yml#/components/schemas/Currency"
+            - type: null
+          description: Original currency.
+        commission:
+          type: number
+          nullable: true
+          format: monetary
+          description: Commission taken on the transaction.
+        commission_currency:
+          oneOf:
+            - $ref: "bank-accounts.yml#/components/schemas/Currency"
+            - type: null
+          description: Commission currency.
+        type:
+          $ref: "#/components/schemas/TransactionType"
+        wording:
+          type: string
+          nullable: true
+          description: Label of the transaction, can be edited.
+        id_category:
+          oneOf:
+            - $ref: "core.yml#/components/schemas/Id"
+            - type: null
+          deprecated: true
+          description: ID of the related category.
+        date_scraped:
+          type: string
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Date and time when the transaction has been seen.
+        rdate:
+          type: string
+          format: date
+          description: Realization date of the transaction.
+        rdatetime:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Realization date and time of the transaction, if available, in UTC.
+        vdate:
+          type: string
+          nullable: true
+          format: date
+          description: Value date of the transaction.
+        vdatetime:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Value date and time of the transaction, if available, in UTC.
+        bdate:
+          type: string
+          nullable: true
+          format: date
+          description: Date used by the bank for the transaction.
+        bdatetime:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Date and time used by the bank for the transaction, if available,
+            in UTC.
+        coming:
+          type: boolean
+          description: If true, this transaction hasn't been debited yet.
+        active:
+          type: boolean
+          description: If false, PFM services will ignore this transaction.
+        id_cluster:
+          oneOf:
+            - $ref: "core.yml#/components/schemas/Id"
+            - type: null
+          description: If the transaction is part of a cluster.
+        country:
+          type: string
+          nullable: true
+          description: Original country.
+        card:
+          type: string
+          nullable: true
+          description: Card number associated with the transaction.
+        counterparty:
+          oneOf:
+            - $ref: "#/components/schemas/TransactionCounterparty"
+            - type: null
+          description: The transaction counterparty, i.e. an optional business or
+            individual entity associated with the transaction.
+        comment:
+          type: string
+          nullable: true
+          description: User comment.
+        last_update:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: Last update of the transaction.
+        deleted:
+          type: string
+          nullable: true
+          format: sql-date-time
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+          description: If set, this transaction has been removed from the bank.
+        account:
+          oneOf:
+            - $ref: "bank-accounts.yml#/components/schemas/BankAccount"
+            - type: null
+          description: "Optional `expand`: The bank account associated with this
+            transaction."
+      required:
+        - id
+        - id_account
+        - date
+        - type
+        - date_scraped
+        - rdate
+        - coming
+        - active
+    TransactionType:
+      type: string
+      description: |
+        The type of a bank transaction:
+         * `transfer`: Transfer
+         * `order`: Order
+         * `check`: Check
+         * `deposit`: Deposit
+         * `payback`: Payback
+         * `withdrawal`: Withdrawal
+         * `loan_payment`: Loan payment
+         * `bank`: Bank fees
+         * `card`: Card operation
+         * `deferred_card`: Deferred card operation
+         * `summary_card`: Monthly debit of a deferred card
+         * `unknown`: Unknown transaction type
+      enum:
+        - transfer
+        - order
+        - check
+        - deposit
+        - payback
+        - withdrawal
+        - loan_payment
+        - bank
+        - card
+        - deferred_card
+        - summary_card
+        - unknown
+    TransactionCounterparty:
+      type: object
+      description: Business or individual entity associated with a bank transaction.
+      properties:
+        label:
+          type: string
+          nullable: true
+          description: Label/name of the counterparty.
+        account_scheme_name:
+          oneOf:
+            - $ref: "#/components/schemas/AccountSchemeName"
+            - type: null
+          description: Type of the counterparty account number.
+        account_identification:
+          type: string
+          nullable: true
+          description: Account number of the counterparty.
+        type:
+          $ref: "#/components/schemas/TransactionCounterpartyType"
+          description: "Type of the counterparty: `creditor` or `debtor`."
+    TransactionCounterpartyType:
+      type: string
+      nullable: true
+      description: "Type of the counterparty: `creditor` or `debtor`."
+      enum:
+        - creditor
+        - debtor
+    AccountSchemeName:
+      type: string
+      description: |
+        Type of identifier provided for a bank account:
+         * `iban`: International Bank Account Number
+         * `bban`: Basic Bank Account Number
+         * `sort_code_account_number`: United Kingdom local account number
+      enum:
+        - iban
+        - bban
+        - sort_code_account_number
+    TransactionUpdateRequest:
+      type: object
+      description: A request to update metadata of a bank transaction.
+      properties:
+        wording:
+          type: string
+          description: New wording of the transaction.
+        application_date:
+          type: string
+          format: date
+          description: New application date of the transaction.
+        id_category:
+          $ref: "core.yml#/components/schemas/Id"
+          deprecated: true
+          description: New category ID of the transaction.
+        comment:
+          type: string
+          description: New comment of the transaction.
+        active:
+          type: boolean
+          description: If false, the transaction isn't considered in analysis endpoints.
+    TransactionsList:
+      type: object
+      description: A list of bank transactions.
+      allOf:
+        - $ref: "core.yml#/components/schemas/DateBoundedList"
+        - type: object
+          properties:
+            transactions:
+              type: array
+              description: The transactions list.
+              items:
+                $ref: "#/components/schemas/Transaction"
+          required:
+            - transactions
+    TransactionValueFilter:
+      oneOf:
+        - type: number
+          format: monetary
+        - type: string
+          pattern: ^[±-+]?\d+(\.\d+)?*$
+  parameters:
+    TransactionExpand:
+      in: query
+      name: expand
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - account
+            - documents
+        uniqueItems: true
+      explode: false
+      allowReserved: true

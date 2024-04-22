@@ -18,5 +18,4 @@ dependencyResolutionManagement {
     }
 }
 
-include(":api-client")
-include(":ui-kit")
+include(":lib")
