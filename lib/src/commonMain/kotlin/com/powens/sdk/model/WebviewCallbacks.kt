@@ -33,10 +33,10 @@ data class WebviewManageCallbackSuccess(
     @SerialName("connection_deleted")
     val connectionDeleted: Boolean = false,
     override val state: String?
-): WebviewConnectCallbackResult
+): WebviewManageCallbackResult
 
 @Serializable
-class WebviewCallbackError(
+data class WebviewCallbackError(
     @SerialName("error")
     val errorCode: WebviewErrorCode?,
     @SerialName("error_description")
