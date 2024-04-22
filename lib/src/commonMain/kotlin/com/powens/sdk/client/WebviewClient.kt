@@ -44,9 +44,10 @@ class WebviewClient
     suspend fun buildConnectUrl(
         accessToken: String?,
         redirectUri: String,
+        state: String? = null,
         options: ConnectWebviewOptions? = null
     ): String {
-        return this.buildUrl("connect", accessToken, redirectUri) {
+        return this.buildUrl("connect", accessToken, redirectUri, state) {
             if (options == null) return@buildUrl
 
             options.maxConnections?.let { append("max_connections", it.toString()) }
@@ -59,11 +60,12 @@ class WebviewClient
 
     suspend fun buildReconnectUrl(
         connectionId: Long,
+        resetCredentials: Boolean = false,
         accessToken: String,
         redirectUri: String,
-        resetCredentials: Boolean = false
+        state: String? = null
     ): String {
-        return this.buildUrl("reconnect", accessToken, redirectUri) {
+        return this.buildUrl("reconnect", accessToken, redirectUri, state) {
             append("connection_id", connectionId.toString())
             if (resetCredentials) append("reset_credentials", "true")
         }
@@ -73,9 +75,10 @@ class WebviewClient
         connectionId: Long?,
         accessToken: String,
         redirectUri: String? = null,
+        state: String? = null,
         options: ManageWebviewOptions? = null
     ): String {
-        return this.buildUrl("manage", accessToken, redirectUri) {
+        return this.buildUrl("manage", accessToken, redirectUri, state) {
             connectionId?.let { append("connection_id", it.toString()) }
             options?.let { applySharedWebviewOptions(this, options) }
         }
@@ -85,6 +88,7 @@ class WebviewClient
         path: String,
         accessToken: String? = null,
         redirectUri: String? = null,
+        state: String? = null,
         paramsBuilder: ParametersBuilder.() -> Unit
     ): String {
         val authCode = if (accessToken.isNullOrEmpty()) null
@@ -97,6 +101,7 @@ class WebviewClient
                 append("client_id", clientId)
                 authCode?.let { append("code", it) }
                 redirectUri?.let { append("redirect_uri", it) }
+                state?.let { append("state", it) }
                 paramsBuilder(this)
             }
         }.buildString()
