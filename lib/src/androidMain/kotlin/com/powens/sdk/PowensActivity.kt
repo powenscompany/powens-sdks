@@ -23,8 +23,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.viewModelScope
-import com.powens.sdk.theme.PowensKitTheme
 import com.powens.sdk.client.WebviewClient
+import com.powens.sdk.theme.PowensKitTheme
 import kotlinx.coroutines.launch
 
 class PowensActivity : ComponentActivity() {
@@ -82,6 +82,7 @@ class PowensActivity : ComponentActivity() {
             val url = WebviewClient.forPowensDomain(domain, clientId).buildConnectUrl(
                 config.accessToken,
                 redirectUri,
+                null,
                 config.options
             )
             uiState = uiState.copy(pendingUrl = url)
