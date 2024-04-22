@@ -1,4 +1,4 @@
-rootProject.name = "powens-sdks"
+rootProject.name = "powens-sdk"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
