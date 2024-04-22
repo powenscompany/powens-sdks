@@ -1,4 +1,4 @@
-rootProject.name = "powens-sdks"
+rootProject.name = "powens-sdk"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -18,5 +18,4 @@ dependencyResolutionManagement {
     }
 }
 
-include(":api-client")
-include(":ui-kit")
+include(":lib")
