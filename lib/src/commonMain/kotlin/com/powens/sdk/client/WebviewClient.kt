@@ -28,15 +28,15 @@ class WebviewClient
         }
 
         @Throws(IllegalArgumentException::class)
-        fun parseCallback(query: String) =
+        fun parseCallback(query: String): WebviewCallbackResult =
             parseCallback(query, WebviewCallbackSuccess.serializer(), WebviewCallbackError.serializer())
 
         @Throws(IllegalArgumentException::class)
-        fun parseConnectCallback(query: String) =
+        fun parseConnectCallback(query: String): WebviewConnectCallbackResult =
             parseCallback(query, WebviewConnectCallbackSuccess.serializer(), WebviewCallbackError.serializer())
 
         @Throws(IllegalArgumentException::class)
-        fun parseManageCallback(query: String) =
+        fun parseManageCallback(query: String): WebviewManageCallbackResult =
             parseCallback(query, WebviewManageCallbackSuccess.serializer(), WebviewCallbackError.serializer())
 
     }
