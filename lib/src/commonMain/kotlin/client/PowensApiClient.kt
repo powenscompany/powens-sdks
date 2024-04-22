@@ -7,9 +7,12 @@ import io.ktor.client.plugins.*
 import io.ktor.client.statement.*
 import kotlinx.serialization.json.Json
 
-class PowensApiClient(private val root: String, private val clientId: String) {
+class PowensApiClient
+@Throws(IllegalArgumentException::class) constructor(private val root: String, private val clientId: String) {
 
     companion object {
+
+        @Throws(IllegalArgumentException::class)
         fun forPowensDomain(domain: String, clientId: String): PowensApiClient {
             // Domains must use lowercase letters, digits and hyphens
             require(domain.matches("[a-z\\d]+(-[a-z\\d]+)*".toRegex())) { "Invalid domain" }
