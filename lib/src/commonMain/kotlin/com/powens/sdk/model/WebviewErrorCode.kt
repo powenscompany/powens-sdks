@@ -13,6 +13,9 @@ enum class WebviewErrorCode(val value: String) {
     ServerError("server_error"),
 
     @SerialName(value = "tos_declined")
-    TosDeclined("tos_declined")
+    TosDeclined("tos_declined"),
+
+    @SerialName(value = "session_expired")
+    SessionExpired("session_expired")
 
 }
