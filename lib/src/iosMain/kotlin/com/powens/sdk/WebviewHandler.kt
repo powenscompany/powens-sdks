@@ -1,10 +1,13 @@
 package com.powens.sdk
 
+import com.powens.sdk.client.WebviewClient
+import com.powens.sdk.model.WebviewCallbackResult
+import com.powens.sdk.model.WebviewConnectCallbackResult
+import com.powens.sdk.model.WebviewManageCallbackResult
+import com.powens.sdk.model.WebviewPath
 import platform.Foundation.NSNotificationCenter
 import platform.Foundation.NSNotificationName
 import platform.Foundation.NSURL
-import platform.Foundation.NSURLComponents
-import platform.Foundation.NSURLQueryItem
 import platform.UIKit.UIViewController
 import platform.darwin.NSObjectProtocol
 import platform.darwin.dispatch_async
@@ -24,69 +27,52 @@ object WebviewHandler {
             this,
             null
         ) {
-            // Dismiss the SFSafariViewController instance
             dispatch_async(dispatch_get_main_queue()) {
+                // Dismiss the SFSafariViewController instance
                 sourceViewController.dismissViewControllerAnimated(true, null)
             }
         }
     }
 
-    @Throws(
-        IllegalArgumentException::class,
-        IllegalStateException::class,
-    )
-    fun handleWebviewCallback(url: NSURL, completionHandler: (authCode: String?, connectionId: Long?, connectionIds: List<Long>?, error: String?) -> Unit) {
-        if (url.scheme != WebviewConfig.shared.appScheme) return
-        if (url.host != WebviewConfig.shared.callbackHost) return
+    @Throws( IllegalArgumentException::class)
+    fun handleConnectCallback(url: NSURL, completionHandler: (result: WebviewConnectCallbackResult) -> Unit) {
+        if (!shouldHandleCallback(url, WebviewPath.Connect)) return
 
-        val userInfo: HashMap<String, Any?> = hashMapOf()
-        val queryItems = queryItemsFromUrl(url)
+        postNotification()
 
-        extractErrorCode(queryItems)?.let { userInfo["error"] = it }
-        extractAuthCode(queryItems)?.let { userInfo["code"] = it }
-        extractConnectionId(queryItems)?.let { userInfo["connection_id"] = it }
-        extractConnectionIds(queryItems)?.let { userInfo["connection_ids"] = it }
-
-        NSNotificationCenter.defaultCenter.postNotificationName(
-            notificationName,
-            this,
-            userInfo as Map<Any?, *>
-        )
-
-        completionHandler(
-            userInfo["code"] as? String,
-            userInfo["connection_id"] as? Long,
-            userInfo["connection_ids"] as? List<Long>,
-            userInfo["error"] as? String
-        )
+        val callback = WebviewClient.parseConnectCallback(url.query)
+        completionHandler(callback)
     }
 
-    private fun extractErrorCode(queryItems: List<NSURLQueryItem>?): String? {
-        val itemError = queryItems?.firstOrNull { it.name == "error" }
-        return itemError?.value
+    @Throws(IllegalArgumentException::class)
+    fun handleReconnectCallback(url: NSURL, completionHandler: (result: WebviewCallbackResult) -> Unit) {
+        if (!shouldHandleCallback(url, WebviewPath.Reconnect)) return
+
+        postNotification()
+
+        val callback = WebviewClient.parseCallback(url.query)
+        completionHandler(callback)
     }
 
-    private fun extractAuthCode(queryItems: List<NSURLQueryItem>?): String? {
-        val itemAuthCode = queryItems?.firstOrNull { it.name == "code" }
-        return itemAuthCode?.value
+    @Throws(IllegalArgumentException::class)
+    fun handleManageCallback(url: NSURL, completionHandler: (result: WebviewManageCallbackResult) -> Unit) {
+        if (!shouldHandleCallback(url, WebviewPath.Manage)) return
+
+        postNotification()
+
+        val callback = WebviewClient.parseManageCallback(url.query)
+        completionHandler(callback)
     }
 
-    private fun extractConnectionId(queryItems: List<NSURLQueryItem>?): Long? {
-        val itemConnectionId = queryItems?.firstOrNull { it.name == "connection_id" }
-        val itemIdConnection = queryItems?.firstOrNull { it.name == "id_connection" }
-        return (itemConnectionId?.value ?: itemIdConnection?.value)?.toLong()
+    private fun shouldHandleCallback(url: NSURL, path: WebviewPath): Boolean {
+        if (url.scheme != WebviewConfig.shared.appScheme) return false
+        if (url.host != WebviewConfig.shared.callbackHost) return false
+        if (url.path != path.value) return false
+        return true
     }
 
-    private fun extractConnectionIds(queryItems: List<NSURLQueryItem>?): List<Long>? {
-        val itemConnectionIds = queryItems?.firstOrNull { it.name == "connection_ids" }
-        return itemConnectionIds?.value?.split(",")?.map { it.toLong() }
-    }
-
-    private fun queryItemsFromUrl(url: NSURL): List<NSURLQueryItem>? {
-        if (url.absoluteString == null) return null
-        return NSURLComponents
-            .componentsWithString(url.absoluteString!!)
-            ?.queryItems as? List<NSURLQueryItem>
+    private fun postNotification() {
+        NSNotificationCenter.defaultCenter.postNotificationName(notificationName, this)
     }
 
 }
