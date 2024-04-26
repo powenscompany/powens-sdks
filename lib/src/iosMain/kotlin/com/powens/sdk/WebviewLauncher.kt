@@ -1,8 +1,9 @@
 package com.powens.sdk
 
 import com.powens.sdk.client.WebviewClient
-import com.powens.sdk.model.ConnectWebviewOptions
-import com.powens.sdk.model.ManageWebviewOptions
+import com.powens.sdk.model.WebviewConnectOptions
+import com.powens.sdk.model.WebviewManageOptions
+import com.powens.sdk.model.WebviewPath
 import platform.Foundation.NSURL
 import platform.SafariServices.SFSafariViewController
 import platform.SafariServices.SFSafariViewControllerDismissButtonStyle
@@ -33,9 +34,11 @@ object WebviewLauncher {
     )
     suspend fun connectFlow(
         accessToken: String? = null,
-        options: ConnectWebviewOptions? = null,
+        state: String? = null,
+        options: WebviewConnectOptions? = null,
     ): FlowHandle {
-        val url = webviewClient.buildConnectUrl(accessToken, WebviewConfig.shared.redirectUri, options)
+        val redirectUri = "${WebviewConfig.shared.redirectUri}${WebviewPath.Connect.value}"
+        val url = webviewClient.buildConnectUrl(accessToken, redirectUri, state, options)
         return FlowHandle(url)
     }
 
@@ -47,8 +50,10 @@ object WebviewLauncher {
         accessToken: String,
         connectionId: Long,
         resetCredentials: Boolean = false,
+        state: String? = null,
     ): FlowHandle {
-        val url = webviewClient.buildReconnectUrl(connectionId, accessToken, WebviewConfig.shared.redirectUri, resetCredentials)
+        val redirectUri = "${WebviewConfig.shared.redirectUri}${WebviewPath.Reconnect.value}"
+        val url = webviewClient.buildReconnectUrl(connectionId, resetCredentials, accessToken, redirectUri, state)
         return FlowHandle(url)
     }
 
@@ -59,9 +64,11 @@ object WebviewLauncher {
     suspend fun manageFlow(
         accessToken: String,
         connectionId: Long? = null,
-        options: ManageWebviewOptions? = null,
+        state: String? = null,
+        options: WebviewManageOptions? = null,
     ): FlowHandle {
-        val url = webviewClient.buildManageUrl(connectionId, accessToken, WebviewConfig.shared.redirectUri, options)
+        val redirectUri = "${WebviewConfig.shared.redirectUri}${WebviewPath.Manage.value}"
+        val url = webviewClient.buildManageUrl(connectionId, accessToken, redirectUri, state, options)
         return FlowHandle(url)
     }
 
