@@ -22,21 +22,21 @@ class WebviewClient
         }
 
         @Throws(IllegalArgumentException::class)
-        private fun <R, S : R, E : R> parseCallback(query: String, success: KSerializer<S>, error: KSerializer<E>): R {
-            val paramsTree = JsonObject(parseQueryString(query).toMap().mapValues { JsonPrimitive(it.value.first()) })
+        private fun <R, S : R, E : R> parseCallback(query: String?, success: KSerializer<S>, error: KSerializer<E>): R {
+            val paramsTree = JsonObject(parseQueryString(query ?: "").toMap().mapValues { JsonPrimitive(it.value.first()) })
             return Json.decodeFromJsonElement(if (paramsTree.containsKey("error")) error else success, paramsTree)
         }
 
         @Throws(IllegalArgumentException::class)
-        fun parseCallback(query: String): WebviewCallbackResult =
+        fun parseCallback(query: String?): WebviewCallbackResult =
             parseCallback(query, WebviewCallbackSuccess.serializer(), WebviewCallbackError.serializer())
 
         @Throws(IllegalArgumentException::class)
-        fun parseConnectCallback(query: String): WebviewConnectCallbackResult =
+        fun parseConnectCallback(query: String?): WebviewConnectCallbackResult =
             parseCallback(query, WebviewConnectCallbackSuccess.serializer(), WebviewCallbackError.serializer())
 
         @Throws(IllegalArgumentException::class)
-        fun parseManageCallback(query: String): WebviewManageCallbackResult =
+        fun parseManageCallback(query: String?): WebviewManageCallbackResult =
             parseCallback(query, WebviewManageCallbackSuccess.serializer(), WebviewCallbackError.serializer())
 
     }
@@ -51,7 +51,7 @@ class WebviewClient
         accessToken: String?,
         redirectUri: String,
         state: String? = null,
-        options: ConnectWebviewOptions? = null
+        options: WebviewConnectOptions? = null
     ): String {
         return this.buildUrl("connect", accessToken, redirectUri, state) {
             if (options == null) return@buildUrl
@@ -84,7 +84,7 @@ class WebviewClient
         accessToken: String,
         redirectUri: String? = null,
         state: String? = null,
-        options: ManageWebviewOptions? = null
+        options: WebviewManageOptions? = null
     ): String {
         return this.buildUrl("manage", accessToken, redirectUri, state) {
             connectionId?.let { append("connection_id", it.toString()) }
