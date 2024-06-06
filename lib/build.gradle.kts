@@ -24,7 +24,7 @@ openApiValidate {
     inputSpec.set("$projectDir/specs/powens-api.yml")
 }
 
-// Configure the whole spec dir for invalidation of the generator cache
+// Configure the whole /spec dir for invalidation of the generator cache
 tasks.withType(org.openapitools.generator.gradle.plugin.tasks.GenerateTask::class.java) {
     inputs.dir("$projectDir/specs")
 }
@@ -147,7 +147,9 @@ android {
         debugImplementation(libs.androidx.compose.uiTooling)
     }
     publishing {
-        singleVariant("release")
+        singleVariant("release") {
+            withSourcesJar()
+        }
     }
 }
 
@@ -174,7 +176,7 @@ publishing {
         create("release", MavenPublication::class.java) {
             groupId = "com.powens"
             artifactId = "sdk"
-            version = "1.0-alpha1"
+            version = "1.0-beta1"
             afterEvaluate { from(components["release"]) }
         }
     }
