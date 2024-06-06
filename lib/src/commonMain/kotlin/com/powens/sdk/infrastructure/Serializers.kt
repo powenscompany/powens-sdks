@@ -19,3 +19,17 @@ class StringSerializer : KSerializer<String> {
     }
 
 }
+
+class IdsAsStringSerializer : KSerializer<List<Long>> {
+
+    override val descriptor = PrimitiveSerialDescriptor("IdsAsLong", PrimitiveKind.STRING)
+
+    override fun serialize(encoder: Encoder, value: List<Long>) {
+        encoder.encodeString(value.joinToString(","))
+    }
+
+    override fun deserialize(decoder: Decoder): List<Long> {
+        return decoder.decodeString().split(",").map { it.toLong() }
+    }
+
+}
