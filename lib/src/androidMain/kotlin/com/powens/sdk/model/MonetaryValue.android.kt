@@ -23,5 +23,5 @@ actual object MonetaryValueSerializer : KSerializer<BigDecimal> {
 
 }
 
-actual val MonetaryValue.absoluteValue
+actual val MonetaryValue.absoluteValue: BigDecimal
     get() = this.abs()

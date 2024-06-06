@@ -1,38 +1,27 @@
 package com.powens.sdk.model
 
+import com.powens.sdk.infrastructure.Parcelable
+import com.powens.sdk.infrastructure.Parcelize
 import kotlinx.serialization.Serializable
 
-interface WebviewOptions {
-    var connectorUuids: List<String>?
-    var connectorCapabilities: List<ConnectorCapability>?
-    var connectorCountry: String?
-    var connectorFieldValues: Map<String, Map<String, String>>?
-    var accountTypes: List<BankAccountTypeName>?
-    var accountUsages: List<BankAccountUsage>?
+@Serializable
+@Parcelize
+open class WebviewOptions : Parcelable {
+    var connectorUuids: List<String>? = null
+    var connectorCapabilities: List<ConnectorCapability>? = null
+    var connectorCountry: String? = null
+    var connectorFieldValues: Map<String, Map<String, String>>? = null
+    var accountTypes: List<BankAccountTypeName>? = null
+    var accountUsages: List<BankAccountUsage>? = null
 }
 
 @Serializable
-data class WebviewManageOptions(
-    override var connectorUuids: List<String>? = null,
-    override var connectorCapabilities: List<ConnectorCapability>? = null,
-    override var connectorCountry: String? = null,
-    override var connectorFieldValues: Map<String, Map<String, String>>? = null,
-    override var accountTypes: List<BankAccountTypeName>? = null,
-    override var accountUsages: List<BankAccountUsage>? = null,
-) : WebviewOptions {
-    constructor() : this(null)
-}
+@Parcelize
+class WebviewManageOptions : WebviewOptions(), Parcelable
 
 @Serializable
-data class WebviewConnectOptions(
-    override var connectorUuids: List<String>? = null,
-    override var connectorCapabilities: List<ConnectorCapability>? = null,
-    override var connectorCountry: String? = null,
-    override var connectorFieldValues: Map<String, Map<String, String>>? = null,
-    override var accountTypes: List<BankAccountTypeName>? = null,
-    override var accountUsages: List<BankAccountUsage>? = null,
-    var maxConnections: Int? = null,
+@Parcelize
+class WebviewConnectOptions : WebviewOptions(), Parcelable {
+    var maxConnections: Int? = null
     var accountIbans: List<String>? = null
-) : WebviewOptions {
-    constructor() : this(null)
 }
