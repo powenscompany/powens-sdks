@@ -1,5 +1,6 @@
 package com.powens.sdk.model
 
+import com.powens.sdk.infrastructure.IdsAsStringSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -21,6 +22,7 @@ data class WebviewConnectCallbackSuccess(
     @SerialName("connection_id")
     val connectionId: Long,
     @SerialName("connection_ids")
+    @Serializable(with = IdsAsStringSerializer::class)
     val connectionIds: List<Long>? = null,
     val code: String? = null,
     override val state: String? = null
