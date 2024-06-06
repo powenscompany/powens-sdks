@@ -3,7 +3,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application>
-        <meta-data android:name="com.powens.clientId" android:value="${powensClientId}" />
+        <meta-data android:name="com.powens.clientId" android:value="\ ${powensClientId}" />
         <meta-data android:name="com.powens.domain" android:value="${powensDomain}" />
         <activity android:name=".PowensActivity"
             android:exported="true">
