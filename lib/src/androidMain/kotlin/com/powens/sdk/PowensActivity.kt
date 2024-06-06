@@ -4,6 +4,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
@@ -12,10 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -47,9 +45,6 @@ class PowensActivity : ComponentActivity() {
                 }
             }
         }
-        val webviewLauncher = registerForActivityResult(WebviewPresenter().getContract()) {
-            Log.d("TAG", "onCreate: Browser dismissed: $it")
-        }
         if (savedInstanceState == null) {
             val metaData = packageManager.getApplicationInfoCompat(
                 packageName,
@@ -77,7 +72,7 @@ class PowensActivity : ComponentActivity() {
 
         fun openConnect(metaData: Bundle, config: ConnectConfig) = viewModelScope.launch {
             val domain = metaData.getString("com.powens.domain", "")
-            val clientId = metaData.getString("com.powens.clientId", "")
+            val clientId = metaData.getString("com.powens.clientId", "").trim()
             val redirectUri = "powens-${clientId}://callback"
             val url = WebviewClient.forPowensDomain(domain, clientId).buildConnectUrl(
                 config.accessToken,
@@ -104,6 +99,9 @@ class PowensActivity : ComponentActivity() {
 
 @Composable
 fun MainContent(vm: PowensActivity.ViewModel = PowensActivity.ViewModel()) {
+    val webviewLauncher = rememberLauncherForActivityResult(WebviewPresenter().getContract()) {
+        Log.d("TAG", "onCreate: Browser dismissed: $it")
+    }
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -111,7 +109,10 @@ fun MainContent(vm: PowensActivity.ViewModel = PowensActivity.ViewModel()) {
     ) {
         CircularProgressIndicator()
         vm.uiState.pendingUrl?.let {
-            vm.onUrlOpened()
+            SideEffect {
+                webviewLauncher.launch(it)
+                vm.onUrlOpened()
+            }
         }
     }
 }

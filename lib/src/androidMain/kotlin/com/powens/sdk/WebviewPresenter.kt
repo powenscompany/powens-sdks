@@ -16,6 +16,8 @@ class WebviewPresenter(
 
         override fun createIntent(context: Context, input: String): Intent {
             val intent = Builder()
+                .setDownloadButtonEnabled(false)
+                .setBackgroundInteractionEnabled(false)
                 .setShowTitle(true)
                 .setShareState(SHARE_STATE_OFF)
                 .setColorScheme(when (darkTheme) {
