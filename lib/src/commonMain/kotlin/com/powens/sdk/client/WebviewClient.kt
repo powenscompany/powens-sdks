@@ -10,7 +10,7 @@ import kotlinx.serialization.json.JsonPrimitive
 import kotlin.coroutines.cancellation.CancellationException
 
 class WebviewClient
-@Throws(IllegalArgumentException::class) constructor(private val root: String, private val clientId: String) {
+@Throws(IllegalArgumentException::class) constructor(private val domain: String, private val clientId: String) {
 
     companion object {
 
@@ -18,7 +18,7 @@ class WebviewClient
         fun forPowensDomain(domain: String, clientId: String): WebviewClient {
             // Domains must use lowercase letters, digits and hyphens
             require(domain.matches("[a-z\\d]+(-[a-z\\d]+)*".toRegex())) { "Invalid domain" }
-            return WebviewClient("https://${domain}.biapi.pro/2.0/", clientId)
+            return WebviewClient(domain, clientId)
         }
 
         @Throws(IllegalArgumentException::class)
@@ -101,12 +101,13 @@ class WebviewClient
         paramsBuilder: ParametersBuilder.() -> Unit
     ): String {
         val authCode = if (accessToken.isNullOrEmpty()) null
-        else PowensApiClient(root, clientId).auth.apply {
+        else PowensApiClient("https://${domain}.biapi.pro/2.0/", clientId).auth.apply {
             setBearerToken(accessToken)
         }.getAuthCode().body().code
-        return URLBuilder(root).apply {
-            appendPathSegments("auth", "webview", path)
+        return URLBuilder("https://webview.powens.com").apply {
+            appendPathSegments(path)
             parameters.apply {
+                append("domain", domain)
                 append("client_id", clientId)
                 authCode?.let { append("code", it) }
                 redirectUri?.let {
