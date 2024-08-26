@@ -113,12 +113,16 @@ kotlin {
     }
 
     cocoapods {
-        summary = "SDK for Powens APIs"
-        homepage = "powens.com"
-        version = "1.0"
+        name = "PowensConnect"
+        summary = "Ready-made tools to connect with Powens APIs and easily implement aggregation journeys"
+        version = "1.0.0-beta"
+        authors = "Powens"
+        homepage = "https://www.powens.com"
+        source = "{ :git => 'https://github.com/powenscompany/powens-connect-ios.git', :tag => '$version' }"
+        license = "{ :type => 'LGPLv3' }"
         ios.deploymentTarget = "14.1"
         framework {
-            baseName = "PowensSDK"
+            baseName = "PowensConnect"
         }
     }
 
@@ -175,8 +179,8 @@ publishing {
     publications {
         create("release", MavenPublication::class.java) {
             groupId = "com.powens"
-            artifactId = "sdk"
-            version = "1.0-beta1"
+            artifactId = "powens-connect"
+            version = "1.0.0-beta"
             afterEvaluate { from(components["release"]) }
         }
     }
