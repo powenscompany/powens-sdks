@@ -53,6 +53,10 @@ components:
           nullable: true
           description: |
             An optional error message from the connector, intended for end-user display. The message is not translated.
+        request_id:
+          type: string
+          nullable: true
+          description: ID of the associated API request.
       required:
         - code
         - description
