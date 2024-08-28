@@ -27,6 +27,7 @@ import kotlinx.serialization.encoding.*
  * @param code 
  * @param description A technical description of the error.
  * @param message An optional error message from the connector, intended for end-user display. The message is not translated. 
+ * @param requestId ID of the associated API request.
  */
 @Serializable
 
@@ -38,7 +39,10 @@ data class ServiceError (
     @SerialName(value = "description") @Required val description: kotlin.String,
 
     /* An optional error message from the connector, intended for end-user display. The message is not translated.  */
-    @SerialName(value = "message") val message: kotlin.String? = null
+    @SerialName(value = "message") val message: kotlin.String? = null,
+
+    /* ID of the associated API request. */
+    @SerialName(value = "request_id") val requestId: kotlin.String? = null
 
 )
 
