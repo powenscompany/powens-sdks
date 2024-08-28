@@ -8,4 +8,4 @@ class ServiceException(
     val statusCode: HttpStatusCode,
     val error: ServiceError?,
     cause: ResponseException
-) : Exception("API error ${error?.code}: {${error?.description}", cause)
+) : Exception("API error ${error?.code}: ${error?.description}", cause)

@@ -1,5 +1,6 @@
 package com.powens.sdk
 
+import com.powens.sdk.client.ServiceException
 import com.powens.sdk.client.WebviewClient
 import com.powens.sdk.model.WebviewConnectOptions
 import com.powens.sdk.model.WebviewManageOptions
@@ -31,6 +32,7 @@ object WebviewLauncher {
     @Throws(
         CancellationException::class,
         IllegalArgumentException::class,
+        ServiceException::class,
     )
     suspend fun connectFlow(
         accessToken: String? = null,
@@ -45,6 +47,7 @@ object WebviewLauncher {
     @Throws(
         CancellationException::class,
         IllegalArgumentException::class,
+        ServiceException::class,
     )
     suspend fun reconnectFlow(
         accessToken: String,
@@ -60,6 +63,7 @@ object WebviewLauncher {
     @Throws(
         CancellationException::class,
         IllegalArgumentException::class,
+        ServiceException::class,
     )
     suspend fun manageFlow(
         accessToken: String,
