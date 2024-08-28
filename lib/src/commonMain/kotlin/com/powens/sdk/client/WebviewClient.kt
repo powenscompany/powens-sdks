@@ -46,7 +46,11 @@ class WebviewClient
         require(clientId.matches("\\d+".toRegex())) { "Invalid client ID: $clientId" }
     }
 
-    @Throws(IllegalArgumentException::class, CancellationException::class)
+    @Throws(
+        IllegalArgumentException::class,
+        CancellationException::class,
+        ServiceException::class,
+    )
     suspend fun buildConnectUrl(
         accessToken: String?,
         redirectUri: String,
@@ -64,7 +68,11 @@ class WebviewClient
         }
     }
 
-    @Throws(IllegalArgumentException::class, CancellationException::class)
+    @Throws(
+        IllegalArgumentException::class,
+        CancellationException::class,
+        ServiceException::class,
+    )
     suspend fun buildReconnectUrl(
         connectionId: Long,
         resetCredentials: Boolean = false,
@@ -78,7 +86,11 @@ class WebviewClient
         }
     }
 
-    @Throws(IllegalArgumentException::class, CancellationException::class)
+    @Throws(
+        IllegalArgumentException::class,
+        CancellationException::class,
+        ServiceException::class,
+    )
     suspend fun buildManageUrl(
         connectionId: Long?,
         accessToken: String,
@@ -92,7 +104,11 @@ class WebviewClient
         }
     }
 
-    @Throws(IllegalArgumentException::class, CancellationException::class)
+    @Throws(
+        IllegalArgumentException::class,
+        CancellationException::class,
+        ServiceException::class,
+    )
     private suspend fun buildUrl(
         path: String,
         accessToken: String? = null,

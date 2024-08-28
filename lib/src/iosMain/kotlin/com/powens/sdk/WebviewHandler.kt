@@ -34,7 +34,7 @@ object WebviewHandler {
         }
     }
 
-    @Throws( IllegalArgumentException::class)
+    @Throws(IllegalArgumentException::class)
     fun handleConnectCallback(url: NSURL, completionHandler: (result: WebviewConnectCallbackResult) -> Unit) {
         if (!shouldHandleCallback(url, WebviewPath.Connect)) return
 
