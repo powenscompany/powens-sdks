@@ -32,6 +32,9 @@ gradle/
 **/TransactionValueFilter.kt
 **/*Expand.kt
 
+# Omit duplicated objects
+**/ServiceError1.kt
+
 # Omit test skeletons
 src/test/
 

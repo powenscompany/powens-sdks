@@ -65,7 +65,6 @@ src/commonMain/kotlin/com/powens/sdk/model/RenewAccessTokenRequest.kt
 src/commonMain/kotlin/com/powens/sdk/model/ServiceAccessToken.kt
 src/commonMain/kotlin/com/powens/sdk/model/ServiceAccessTokenRequest.kt
 src/commonMain/kotlin/com/powens/sdk/model/ServiceError.kt
-src/commonMain/kotlin/com/powens/sdk/model/ServiceError1.kt
 src/commonMain/kotlin/com/powens/sdk/model/ServiceErrorCode.kt
 src/commonMain/kotlin/com/powens/sdk/model/ServiceTokenScope.kt
 src/commonMain/kotlin/com/powens/sdk/model/Transaction.kt
