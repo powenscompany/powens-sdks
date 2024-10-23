@@ -9,19 +9,19 @@ import java.math.BigDecimal
 
 actual typealias MonetaryValueImpl = BigDecimal
 
-actual object MonetaryValueSerializer : KSerializer<BigDecimal> {
+internal actual object MonetaryValueSerializer : KSerializer<BigDecimal> {
 
-    override val descriptor = PrimitiveSerialDescriptor("BigDecimal", PrimitiveKind.STRING)
+    actual override val descriptor = PrimitiveSerialDescriptor("java.math.BigDecimal", PrimitiveKind.STRING)
 
-    override fun serialize(encoder: Encoder, value: BigDecimal) {
+    actual override fun serialize(encoder: Encoder, value: BigDecimal) {
         encoder.encodeString(value.toPlainString())
     }
 
-    override fun deserialize(decoder: Decoder): BigDecimal {
+    actual override fun deserialize(decoder: Decoder): BigDecimal {
         return decoder.decodeString().toBigDecimal()
     }
 
 }
 
-actual val MonetaryValue.absoluteValue: BigDecimal
+internal actual val MonetaryValue.absoluteValue: BigDecimal
     get() = this.abs()

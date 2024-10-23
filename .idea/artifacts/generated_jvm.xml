@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="generated-jvm">
-    <output-path>$PROJECT_DIR$/api-client/generated/build/libs</output-path>
-    <root id="archive" name="generated-jvm.jar">
-      <element id="module-output" name="powens-sdks.api-client.generated.jvmMain" />
-    </root>
-  </artifact>
-</component>

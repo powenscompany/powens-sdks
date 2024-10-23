@@ -1,0 +1,18 @@
+# Omit Gradle module config
+openapi-generated/build.gradle.kts
+openapi-generated/settings.gradle.kts
+openapi-generated/gradle/
+
+# Omit unsupported oneOf models
+openapi-generated/**/model/CalendarBound.kt
+openapi-generated/**/model/TransactionValueFilter.kt
+openapi-generated/**/model/*Expand.kt
+
+# Omit test skeletons
+openapi-generated/src/test/
+
+# Omit docs
+openapi-generated/docs/
+
+# Omit ignore file
+openapi-generated/.openapi-generator-ignore

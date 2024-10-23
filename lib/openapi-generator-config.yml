@@ -1,0 +1,71 @@
+additionalProperties:
+  omitGradleWrapper: true
+  omitGradlePluginVersions: true
+  dateLibrary: kotlinx-datetime
+  enumPropertyNaming: PascalCase
+
+typeMappings:
+  string+date: LocalDate
+  # Special non-ISO Powens datetime format
+  string+sql-date-time: LocalDateTime
+  # Numbers with monetary semantics
+  number+monetary: MonetaryValue
+
+importMappings:
+  LocalDate: kotlinx.datetime.LocalDate
+  LocalDateTime: kotlinx.datetime.LocalDateTime
+  UnsignedLong: kotlin.ULong
+
+instantiationTypes:
+  # Support requests with free key-value additional properties in addition to schema-defined ones
+  # As of v7.9.0, the generator incorrectly defines inheritance from HashMap
+  # TODO: Remove after https://github.com/OpenAPITools/openapi-generator/issues/17361 is fixed
+  map: AdditionalPropertiesRequest
+
+enumNameMappings:
+  # Fix case inconsistencies in generated models
+  lifeinsurance: LifeInsurance
+  webauth: WebAuth
+  webauthRequired: WebAuthRequired
+  wrongpass: WrongPass
+  bankwealth: BankWealth
+  keymanager: KeyManager
+  consumercredit: ConsumerCredit
+  revolvingcredit: RevolvingCredit
+  # Override token scopes with colons
+  "payments:admin": PaymentsAdmin
+  "payments:read-only": PaymentsReadOnly
+  "payments:allow-sensitive": PaymentsAllowSensitive
+  "payments:validate": PaymentsValidate
+  "payments:cancel": PaymentsCancel
+  # Misc
+  PRIV: PrivatePersonal
+  ORGA: Professional
+  ASSO: Community
+  capitalisation: Capitalization
+
+nameMappings:
+  # Invert id_* prefixing
+  id_user: userId
+  id_connector: connectorId
+  id_provider: providerId
+  id_bank: bankId
+  id_connector_source: connectorSourceId
+  id_connection: connectionId
+  id_connection_source: connectionSourceId
+  id_account: accountId
+  id_transaction: transactionId
+  id_parent: parentId
+  id_category: categoryId
+  id_cluster: clusterId
+  # Fix case inconsistencies
+  accounttypes: accountTypes
+  # Misc
+  display_name_p: displayNamePlural
+  rdate: realizationDate
+  rdatetime: realizationDateTime
+  vdate: valueDate
+  vdatetime: valueDateTime
+  bdate: bankDate
+  bdatetime: bankDateTime
+  signin: signIn

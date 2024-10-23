@@ -14,15 +14,12 @@ class PowensApiClient
 
         @Throws(IllegalArgumentException::class)
         fun forPowensDomain(domain: String, clientId: String): PowensApiClient {
-            // Domains must use lowercase letters, digits and hyphens
-            require(domain.matches("[a-z\\d]+(-[a-z\\d]+)*".toRegex())) { "Invalid domain" }
-            return PowensApiClient("https://${domain}.biapi.pro/2.0/", clientId)
+            return PowensApiClient(getPowensDomainRoot(domain), clientId)
         }
     }
 
     init {
-        // Client IDs must be digits-only
-        require(clientId.matches("\\d+".toRegex())) { "Invalid client ID: $clientId" }
+        validateClientId(clientId)
     }
 
     val auth by lazy {AuthenticationApi(root, null, this::configureClient) }
@@ -38,6 +35,7 @@ class PowensApiClient
         config.HttpResponseValidator {
             handleResponseExceptionWithRequest { ex, _ ->
                 if (ex is ResponseException) {
+                    // Parse body of all errors as ServiceError
                     val apiError = try {
                         Json.decodeFromString<ServiceError>(ex.response.bodyAsText())
                     } catch (errorParsingEx: Throwable) {

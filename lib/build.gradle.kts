@@ -1,31 +1,40 @@
-﻿plugins {
+﻿import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
+
+plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.openApi.generator)
+    alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.kotlin.cocoapods)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.touchlab.skie)
     `maven-publish`
 }
 
 openApiGenerate {
     inputSpec.set("$projectDir/specs/powens-api.yml")
-    outputDir.set("$projectDir/generated")
+    outputDir.set("$projectDir/openapi-generated")
     generatorName.set("kotlin")
     library.set("multiplatform")
-    apiPackage.set("com.powens.sdk.client.services")
-    modelPackage.set("com.powens.sdk.model")
     packageName.set("com.powens.sdk")
-    configFile.set("$projectDir/generator-config.yml")
+    modelPackage.set("com.powens.sdk.model")
+    apiPackage.set("com.powens.sdk.client.services")
+    configFile.set("$projectDir/openapi-generator-config.yml")
+    ignoreFileOverride.set("$projectDir/.openapi-generator-ignore")
 }
 
 openApiValidate {
     inputSpec.set("$projectDir/specs/powens-api.yml")
 }
 
-// Configure the whole /spec dir for invalidation of the generator cache
+// Configure invalidation (inputs) of the OpenApi generator tasks
 tasks.withType(org.openapitools.generator.gradle.plugin.tasks.GenerateTask::class.java) {
+    inputs.file("$projectDir/openapi-generator-config.yml")
+    inputs.file("$projectDir/.openapi-generator-ignore")
     inputs.dir("$projectDir/specs")
 }
 tasks.withType(org.openapitools.generator.gradle.plugin.tasks.ValidateTask::class.java) {
@@ -35,12 +44,16 @@ tasks.withType(org.openapitools.generator.gradle.plugin.tasks.ValidateTask::clas
 kotlin {
 
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+            freeCompilerArgs.addAll(
+                "-P",
+                "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=com.powens.sdk.infrastructure.Parcelize"
+            )
         }
     }
+
     jvm()
 
     listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach { iosTarget ->
@@ -59,7 +72,7 @@ kotlin {
 
         // Register generated source folders
         listOf(commonMain/*, commonTest, iosTest, jsTest, jvmTest*/).forEach {
-            it.get().kotlin.srcDir("generated/src/${it.name}/kotlin")
+            it.get().kotlin.srcDir("openapi-generated/src/${it.name}/kotlin")
         }
 
         commonMain.dependencies {
@@ -78,12 +91,13 @@ kotlin {
         }
 
         androidMain.dependencies {
-            implementation(project.dependencies.platform(libs.androidx.compose.bom))
-            implementation(libs.androidx.browser)
-            implementation(libs.androidx.compose.material3)
-            implementation(libs.androidx.compose.ui)
-            implementation(libs.androidx.compose.uiTooling.preview)
+            implementation(libs.ktor.client.okhttp)
+            implementation(compose.runtime)
+            implementation(compose.material3)
+            implementation(compose.ui)
+            implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.browser)
         }
 
         iosMain.dependencies {
@@ -129,30 +143,56 @@ kotlin {
 }
 
 android {
+
     namespace = "com.powens.sdk"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
-    with (sourceSets["main"]) {
-        manifest.srcFile("src/androidMain/AndroidManifest.xml")
-        //res.srcDirs("src/androidMain/res")
-        //resources.srcDirs("src/commonMain/resources")
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
+
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
         manifestPlaceholders["powensDomain"] = "\${powensDomain}"
         manifestPlaceholders["powensClientId"] = "\${powensClientId}"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compilerExtension.get()
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
     }
-    dependencies {
-        debugImplementation(libs.androidx.compose.uiTooling)
-    }
+
     publishing {
         singleVariant("release") {
             withSourcesJar()
+        }
+    }
+
+    dependencies {
+        debugImplementation(compose.uiTooling)
+    }
+
+}
+
+composeCompiler {
+    targetKotlinPlatforms = setOf(KotlinPlatformType.androidJvm)
+}
+
+publishing {
+    publications {
+        create("release", MavenPublication::class.java) {
+            groupId = "com.powens"
+            artifactId = "sdk"
+            version = "1.0-beta1"
+            afterEvaluate { from(components["release"]) }
         }
     }
 }

@@ -49,3 +49,6 @@ bin/
 .externalNativeBuild
 .cxx
 local.properties
+
+### Kotlin
+.kotlin

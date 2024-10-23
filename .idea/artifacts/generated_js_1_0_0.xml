@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="generated-js-1.0.0">
-    <output-path>$PROJECT_DIR$/api-client/generated/build/libs</output-path>
-    <root id="archive" name="generated-js-1.0.0.jar">
-      <element id="module-output" name="powens-sdks.api-client.generated.jsMain" />
-    </root>
-  </artifact>
-</component>

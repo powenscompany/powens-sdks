@@ -1,28 +1,22 @@
 package com.powens.sdk
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Parcelable
 import androidx.activity.result.contract.ActivityResultContract
 import com.powens.sdk.model.WebviewConnectOptions
-import com.powens.sdk.infrastructure.Parcelize
+import kotlinx.parcelize.Parcelize
 
 object Powens {
 
     fun connectContract(): ActivityResultContract<ConnectConfig, ConnectResult> {
         return object : ActivityResultContract<ConnectConfig, ConnectResult>() {
 
-            override fun createIntent(context: Context, input: ConnectConfig) =
-                Intent(context, PowensActivity::class.java)
-                    .putExtra(PowensActivity.EXTRA_CONFIG, input)
+            override fun createIntent(context: Context, config: ConnectConfig) =
+                PowensActivity.newConnectIntent(context, config)
 
             override fun parseResult(resultCode: Int, intent: Intent?): ConnectResult =
-                when (resultCode) {
-                    Activity.RESULT_OK -> ConnectResult.Success(intent?.getStringExtra("connectionId")!!)
-                    Activity.RESULT_CANCELED -> ConnectResult.Error()
-                    else -> ConnectResult.Error()
-                }
+                PowensActivity.parseConnectResult(resultCode, intent)
 
         }
     }

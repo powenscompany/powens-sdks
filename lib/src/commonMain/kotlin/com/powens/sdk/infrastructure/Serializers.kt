@@ -22,7 +22,7 @@ class StringSerializer : KSerializer<String> {
 
 class IdsAsStringSerializer : KSerializer<List<Long>> {
 
-    override val descriptor = PrimitiveSerialDescriptor("IdsAsLong", PrimitiveKind.STRING)
+    override val descriptor = PrimitiveSerialDescriptor("IdsAsString", PrimitiveKind.STRING)
 
     override fun serialize(encoder: Encoder, value: List<Long>) {
         encoder.encodeString(value.joinToString(","))

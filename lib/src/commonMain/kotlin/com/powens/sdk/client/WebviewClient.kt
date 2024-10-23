@@ -16,9 +16,7 @@ class WebviewClient
 
         @Throws(IllegalArgumentException::class)
         fun forPowensDomain(domain: String, clientId: String): WebviewClient {
-            // Domains must use lowercase letters, digits and hyphens
-            require(domain.matches("[a-z\\d]+(-[a-z\\d]+)*".toRegex())) { "Invalid domain" }
-            return WebviewClient(domain, clientId)
+            return WebviewClient(getPowensDomainRoot(domain), clientId)
         }
 
         @Throws(IllegalArgumentException::class)
@@ -42,8 +40,7 @@ class WebviewClient
     }
 
     init {
-        // Client IDs must be digits-only
-        require(clientId.matches("\\d+".toRegex())) { "Invalid client ID: $clientId" }
+        validateClientId(clientId)
     }
 
     @Throws(
@@ -117,11 +114,11 @@ class WebviewClient
         paramsBuilder: ParametersBuilder.() -> Unit
     ): String {
         val authCode = if (accessToken.isNullOrEmpty()) null
-        else PowensApiClient("https://${domain}.biapi.pro/2.0/", clientId).auth.apply {
+        else PowensApiClient(root, clientId).auth.apply {
             setBearerToken(accessToken)
         }.getAuthCode().body().code
         return URLBuilder("https://webview.powens.com").apply {
-            appendPathSegments(path)
+            appendPathSegments("auth", "webview", path)
             parameters.apply {
                 append("domain", domain)
                 append("client_id", clientId)
@@ -136,7 +133,7 @@ class WebviewClient
         }.buildString()
     }
 
-    private fun applySharedWebviewOptions(paramsBuilder: ParametersBuilder, options: WebviewOptions) {
+    private fun applySharedWebviewOptions(paramsBuilder: ParametersBuilder, options: WebviewOptionsBase) {
         paramsBuilder.apply {
             options.connectorCountry?.let { append("connector_country", it) }
             options.connectorUuids?.let {

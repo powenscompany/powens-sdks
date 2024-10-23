@@ -1,5 +1,7 @@
 package com.powens.sdk
 
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -22,6 +24,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.viewModelScope
 import com.powens.sdk.client.WebviewClient
+import com.powens.sdk.model.WebviewCallbackError
+import com.powens.sdk.model.WebviewConnectCallbackSuccess
 import com.powens.sdk.theme.PowensKitTheme
 import kotlinx.coroutines.launch
 
@@ -31,10 +35,29 @@ class PowensActivity : ComponentActivity() {
 
     private val config
         get() = intent.getParcelableExtraCompat<ConnectConfig>(EXTRA_CONFIG)
-            ?: throw java.lang.IllegalArgumentException("Missing configuration extra")
+            ?: throw IllegalArgumentException("Missing configuration extra")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        intent.data?.let {
+            val metaData = packageManager.getApplicationInfo(
+                packageName,
+                PackageManager.GET_META_DATA
+            ).metaData
+            val clientId = metaData.getString("com.powens.clientId", "").trim()
+            if (it.scheme != "powens-${clientId}" || it.path != "callback") return
+            try {
+                when (val res = WebviewClient.parseConnectCallback(it.query)) {
+                    is WebviewConnectCallbackSuccess -> setResult(RESULT_OK, Intent().apply {
+                        putExtra("connectionId", res.connectionId)
+                    })
+                    is WebviewCallbackError -> setResult(RESULT_CANCELED)
+                }
+                finish()
+            } catch (error: IllegalArgumentException) {
+                Log.w("PowensActivity", "Invalid webview callback", error)
+            }
+        }
         setContent {
             PowensKitTheme {
                 Surface(
@@ -46,12 +69,11 @@ class PowensActivity : ComponentActivity() {
             }
         }
         if (savedInstanceState == null) {
-            val metaData = packageManager.getApplicationInfoCompat(
+            val metaData = packageManager.getApplicationInfo(
                 packageName,
                 PackageManager.GET_META_DATA
             ).metaData
             vm.openConnect(metaData, config)
-
         }
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -92,6 +114,17 @@ class PowensActivity : ComponentActivity() {
     companion object {
 
         const val EXTRA_CONFIG = "com.powens.config"
+        const val EXTRA_CONNECTION_ID = "com.powens.connectionId"
+
+        fun newConnectIntent(context: Context, config: ConnectConfig) = Intent(context, PowensActivity::class.java)
+            .putExtra(PowensActivity.EXTRA_CONFIG, config)
+
+        fun parseConnectResult(resultCode: Int, intent: Intent?): ConnectResult =
+            when (resultCode) {
+                RESULT_OK -> ConnectResult.Success(connectionId = intent?.getStringExtra(EXTRA_CONNECTION_ID)!!)
+                RESULT_CANCELED -> ConnectResult.Error()
+                else -> ConnectResult.Error()
+            }
 
     }
 

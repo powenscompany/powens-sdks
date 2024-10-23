@@ -1,27 +1,28 @@
 package com.powens.sdk.model
 
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import java.math.BigDecimal
 
-actual typealias MonetaryValueImpl = BigDecimal
+actual typealias MonetaryValueImpl = @Serializable(with = MonetaryValueSerializer::class) BigDecimal
 
-actual object MonetaryValueSerializer : KSerializer<BigDecimal> {
+internal actual object MonetaryValueSerializer : KSerializer<BigDecimal> {
 
-    override val descriptor = PrimitiveSerialDescriptor("BigDecimal", PrimitiveKind.STRING)
+    actual override val descriptor = PrimitiveSerialDescriptor("BigDecimal", PrimitiveKind.STRING)
 
-    override fun serialize(encoder: Encoder, value: BigDecimal) {
+    actual override fun serialize(encoder: Encoder, value: BigDecimal) {
         encoder.encodeString(value.toString())
     }
 
-    override fun deserialize(decoder: Decoder): BigDecimal {
+    actual override fun deserialize(decoder: Decoder): BigDecimal {
         return decoder.decodeString().toBigDecimal()
     }
 
 }
 
-actual val MonetaryValue.absoluteValue: BigDecimal
+internal actual val MonetaryValue.absoluteValue: BigDecimal
     get() = this.abs()

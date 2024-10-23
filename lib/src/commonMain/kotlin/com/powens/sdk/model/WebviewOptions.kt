@@ -4,24 +4,35 @@ import com.powens.sdk.infrastructure.Parcelable
 import com.powens.sdk.infrastructure.Parcelize
 import kotlinx.serialization.Serializable
 
-@Serializable
-@Parcelize
-open class WebviewOptions : Parcelable {
-    var connectorUuids: List<String>? = null
-    var connectorCapabilities: List<ConnectorCapability>? = null
-    var connectorCountry: String? = null
-    var connectorFieldValues: Map<String, Map<String, String>>? = null
-    var accountTypes: List<BankAccountTypeName>? = null
-    var accountUsages: List<BankAccountUsage>? = null
+interface WebviewOptionsBase {
+    var connectorUuids: List<String>?
+    var connectorCapabilities: List<ConnectorCapability>?
+    var connectorCountry: String?
+    var connectorFieldValues: Map<String, Map<String, String>>?
+    var accountTypes: List<BankAccountTypeName>?
+    var accountUsages: List<BankAccountUsage>?
 }
 
 @Serializable
 @Parcelize
-class WebviewManageOptions : WebviewOptions(), Parcelable
+data class WebviewManageOptions(
+     override var connectorUuids: List<String>? = null,
+     override var connectorCapabilities: List<ConnectorCapability>? = null,
+     override var connectorCountry: String? = null,
+     override var connectorFieldValues: Map<String, Map<String, String>>? = null,
+     override var accountTypes: List<BankAccountTypeName>? = null,
+     override var accountUsages: List<BankAccountUsage>? = null
+): WebviewOptionsBase, Parcelable
 
 @Serializable
 @Parcelize
-class WebviewConnectOptions : WebviewOptions(), Parcelable {
-    var maxConnections: Int? = null
+data class WebviewConnectOptions(
+    override var connectorUuids: List<String>? = null,
+    override var connectorCapabilities: List<ConnectorCapability>? = null,
+    override var connectorCountry: String? = null,
+    override var connectorFieldValues: Map<String, Map<String, String>>? = null,
+    override var accountTypes: List<BankAccountTypeName>? = null,
+    override var accountUsages: List<BankAccountUsage>? = null,
+    var maxConnections: Int? = null,
     var accountIbans: List<String>? = null
-}
+) : WebviewOptionsBase, Parcelable
