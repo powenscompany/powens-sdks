@@ -190,8 +190,8 @@ publishing {
     publications {
         create("release", MavenPublication::class.java) {
             groupId = "com.powens"
-            artifactId = "sdk"
-            version = "1.0-beta1"
+            artifactId = "powens-connect"
+            version = "1.0.0-beta"
             afterEvaluate { from(components["release"]) }
         }
     }
@@ -214,14 +214,3 @@ publishing {
         dependsOn("allTests")
     }
 }*/
-
-publishing {
-    publications {
-        create("release", MavenPublication::class.java) {
-            groupId = "com.powens"
-            artifactId = "powens-connect"
-            version = "1.0.0-beta"
-            afterEvaluate { from(components["release"]) }
-        }
-    }
-}
