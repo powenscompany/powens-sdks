@@ -14,6 +14,8 @@ class WebviewClient
 
     companion object {
 
+        private const val WEBVIEW_ROOT = "https://webview.powens.com"
+
         @Throws(IllegalArgumentException::class)
         fun forPowensDomain(domain: String, clientId: String): WebviewClient {
             return WebviewClient(getPowensDomainRoot(domain), clientId)
@@ -114,10 +116,10 @@ class WebviewClient
         paramsBuilder: ParametersBuilder.() -> Unit
     ): String {
         val authCode = if (accessToken.isNullOrEmpty()) null
-        else PowensApiClient(root, clientId).auth.apply {
+        else PowensApiClient(getPowensDomainRoot(domain), clientId).auth.apply {
             setBearerToken(accessToken)
         }.getAuthCode().body().code
-        return URLBuilder("https://webview.powens.com").apply {
+        return URLBuilder(WEBVIEW_ROOT).apply {
             appendPathSegments("auth", "webview", path)
             parameters.apply {
                 append("domain", domain)
