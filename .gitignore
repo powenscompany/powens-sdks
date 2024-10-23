@@ -51,4 +51,4 @@ bin/
 local.properties
 
 ### Kotlin
-.kotlin
+/.kotlin/
