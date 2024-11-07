@@ -120,7 +120,7 @@ class WebviewClient
             setBearerToken(accessToken)
         }.getAuthCode().body().code
         return URLBuilder(WEBVIEW_ROOT).apply {
-            appendPathSegments("auth", "webview", path)
+            appendPathSegments(path)
             parameters.apply {
                 append("domain", domain)
                 append("client_id", clientId)
