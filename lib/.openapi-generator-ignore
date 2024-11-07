@@ -16,3 +16,6 @@ openapi-generated/docs/
 
 # Omit ignore file
 openapi-generated/.openapi-generator-ignore
+
+# Omit duplicate ServiceError
+openapi-generated/**/model/ServiceError1.kt
